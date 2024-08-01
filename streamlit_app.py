@@ -19,3 +19,5 @@ bcen['lon'] = bcen.geometry.x
 bcen['lat'] = bcen.geometry.y
 bcen1 = bcen.drop('geometry', axis=1)
 st.map(bcen1, color="#ffaa0088", size=10.0)
+
+st.divider()
