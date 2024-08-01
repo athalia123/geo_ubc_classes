@@ -63,8 +63,8 @@ for i in range(0,len(gc3)):
 st_map = st_folium(map, width=700, height=450)
 st.write('Hover over the markers to see some more details')
 
-st.divider()
+#st.divider()
 
-st.map(bcen1, color="#ffaa0088", size=10.0)
+#st.map(bcen1, color="#ffaa0088", size=10.0)
 
-st.divider()
+#st.divider()
