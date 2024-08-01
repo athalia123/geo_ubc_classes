@@ -24,6 +24,12 @@ st.map(bcen1, color="#ffaa0088", size=10.0)
 
 st.divider()
 
+Week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+gc3 = gc2[gc2["Days"].str.contains(Week[0])]
+st.dataframe(gc3)
+
+st.divider()
+
 bcen1 = pd.DataFrame(bcen1)
 
 map = folium.Map(location=[49.266048, -123.250012], zoom_start=15)
