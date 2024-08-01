@@ -25,11 +25,8 @@ st.map(bcen1, color="#ffaa0088", size=10.0)
 st.divider()
 
 map = folium.Map(location=[49.262548, -123.245112], zoom_start=15)
-choropleth = folium.Choropleth(
-        geo_data='geo_file/ubcv_buildings.geojson',
-        highlight=True
-    )
-choropleth.geojson.add_to(map)
+folium.GeoJson('geo_files/ubcv_buildings.geojson').add_to(map)
+
 
 
 st_map = st_folium(map, width=700, height=450)
