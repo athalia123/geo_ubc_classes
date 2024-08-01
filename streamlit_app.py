@@ -30,7 +30,7 @@ folium.GeoJson('geo_files/ubcv_buildings.geojson').add_to(map)
 
 for i in range(len(bcen1)):
     icon=folium.Icon(color="black")
-    folium.geojson.add_child(folium.Marker((bcen[i, 'Latitude'],bcen[i, 'Longitude']), icon=icon))
+    folium.geojson.add_child(folium.Marker((bcen[i, 'lat'],bcen[i, 'lon']), icon=icon))
 
 st_map = st_folium(map, width=700, height=450)
 
