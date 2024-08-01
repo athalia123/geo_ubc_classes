@@ -15,7 +15,7 @@ st.dataframe(gc2)
 st.divider()
 
 bcen = gpd.read_file("geo_files/ubc_buildings_centroids.geojson")
-bcen['lon'] = bcen.bcen['geometry'].x
-bcen['lat'] = bcen.bcen['geometry'].y
+bcen['lon'] = bcen.geometry.x
+bcen['lat'] = bcen.geometry.y
 bcen1 = bcen.drop('geometry', axis=1)
 st.map(bcen1, color="#ffaa0088")
