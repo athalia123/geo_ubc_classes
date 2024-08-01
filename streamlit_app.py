@@ -28,7 +28,7 @@ Week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
 #day = 0
 day = st.selectbox("Weekday:", Week, index=0)
 gc3 = gc2[gc2["Days"].str.contains(day)].sort_values(by=['Start'])
-st.header(day)
+st.write(day)
 st.dataframe(gc3)
 
 st.divider()
