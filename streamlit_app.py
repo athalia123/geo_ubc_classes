@@ -55,7 +55,7 @@ for i in range(0,len(gc3)):
    tooltip = gc3.iloc[i]['Section']+'<br>'+gc3.iloc[i]['Start']+'<br>'+gc3.iloc[i]['NAME']
    folium.Marker(
       location=[gc3.iloc[i]['lat'], gc3.iloc[i]['lon']],
-      tooltip=folium.Tooltip(tooltip, style='width:300px; height:150px; white-space:normal;'), icon=folium.Icon(color='black')
+      tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), icon=folium.Icon(color='black')
    ).add_to(map)
 
 st_map = st_folium(map, width=700, height=450)
