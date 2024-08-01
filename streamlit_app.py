@@ -51,7 +51,7 @@ folium.GeoJson('geo_files/ubcv_buildings.geojson').add_to(map)
 
 
 for i in range(0,len(gc3)):
-   tooltip = gc3.iloc[i]['Section']+'\n'+gc3.iloc[i]['Start']+'\n'+gc3.iloc[i]['SHORTNAME']
+   tooltip = gc3.iloc[i]['Section']+'\n\n'+gc3.iloc[i]['Start']+'\n\n'+gc3.iloc[i]['SHORTNAME']
    folium.Marker(
       location=[gc3.iloc[i]['lat'], gc3.iloc[i]['lon']],
       tooltip=tooltip, icon=folium.Icon(color='black')
