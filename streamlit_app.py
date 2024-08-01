@@ -26,7 +26,7 @@ st.divider()
 
 bcen1 = pd.DataFrame(bcen1)
 
-map = folium.Map(location=[49.266948, -123.248912], zoom_start=15)
+map = folium.Map(location=[49.265948, -123.249512], zoom_start=15)
 folium.GeoJson('geo_files/ubcv_buildings.geojson').add_to(map)
 
 for i in range(0,len(bcen1)):
