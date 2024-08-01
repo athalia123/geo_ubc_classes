@@ -24,10 +24,13 @@ st.map(bcen1, color="#ffaa0088", size=10.0)
 
 st.divider()
 
+bcen1 = pd.DataFrame(bcen1)
 map = folium.Map(location=[49.262548, -123.245112], zoom_start=15)
 folium.GeoJson('geo_files/ubcv_buildings.geojson').add_to(map)
 
-
+for i in range(len(bcen1)):
+    icon=folium.Icon(color="black")
+    folium.geojson.add_child(folium.Marker((bcen[i, 'Latitude'],bcen[i, 'Longitude']), icon=icon))
 
 st_map = st_folium(map, width=700, height=450)
 
