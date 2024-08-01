@@ -11,7 +11,7 @@ st.write("I'm going to make a map of the campus and put my classes on it")
 gclss = gpd.read_file("geo_files/geoclass1.geojson")
 gc = pd.DataFrame(gclss)
 gc1 = gc.drop('geometry', axis=1)
-gc2 = gc1[["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building", "SHORTNAME"]]
+gc2 = gc1[["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building", "SHORTNAME", "NAME"]]
 st.dataframe(gc2)
 
 st.divider()
@@ -52,10 +52,10 @@ folium.GeoJson('geo_files/ubcv_buildings.geojson').add_to(map)
 style='width:300px; height:300px; white-space:normal;'
 
 for i in range(0,len(gc3)):
-   tooltip = gc3.iloc[i]['Section']+'<br>'+gc3.iloc[i]['Start']+'<br>'+gc3.iloc[i]['SHORTNAME']
+   tooltip = gc3.iloc[i]['Section']+'<br>'+gc3.iloc[i]['Start']+'<br>'+gc3.iloc[i]['NAME']
    folium.Marker(
       location=[gc3.iloc[i]['lat'], gc3.iloc[i]['lon']],
-      tooltip=folium.Tooltip(tooltip, style='width:300px; height:50px; white-space:normal;'), icon=folium.Icon(color='black')
+      tooltip=folium.Tooltip(tooltip, style='width:300px; height:150px; white-space:normal;'), icon=folium.Icon(color='black')
    ).add_to(map)
 
 st_map = st_folium(map, width=700, height=450)
