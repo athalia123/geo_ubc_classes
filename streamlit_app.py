@@ -25,7 +25,9 @@ st.map(bcen1, color="#ffaa0088", size=10.0)
 st.divider()
 
 Week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
-gc3 = gc2[gc2["Days"].str.contains(Week[0])]
+day = 0
+gc3 = gc2[gc2["Days"].str.contains(Week[day]])]
+st.header(Week[day])
 st.dataframe(gc3)
 
 st.divider()
