@@ -24,6 +24,6 @@ st.map(bcen1, color="#ffaa0088", size=10.0)
 
 st.divider()
 
-map = folium.Map()
-st_map = st_folium(map)
+map = folium.Map(location=[38, -96.5], zoom_start=4)
+st_map = st_folium(map, width=700, height=450)
 
