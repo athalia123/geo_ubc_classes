@@ -27,7 +27,7 @@ gclss['lon'] = gclss.geometry.x
 gclss['lat'] = gclss.geometry.y
 gclss1 = gclss.drop('geometry', axis=1)
 
-
+st.header('Weekday Schedule Picker')
 Week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
 #day = 0
 day = st.selectbox("Weekday:", Week, index=0)
