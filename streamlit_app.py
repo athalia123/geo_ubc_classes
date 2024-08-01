@@ -18,4 +18,4 @@ bcen = gpd.read_file("geo_files/ubc_buildings_centroids.geojson")
 bcen['lon'] = bcen.geometry.x
 bcen['lat'] = bcen.geometry.y
 bcen1 = bcen.drop('geometry', axis=1)
-st.map(bcen1, color="#ffaa0088")
+st.map(bcen1, color="#ffaa0088", size=10.0)
