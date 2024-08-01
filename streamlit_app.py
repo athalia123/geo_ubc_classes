@@ -25,7 +25,8 @@ st.map(bcen1, color="#ffaa0088", size=10.0)
 st.divider()
 
 Week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
-day = 0
+#day = 0
+day = st.selectbox("Weekday:", Week, index=0)
 gc3 = gc2[gc2["Days"].str.contains(Week[day])].sort_values(by=['Start'])
 st.header(Week[day])
 st.dataframe(gc3)
