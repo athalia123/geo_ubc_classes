@@ -14,7 +14,7 @@ st.dataframe(gc2)
 
 st.divider()
 
-bcen = pd.DataFrame(gpd.read_file("geo_files/ubc_buildings_centroids.geojson"))
+bcen = gpd.read_file("geo_files/ubc_buildings_centroids.geojson")
 bcen['lon'] = bcen.point_object.x
 bcen['lat'] = bcen.point_object.y
 bcen1 = bcen.drop('geometry', axis=1)
