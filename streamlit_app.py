@@ -42,13 +42,13 @@ bcen1 = pd.DataFrame(bcen1)
 map = folium.Map(location=[49.266048, -123.250012], zoom_start=15)
 folium.GeoJson('geo_files/ubcv_buildings.geojson').add_to(map)
 
-'''
-for i in range(0,len(bcen1)):
-   folium.CircleMarker(
-      location=[bcen1.iloc[i]['lat'], bcen1.iloc[i]['lon']],
-      tooltip=bcen1.iloc[i]['NAME'], radius=3.5, fill=True, color='black', fillcolor='red', fillopacity=1
-   ).add_to(map)
-'''
+
+#for i in range(0,len(bcen1)):
+#   folium.CircleMarker(
+#      location=[bcen1.iloc[i]['lat'], bcen1.iloc[i]['lon']],
+#      tooltip=bcen1.iloc[i]['NAME'], radius=3.5, fill=True, color='black', fillcolor='red', fillopacity=1
+#   ).add_to(map)
+
 
 for i in range(0,len(gc3)):
    tooltip = gc3.iloc[i]['Section']+'\n'+gc3.iloc[i]['Start']+'\n'+gc3.iloc[i]['SHORTNAME']
