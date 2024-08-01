@@ -9,7 +9,7 @@ st.write("I'm going to make a map of the campus and put my classes on it")
 
 st.divider()
 
-st.header('All Courses')
+st.header('All My UBC Courses')
 gclss = gpd.read_file("geo_files/geoclass1.geojson")
 gc = pd.DataFrame(gclss)
 gc1 = gc.drop('geometry', axis=1)
@@ -28,6 +28,8 @@ gclss['lat'] = gclss.geometry.y
 gclss1 = gclss.drop('geometry', axis=1)
 
 st.header('Weekday Schedule Picker')
+st.write('Choose a day -> the class that day will be displayed in order of time AND be shown on the map below it')
+
 Week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
 #day = 0
 day = st.selectbox("Weekday:", Week, index=0)
@@ -59,6 +61,7 @@ for i in range(0,len(gc3)):
    ).add_to(map)
 
 st_map = st_folium(map, width=700, height=450)
+st.write('Hover over the markers to see some more details')
 
 st.divider()
 
