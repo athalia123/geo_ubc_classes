@@ -14,6 +14,7 @@ backend
 beautifulsoup4
 bleach
 blinker
+branca
 cachetools
 censusdis
 certifi
@@ -42,6 +43,7 @@ flake8-html
 fonttools
 fqdn
 fsspec
+folium
 genbadge
 geographiclib
 geopandas
@@ -152,6 +154,7 @@ sphinxcontrib-qthelp
 sphinxcontrib-serializinghtml
 stack-data
 streamlit
+streamlit_folium
 sympy
 tenacity
 terminado
