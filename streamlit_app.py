@@ -26,7 +26,7 @@ st.divider()
 
 Week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
 day = 0
-gc3 = gc2[gc2["Days"].str.contains(Week[day])]
+gc3 = gc2[gc2["Days"].str.contains(Week[day])].sort_values(by=['Start'])
 st.header(Week[day])
 st.dataframe(gc3)
 
