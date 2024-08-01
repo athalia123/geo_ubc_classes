@@ -1,6 +1,8 @@
 import streamlit as st
 import geopandas as gpd
 import pandas as pd
+import folium
+from streamlit_folium import st_folium
 
 st.title('My First App - Hello World :)')
 st.write("I'm going to make a map of the campus and put my classes on it")
@@ -21,3 +23,7 @@ bcen1 = bcen.drop('geometry', axis=1)
 st.map(bcen1, color="#ffaa0088", size=10.0)
 
 st.divider()
+
+map = folium.Map()
+st_map = st_folium(map)
+
