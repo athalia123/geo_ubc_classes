@@ -20,9 +20,7 @@ bcen = gpd.read_file("geo_files/ubc_buildings_centroids.geojson")
 bcen['lon'] = bcen.geometry.x
 bcen['lat'] = bcen.geometry.y
 bcen1 = bcen.drop('geometry', axis=1)
-st.map(bcen1, color="#ffaa0088", size=10.0)
 
-st.divider()
 
 Week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
 #day = 0
@@ -46,3 +44,8 @@ for i in range(0,len(bcen1)):
 
 st_map = st_folium(map, width=700, height=450)
 
+st.divider()
+
+st.map(bcen1, color="#ffaa0088", size=10.0)
+
+st.divider()
