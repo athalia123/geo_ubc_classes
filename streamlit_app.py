@@ -32,7 +32,7 @@ folium.GeoJson('geo_files/ubcv_buildings.geojson').add_to(map)
 for i in range(0,len(bcen1)):
    folium.CircleMarker(
       location=[bcen1.iloc[i]['lat'], bcen1.iloc[i]['lon']],
-      tooltip=bcen1.iloc[i]['NAME'], radius=2.8, fill=True, color='black', fillcolor='red', fillopacity=1
+      tooltip=bcen1.iloc[i]['NAME'], radius=3.5, fill=True, color='black', fillcolor='red', fillopacity=1
    ).add_to(map)
 
 st_map = st_folium(map, width=700, height=450)
