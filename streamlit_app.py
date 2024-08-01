@@ -7,7 +7,9 @@ from streamlit_folium import st_folium
 st.title('My First App - Hello World :)')
 st.write("I'm going to make a map of the campus and put my classes on it")
 
+st.divider()
 
+st.header('All Courses')
 gclss = gpd.read_file("geo_files/geoclass1.geojson")
 gc = pd.DataFrame(gclss)
 gc1 = gc.drop('geometry', axis=1)
@@ -48,8 +50,6 @@ folium.GeoJson('geo_files/ubcv_buildings.geojson').add_to(map)
 #      location=[bcen1.iloc[i]['lat'], bcen1.iloc[i]['lon']],
 #      tooltip=bcen1.iloc[i]['NAME'], radius=3.5, fill=True, color='black', fillcolor='red', fillopacity=1
 #   ).add_to(map)
-
-style='width:300px; height:300px; white-space:normal;'
 
 for i in range(0,len(gc3)):
    tooltip = gc3.iloc[i]['Section']+'<br>'+gc3.iloc[i]['Start']+'<br>'+gc3.iloc[i]['NAME']+'<br>'+gc3.iloc[i]['Building']
