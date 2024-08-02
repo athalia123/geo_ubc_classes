@@ -4,6 +4,8 @@ import pandas as pd
 import folium
 from streamlit_folium import st_folium
 
+st.set_page_config(page_title='title', page_icon=':bar_chart:', layout='wide')
+
 st.title('My First App - Hello World :)')
 st.write("I'm going to make a map of the campus and put my classes on it")
 
