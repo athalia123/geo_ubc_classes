@@ -55,7 +55,7 @@ gc3 = gc2[gc2["Days"].str.contains(day)].sort_values(by=['Start'])
 gc4 = gc3
 
 distances = []
-for i in range(0,len(g1)-1):    
+for i in range(0,len(gc4)-1):    
     g2 = g4.iloc[[i]][['geometry', 'lon', 'lat']]
     ln = g2.iloc[0]['lon']
     lt = g2.iloc[0]['lat']
