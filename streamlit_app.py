@@ -121,10 +121,10 @@ for i in range(0,len(gc3)):
 
    folium.Marker(
       location=loc,
-      popup="Delivery " + '{:02d}'.format(i+1),
-      #tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), 
+      #popup="Delivery " + '{:02d}'.format(i+1),
+      tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), 
       icon=folium.Icon(color='black',icon_color='black'),
-        markerColor='#440154',
+        markerColor='pink',
    ).add_to(map)
    
 
@@ -132,7 +132,7 @@ for i in range(0,len(gc3)):
 
    folium.Marker(
         location=loc,
-        popup="Delivery " + '{:02d}'.format(i+1),
+        #popup="Delivery " + '{:02d}'.format(i+1),
         tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), 
         icon= DivIcon(
             icon_size=(150,36),
