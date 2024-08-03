@@ -54,6 +54,16 @@ day = st.selectbox("Weekday:", Week, index=0)
 gc2['lon'] = gclss1['lon']
 gc2['lat'] = gclss1['lat']
 gc3 = gc2[gc2["Days"].str.contains(day)].sort_values(by=['Start'])
+
+gc4 = pd.DataFrame(gc3)
+gc4 = gc4.drop('geometry', axis=1)
+l = []
+for i in range(1, len(gc4)+1):
+    #print(i)
+    l.append(i)
+gc4['Order'] = l
+gc4 = gc4.set_index('Order')
+
 #st.write(day)
 
 distances = []
@@ -79,8 +89,6 @@ for i in range(0,len(gc3)-1):
     distances.append(g5.iloc[0])
 distances.append(None)
 
-gc4 = pd.DataFrame(gc3)
-gc4 = gc4.drop('geometry', axis=1)
 gc4['Dist to Next Class /km'] = distances
 
 st.dataframe(gc4)
