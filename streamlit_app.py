@@ -118,13 +118,7 @@ col_hex = ['#440154',
 for i in range(0,len(gc3)):
    loc = [gc3.iloc[i]['lat'], gc3.iloc[i]['lon']]
    tooltip = gc3.iloc[i]['Section']+'<br>'+gc3.iloc[i]['Start']+'<br>'+gc3.iloc[i]['NAME']+'<br>'+gc3.iloc[i]['Building']
-   folium.Marker(
-      location=loc,
-      popup="Delivery " + '{:02d}'.format(i+1),
-      #tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), 
-      icon=folium.Icon(color='white',icon_color='white'),
-        markerColor=col_hex[i],
-   ).add_to(map)
+   
    folium.Marker(
         location=loc,
         popup="Delivery " + '{:02d}'.format(i+1),
@@ -143,6 +137,15 @@ for i in range(0,len(gc3)):
                 </span>""".format(col_hex[i],i+1)
         )
     ).add_to(map)
+
+   folium.Marker(
+      location=loc,
+      popup="Delivery " + '{:02d}'.format(i+1),
+      #tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), 
+      icon=folium.Icon(color='white',icon_color='white'),
+        markerColor=col_hex[i],
+   ).add_to(map)
+   
 
 """
 folium.Marker(
