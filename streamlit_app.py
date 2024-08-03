@@ -99,18 +99,36 @@ folium.GeoJson('geo_files/ubcv_buildings.geojson').add_to(map)
 #      tooltip=bcen1.iloc[i]['NAME'], radius=3.5, fill=True, color='black', fillcolor='red', fillopacity=1
 #   ).add_to(map)
 
+col_hex = ['#440154',
+ '#481a6c',
+ '#472f7d',
+ '#414487',
+ '#39568c',
+ '#31688e',
+ '#2a788e',
+ '#23888e',
+ '#1f988b',
+ '#22a884',
+ '#35b779',
+ '#54c568',
+ '#7ad151',
+ '#a5db36',
+ '#d2e21b']
+
 for i in range(0,len(gc3)):
    loc = [gc3.iloc[i]['lat'], gc3.iloc[i]['lon']]
    tooltip = gc3.iloc[i]['Section']+'<br>'+gc3.iloc[i]['Start']+'<br>'+gc3.iloc[i]['NAME']+'<br>'+gc3.iloc[i]['Building']
    folium.Marker(
       location=loc,
-      tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), 
+      popup="Delivery " + '{:02d}'.format(i+1),
+      #tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), 
       icon=folium.Icon(color='white',icon_color='white'),
-        markerColor='#440154',
+        markerColor=col_hex[i],
    ).add_to(map)
    folium.Marker(
         location=loc,
-        #popup="Delivery " + '{:02d}'.format(num+1),
+        popup="Delivery " + '{:02d}'.format(i+1),
+        tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), 
         icon= DivIcon(
             icon_size=(150,36),
             icon_anchor=(14,40),
@@ -122,7 +140,7 @@ for i in range(0,len(gc3)):
                     <strong class="fa-stack-1x">
                          {:02d}  
                     </strong>
-                </span>""".format('black',i+1)
+                </span>""".format(col_hex[i],i+1)
         )
     ).add_to(map)
 
