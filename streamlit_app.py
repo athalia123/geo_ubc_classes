@@ -55,8 +55,8 @@ gc3 = gc2[gc2["Days"].str.contains(day)].sort_values(by=['Start'])
 gc4 = gc3
 
 distances = []
-for i in range(0,len(gc4)-1):    
-    g2 = gc4.iloc[[i]][['geometry', 'lon', 'lat']]
+for i in range(0,len(gc3)-1):    
+    g2 = gc3.iloc[[i]][['geometry', 'lon', 'lat']]
     ln = g2.iloc[0]['lon']
     lt = g2.iloc[0]['lat']
     g3 = g2[['geometry']]
@@ -66,7 +66,7 @@ for i in range(0,len(gc4)-1):
     # Reproject to aeqd projection using Proj4-string
     g3 = g3.to_crs(crs=aeqd)
 
-    g4 = g4.iloc[[i+1]][['geometry']].to_crs(crs=aeqd)
+    g4 = gc4.iloc[[i+1]][['geometry']].to_crs(crs=aeqd)
 
     g3_geom = g3['geometry'].iloc[0]
 
