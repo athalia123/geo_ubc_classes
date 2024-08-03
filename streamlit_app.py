@@ -77,7 +77,7 @@ for i in range(0,len(gc3)-1):
     #print(type(g5))
     #print(g5)
     distances.append(g5.iloc[0])
-distances.append('None')
+distances.append(None)
 
 g4['Dist to Next Class'] = distances
 
