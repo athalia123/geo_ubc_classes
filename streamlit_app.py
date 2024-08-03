@@ -66,7 +66,7 @@ for i in range(0,len(gc3)-1):
     # Reproject to aeqd projection using Proj4-string
     g3 = g3.to_crs(crs=aeqd)
 
-    g4 = gc4.iloc[[i+1]][['geometry']].to_crs(crs=aeqd)
+    g4 = gc3.iloc[[i+1]][['geometry']].to_crs(crs=aeqd)
 
     g3_geom = g3['geometry'].iloc[0]
 
