@@ -129,12 +129,12 @@ for i in range(0,len(gc3)):
 #             html='<div style="font-size: 18pt; align:center, color : black">' + '{:02d}'.format(num+1) + '</div>',
             html="""<span class="fa-stack " style="font-size: 12pt" >
                     <!-- The icon that will wrap the number -->
-                    <span class="fa fa-circle-o fa-stack-2x" style="color : {:s}"></span>
+                    <span class="fa fa-circle-o fa-stack-2x" style="color : black"></span>
                     <!-- a strong element with the custom content, in this case a number -->
                     <strong class="fa-stack-1x">
                          {:02d}  
                     </strong>
-                </span>""".format('#440154',i+1)
+                </span>""".format(i+1)
         )
     ).add_to(map)
    
