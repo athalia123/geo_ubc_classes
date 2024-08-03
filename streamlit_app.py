@@ -56,7 +56,7 @@ gc4 = gc3
 
 distances = []
 for i in range(0,len(gc4)-1):    
-    g2 = g4.iloc[[i]][['geometry', 'lon', 'lat']]
+    g2 = gc4.iloc[[i]][['geometry', 'lon', 'lat']]
     ln = g2.iloc[0]['lon']
     lt = g2.iloc[0]['lat']
     g3 = g2[['geometry']]
