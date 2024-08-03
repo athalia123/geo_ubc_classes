@@ -134,27 +134,18 @@ for i in range(0,len(gc3)):
                     <strong class="fa-stack-1x">
                          {:02d}  
                     </strong>
-                </span>""".format(col_hex[i],i+1)
+                </span>""".format('#440154',i+1)
         )
     ).add_to(map)
-
    folium.Marker(
       location=loc,
       popup="Delivery " + '{:02d}'.format(i+1),
       #tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), 
       icon=folium.Icon(color='white',icon_color='white'),
-        markerColor=col_hex[i],
+        markerColor='#440154',
    ).add_to(map)
    
 
-"""
-folium.Marker(
-        location=loc,
-        popup="Delivery " + '{:02d}'.format(num+1),
-        icon=folium.Icon(color='white',icon_color='white'),
-        markerColor=col_hex[num],
-    ).add_to(fm)
-"""
 
 #folium.Icon(color='black')
 
