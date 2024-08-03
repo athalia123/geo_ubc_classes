@@ -54,7 +54,6 @@ gc2['lon'] = gclss1['lon']
 gc2['lat'] = gclss1['lat']
 gc3 = gc2[gc2["Days"].str.contains(day)].sort_values(by=['Start'])
 #st.write(day)
-gc4 = gc3
 
 distances = []
 for i in range(0,len(gc3)-1):    
@@ -79,6 +78,8 @@ for i in range(0,len(gc3)-1):
     distances.append(g5.iloc[0])
 distances.append(None)
 
+gc4 = pd.DataFrame(gc3)
+gc4 = gc4.drop('geometry', axis=1)
 gc4['Dist to Next Class'] = distances
 
 st.dataframe(gc4)
