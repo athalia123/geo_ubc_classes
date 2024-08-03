@@ -122,7 +122,7 @@ for i in range(0,len(gc3)):
                     <strong class="fa-stack-1x">
                          {:02d}  
                     </strong>
-                </span>""".format('#440154',i+1)
+                </span>""".format('black',i+1)
         )
     ).add_to(map)
 
