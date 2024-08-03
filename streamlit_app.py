@@ -100,15 +100,40 @@ folium.GeoJson('geo_files/ubcv_buildings.geojson').add_to(map)
 #   ).add_to(map)
 
 for i in range(0,len(gc3)):
+   loc = [gc3.iloc[i]['lat'], gc3.iloc[i]['lon']]
    tooltip = gc3.iloc[i]['Section']+'<br>'+gc3.iloc[i]['Start']+'<br>'+gc3.iloc[i]['NAME']+'<br>'+gc3.iloc[i]['Building']
    folium.Marker(
-      location=[gc3.iloc[i]['lat'], gc3.iloc[i]['lon']],
-      tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), icon=DivIcon(
-        icon_size=(150,36),
-        icon_anchor=(0,0),
-        html='<div style="font-size: 24pt">%s</div>' % "Test",
-        )
+      location=loc,
+      tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), 
+      icon=folium.Icon(color='white',icon_color='white'),
+        markerColor='#440154',
    ).add_to(map)
+   folium.Marker(
+        location=loc,
+        #popup="Delivery " + '{:02d}'.format(num+1),
+        icon= DivIcon(
+            icon_size=(150,36),
+            icon_anchor=(14,40),
+#             html='<div style="font-size: 18pt; align:center, color : black">' + '{:02d}'.format(num+1) + '</div>',
+            html="""<span class="fa-stack " style="font-size: 12pt" >
+                    <!-- The icon that will wrap the number -->
+                    <span class="fa fa-circle-o fa-stack-2x" style="color : {:s}"></span>
+                    <!-- a strong element with the custom content, in this case a number -->
+                    <strong class="fa-stack-1x">
+                         {:02d}  
+                    </strong>
+                </span>""".format('#440154',i+1)
+        )
+    ).add_to(map)
+
+"""
+folium.Marker(
+        location=loc,
+        popup="Delivery " + '{:02d}'.format(num+1),
+        icon=folium.Icon(color='white',icon_color='white'),
+        markerColor=col_hex[num],
+    ).add_to(fm)
+"""
 
 #folium.Icon(color='black')
 
