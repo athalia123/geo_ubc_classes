@@ -16,8 +16,10 @@ st.header('All My UBC Courses')
 gclss = gpd.read_file("geo_files/geoclass1.geojson")
 gc = pd.DataFrame(gclss)
 gc1 = gc.drop('geometry', axis=1)
-gc2 = gc1[["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building", "SHORTNAME", "NAME"]]
-st.dataframe(gc2)
+gc1 = gc1[["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building", "NAME"]]
+st.dataframe(gc1)
+
+gc2 = gclss[["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building", "NAME", "geometry"]]
 
 st.divider()
 
