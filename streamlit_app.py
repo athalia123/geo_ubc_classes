@@ -79,7 +79,7 @@ for i in range(0,len(gc3)-1):
     distances.append(g5.iloc[0])
 distances.append(None)
 
-g4['Dist to Next Class'] = distances
+gc4['Dist to Next Class'] = distances
 
 st.dataframe(gc4)
 
