@@ -80,7 +80,7 @@ distances.append(None)
 
 gc4 = pd.DataFrame(gc3)
 gc4 = gc4.drop('geometry', axis=1)
-gc4['Dist to Next Class'] = distances
+gc4['Dist to Next Class /km'] = distances
 
 st.dataframe(gc4)
 
