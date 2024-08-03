@@ -137,13 +137,6 @@ for i in range(0,len(gc3)):
                 </span>""".format('#440154',i+1)
         )
     ).add_to(map)
-   folium.Marker(
-      location=loc,
-      popup="Delivery " + '{:02d}'.format(i+1),
-      #tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), 
-      icon=folium.Icon(color='white',icon_color='white'),
-        markerColor='#440154',
-   ).add_to(map)
    
 
 
