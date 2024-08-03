@@ -136,7 +136,7 @@ for i in range(0,len(gc3)):
         tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), 
         icon= DivIcon(
             icon_size=(50,36),
-            icon_anchor=(14,40),
+            icon_anchor=(14,20),
 #             html='<div style="font-size: 18pt; align:center, color : black">' + '{:02d}'.format(num+1) + '</div>',
             html="""<span class="fa-stack " style="font-size: 12pt" >
                     <!-- The icon that will wrap the number -->
