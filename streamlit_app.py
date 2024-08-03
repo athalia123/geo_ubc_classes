@@ -2,6 +2,7 @@ import streamlit as st
 import geopandas as gpd
 import pandas as pd
 import folium
+from folium.features import DivIcon
 from streamlit_folium import st_folium
 from pyproj import CRS
 
@@ -102,8 +103,14 @@ for i in range(0,len(gc3)):
    tooltip = gc3.iloc[i]['Section']+'<br>'+gc3.iloc[i]['Start']+'<br>'+gc3.iloc[i]['NAME']+'<br>'+gc3.iloc[i]['Building']
    folium.Marker(
       location=[gc3.iloc[i]['lat'], gc3.iloc[i]['lon']],
-      tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), icon=folium.Icon(color='black')
+      tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), icon=DivIcon(
+        icon_size=(150,36),
+        icon_anchor=(0,0),
+        html='<div style="font-size: 24pt">%s</div>' % "Test",
+        )
    ).add_to(map)
+
+#folium.Icon(color='black')
 
 st_map = st_folium(map, width=700, height=450)
 st.write('Hover over the markers to see some more details')
