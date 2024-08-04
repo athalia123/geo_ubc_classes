@@ -97,7 +97,7 @@ st.dataframe(gc4)
 
 bcen1 = pd.DataFrame(bcen1)
 
-map = folium.Map(location=[49.266048, -123.250012], zoom_start=15)
+map = folium.Map(location=[49.266048, -123.250012], zoom_start=15, min_zoom=17)
 folium.GeoJson('geo_files/ubcv_buildings.geojson').add_to(map)
 
 
@@ -106,22 +106,6 @@ folium.GeoJson('geo_files/ubcv_buildings.geojson').add_to(map)
 #      location=[bcen1.iloc[i]['lat'], bcen1.iloc[i]['lon']],
 #      tooltip=bcen1.iloc[i]['NAME'], radius=3.5, fill=True, color='black', fillcolor='red', fillopacity=1
 #   ).add_to(map)
-
-col_hex = ['#440154',
- '#481a6c',
- '#472f7d',
- '#414487',
- '#39568c',
- '#31688e',
- '#2a788e',
- '#23888e',
- '#1f988b',
- '#22a884',
- '#35b779',
- '#54c568',
- '#7ad151',
- '#a5db36',
- '#d2e21b']
 
 for i in range(0,len(gc3)):
    loc = [gc3.iloc[i]['lat'], gc3.iloc[i]['lon']]
@@ -134,9 +118,6 @@ for i in range(0,len(gc3)):
       icon=folium.Icon(color='black',icon_color='black'),
         markerColor='pink',
    ).add_to(map)
-   
-
-
 
    folium.Marker(
         location=loc,
