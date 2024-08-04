@@ -97,7 +97,7 @@ st.dataframe(gc4)
 
 bcen1 = pd.DataFrame(bcen1)
 
-map = folium.Map(location=[49.266048, -123.250012], zoom_start=15, min_zoom=17)
+map = folium.Map(location=[49.266048, -123.250012], zoom_start=15, min_zoom=13)
 folium.GeoJson('geo_files/ubcv_buildings.geojson').add_to(map)
 
 
