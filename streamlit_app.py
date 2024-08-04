@@ -101,6 +101,8 @@ geoj = 'geo_files/ubcv_buildings.geojson'
 bldg = gpd.read_file(geoj)
 crs1 = bldg.crs
 st.write(crs1)
+bldg2 = bldg.to_crs(epsg=3857)
+st.write(bldg2.crs)
 
 map = folium.Map(location=[49.266048, -123.250012], zoom_start=15, min_zoom=14)
 folium.GeoJson(geoj).add_to(map)
