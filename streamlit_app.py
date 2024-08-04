@@ -93,6 +93,7 @@ gc4['Dist to Next Class /km'] = distances
 
 st.dataframe(gc4[["Section", "Instructional Format", "Start", "End", "Building", "Room", "Dist to Next Class /km"]])
 #gclss[["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building"]]
+st.write('Hover over the markers to see some more details')
 
 #st.divider()
 
@@ -100,8 +101,6 @@ bcen1 = pd.DataFrame(bcen1)
 
 geoj = 'geo_files/ubcv_buildings.geojson'
 bldg = gpd.read_file(geoj)
-crs1 = bldg.crs
-st.write(crs1)
 bldg2 = bldg.to_crs(epsg=3857)
 st.write(bldg2.crs)
 
@@ -150,7 +149,6 @@ for i in range(0,len(gc3)):
 #folium.Icon(color='black')
 
 st_map = st_folium(map, width=700, height=450)
-st.write('Hover over the markers to see some more details')
 
 #st.divider()
 
