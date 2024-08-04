@@ -91,7 +91,7 @@ distances.append(None)
 
 gc4['Dist to Next Class /km'] = distances
 
-st.dataframe(gc4[['Order', 'Section', 'Instructional Format', 'Start', 'End', 'Building Room', 'Dist to Next Class /m']])
+st.dataframe(gc4[['Order', 'Section', 'Instructional Format', 'Start', 'End', 'Building', 'Room', 'Dist to Next Class /m']])
 
 #st.divider()
 
