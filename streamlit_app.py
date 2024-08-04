@@ -98,7 +98,7 @@ st.dataframe(gc4)
 bcen1 = pd.DataFrame(bcen1)
 
 geoj = 'geo_files/ubcv_buildings.geojson'
-bldg = gpd.read_fileg(geoj)
+bldg = gpd.read_file(geoj)
 crs1 = bldg.crs
 
 map = folium.Map(location=[49.266048, -123.250012], zoom_start=15, min_zoom=14, crs=crs1)
