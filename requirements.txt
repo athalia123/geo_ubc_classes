@@ -1,3 +1,13 @@
+polyline
+msgpack
+jmespath
+iso3166
+cachecontrol
+botocore
+s3transfer
+boto3
+
+
 adjustText
 affine
 alabaster
