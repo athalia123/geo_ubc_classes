@@ -6,6 +6,7 @@ cachecontrol
 botocore
 s3transfer
 boto3
+mapbox
 
 
 adjustText
