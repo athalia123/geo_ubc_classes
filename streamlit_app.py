@@ -202,7 +202,7 @@ if ind!=None:
 
     folium.PolyLine(
     locations=coord2,
-    color="#55DD55",
+    color="#06402B",
     weight=6,
     tooltip=folium.Tooltip(tt, style='width:300px; height:80px;white-space:normal;'),
         ).add_to(map)
