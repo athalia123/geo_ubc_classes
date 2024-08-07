@@ -158,8 +158,8 @@ for i in range(0,len(gc3)):
         )
     ).add_to(map)
    
-gc3[['lon', 'lat']]
-oval = gc3.iloc[0]['lon'].item()
+#gc3[['lon', 'lat']]
+#oval = gc3.iloc[0]['lon'].item()
 #pyval  = oval.item()
 #print(type(oval))
 #gc3.iloc[1]['Building']
