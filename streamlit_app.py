@@ -52,7 +52,7 @@ st.write('Choose a day -> the class that day will be displayed in order of time 
 
 Week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
 #day = 0
-day = st.selectbox("Weekday:", Week, index=0)
+day = st.selectbox("Warp:", Week, index=0)
 gc2['lon'] = gclss1['lon']
 gc2['lat'] = gclss1['lat']
 gc3 = gc2[gc2["Days"].str.contains(day)].sort_values(by=['Start'])
