@@ -150,19 +150,19 @@ gc3[['lon', 'lat']]
 oval = gc3.iloc[0]['lon'].item()
 #pyval  = oval.item()
 print(type(oval))
-gc3.iloc[1]['BLDG_CODE']
+gc3.iloc[1]['Building']
 
 service = Directions(access_token="pk.eyJ1IjoiYXRoYWxpYS0xNzIzIiwiYSI6ImNsemZvNTEwcTEyZWIyc3EwOWtydHdlMGIifQ.QI-Y0g3fxAOGJfl_9vE6MQ")
 
 origin = {
     'type': 'Feature',
-    'properties': {'name': gc3.iloc[0]['BLDG_CODE']},
+    'properties': {'name': gc3.iloc[0]['Building']},
     'geometry': {
         'type': 'Point',
         'coordinates': [gc3.iloc[0]['lon'].item(), gc3.iloc[0]['lat'].item()]}}
 destination = {
     'type': 'Feature',
-    'properties': {'name': gc3.iloc[1]['BLDG_CODE']},
+    'properties': {'name': gc3.iloc[1]['Building']},
     'geometry': {
         'type': 'Point',
         'coordinates': [gc3.iloc[1]['lon'].item(), gc3.iloc[1]['lat'].item()]}}
