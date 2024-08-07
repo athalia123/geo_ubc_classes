@@ -116,7 +116,7 @@ bcen1 = pd.DataFrame(bcen1)
 geoj = 'geo_files/ubcv_buildings.geojson'
 bldg = gpd.read_file(geoj)
 bldg2 = bldg.to_crs(epsg=3857)
-st.write(bldg2.crs)
+#st.write(bldg2.crs)
 
 map = folium.Map(location=[49.266048, -123.250012], zoom_start=15, min_zoom=14, control_scale=True)
 folium.GeoJson(bldg2).add_to(map)
