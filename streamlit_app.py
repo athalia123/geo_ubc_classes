@@ -195,12 +195,13 @@ if ind!=None:
     #st.write("COORDINATES")
     #st.table(coord2)
 
+    tt = gc3.iloc[ind]["NAME"]+" ("+gc3.iloc[ind]['Building']+") - <br>"+gc3.iloc[ind+1]["NAME"]+" ("+gc3.iloc[ind+1]['Building']+")",
 
     folium.PolyLine(
     locations=coord2,
     color="#FF0000",
     weight=3,
-    tooltip=gc3.iloc[ind]["NAME"]+" ("+gc3.iloc[ind]['Building']+") - "+gc3.iloc[ind+1]["NAME"]+" ("+gc3.iloc[ind+1]['Building']+")",
+    tooltip=folium.Tooltip(tt, style='white-space:normal;'),
         ).add_to(map)
 
     list_ind = [ind, ind+1]
