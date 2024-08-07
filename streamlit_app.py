@@ -79,7 +79,7 @@ for i in range (0, len(gc4)-1):
     #st.write(i)
 
 ind = st.selectbox("Wayfinding:", l1, format_func=lambda x: title(gc3.iloc[x])+" to "+title(gc3.iloc[x+1]), placeholder="None", index=None)
-st.write("selected index: ", ind)
+#st.write("selected index: ", ind)
 
 distances = []
 for i in range(0,len(gc3)-1):    
@@ -198,12 +198,12 @@ if ind!=None:
     #st.write("COORDINATES")
     #st.table(coord2)
 
-    tt = gc3.iloc[ind]["NAME"]+' ('+gc3.iloc[ind]['Building']+') - <br>'+gc3.iloc[ind+1]["NAME"]+' ('+gc3.iloc[ind+1]['Building']+')',
+    tt = str(ind+1)+'. '+gc3.iloc[ind]["NAME"]+' <b>('+gc3.iloc[ind]['Building']+')</b> - <br>'+str(ind+2)+'. '+gc3.iloc[ind+1]["NAME"]+' <b>('+gc3.iloc[ind+1]['Building']+')</b>'
 
     folium.PolyLine(
     locations=coord2,
-    color="#FF0000",
-    weight=8,
+    color="#00DD00",
+    weight=6,
     tooltip=folium.Tooltip(tt, style='width:300px; height:80px;white-space:normal;'),
         ).add_to(map)
 
