@@ -204,7 +204,7 @@ if ind!=None:
         ).add_to(map)
 
 
-    for i in range(0,2):
+    for i in [ind,ind+1]:
         row = gc3.iloc[ind]
         loc = [row['lat'], row['lon']]
         tooltip = row['Section']+'<br>'+row['Start']+'<br>'+row['NAME']+'<br>'+row['Building']
