@@ -131,7 +131,7 @@ folium.GeoJson(bldg2).add_to(map)
 for i in range(0,len(gc3)):
    rw = gc3.iloc[i]
    loc = [rw['lat'], rw['lon']]
-   tooltip = rw['Section']+'<br>'+rw['Start']+'<br>'+rw['NAME']+'<br>'+rw['Building']+'<nr>'+rw['Room']
+   tooltip = rw['Section']+'<br>'+rw['Start']+'<br>'+rw['NAME']+'<br>'+rw['Building']+'<br>'+rw['Room']
 
    folium.Marker(
       location=loc,
