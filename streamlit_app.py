@@ -7,6 +7,7 @@ from folium.features import DivIcon
 from streamlit_folium import st_folium
 from pyproj import CRS
 from mapbox import Directions
+import os
 
 st.set_page_config(page_title='UBCV Class Map', page_icon=':bar_chart:', layout='wide')
 
@@ -166,7 +167,7 @@ for i in range(0,len(gc3)):
 
 if ind!=None:
     #service = Directions(access_token="pk.eyJ1IjoiYXRoYWxpYS0xNzIzIiwiYSI6ImNsemZvNTEwcTEyZWIyc3EwOWtydHdlMGIifQ.QI-Y0g3fxAOGJfl_9vE6MQ")
-    service = Directions()
+    service = Directions(access_token=os.environ['MAPBOX_ACCESS_TOKEN'])
     #service.session.params['access_token']
     origin = {
         'type': 'Feature',
