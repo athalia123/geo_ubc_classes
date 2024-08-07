@@ -205,7 +205,7 @@ if ind!=None:
 
     list_ind = [ind, ind+1]
     for i in list_ind:
-        row = gc3.iloc[ind]
+        row = gc3.iloc[i]
         loc = [row['lat'], row['lon']]
         tooltip = row['Section']+'<br>'+row['Start']+'<br>'+row['NAME']+'<br>'+row['Building']
 
