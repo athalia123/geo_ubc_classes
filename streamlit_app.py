@@ -196,6 +196,46 @@ if ind!=None:
     st.table(coord2)
 
 
+    folium.PolyLine(
+    locations=coord2,
+    color="#FF0000",
+    weight=3,
+    tooltip=gc3.iloc[ind]['Building']+" - "+gc3.iloc[ind+1]['Building'],
+        ).add_to(map)
+
+
+    for i in range(0,2):
+        row = gc3.iloc[ind]
+        loc = [row['lat'], row['lon']]
+        tooltip = row['Section']+'<br>'+row['Start']+'<br>'+row['NAME']+'<br>'+row['Building']
+
+        folium.Marker(
+            location=loc,
+            #popup="Delivery " + '{:02d}'.format(i+1),
+            tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), 
+            icon=folium.Icon(color='black',icon_color='black'),
+        ).add_to(map)
+
+        folium.Marker(
+                location=loc,
+                #popup="Delivery " + '{:02d}'.format(i+1),
+                tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), 
+                icon= DivIcon(
+                    icon_size=(30,30),
+                    icon_anchor=(18,40),
+        #             html='<div style="font-size: 18pt; align:center, color : black">' + '{:02d}'.format(num+1) + '</div>',
+                    html="""<span class="fa-stack " style="font-size: 12pt" >
+                            <!-- The icon that will wrap the number -->
+                            <span class="fa fa-circle-o fa-stack-2x" style="color : white"></span>
+                            <!-- a strong element with the custom content, in this case a number -->
+                            <strong class="fa-stack-1x">
+                                {:02d}  
+                            </strong>
+                        </span>""".format(i+1)
+                )
+            ).add_to(map)
+
+
 
    
 
