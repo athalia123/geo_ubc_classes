@@ -73,7 +73,7 @@ def title(row):
     return name
 
 l1 = []
-for i in range (0, len(gc3)-1):
+for i in range (0, len(gc4)-1):
     l1.append(i)
 st.write(l1)
 #ind = st.selectbox("Wayfinding:", l1, format_func=lambda x: title(gc3.iloc[x])+" to "+title(gc3.iloc[x+1]))
