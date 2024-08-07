@@ -167,7 +167,7 @@ for i in range(0,len(gc3)):
 
 if ind!=None:
     #service = Directions(access_token="pk.eyJ1IjoiYXRoYWxpYS0xNzIzIiwiYSI6ImNsemZvNTEwcTEyZWIyc3EwOWtydHdlMGIifQ.QI-Y0g3fxAOGJfl_9vE6MQ")
-    service = Directions(access_token=st.secretsn['MAPBOX_ACCESS_TOKEN'])
+    service = Directions(access_token=st.secrets['MAPBOX_ACCESS_TOKEN'])
     #service.session.params['access_token']
     origin = {
         'type': 'Feature',
