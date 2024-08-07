@@ -75,11 +75,10 @@ def title(row):
 l1 = []
 for i in range (0, len(gc4)-1):
     l1.append(i)
-    st.write(i)
+    #st.write(i)
 
 ind = st.selectbox("Wayfinding:", l1, format_func=lambda x: title(gc3.iloc[x])+" to "+title(gc3.iloc[x+1]), placeholder="None", index=None)
 st.write("selected index: ", ind)
-
 
 distances = []
 for i in range(0,len(gc3)-1):    
@@ -165,36 +164,36 @@ oval = gc3.iloc[0]['lon'].item()
 print(type(oval))
 gc3.iloc[1]['Building']
 
-service = Directions(access_token="pk.eyJ1IjoiYXRoYWxpYS0xNzIzIiwiYSI6ImNsemZvNTEwcTEyZWIyc3EwOWtydHdlMGIifQ.QI-Y0g3fxAOGJfl_9vE6MQ")
+if ind!=None:
+    service = Directions(access_token="pk.eyJ1IjoiYXRoYWxpYS0xNzIzIiwiYSI6ImNsemZvNTEwcTEyZWIyc3EwOWtydHdlMGIifQ.QI-Y0g3fxAOGJfl_9vE6MQ")
+    origin = {
+        'type': 'Feature',
+        'properties': {'name': gc3.iloc[ind]['Building']},
+        'geometry': {
+            'type': 'Point',
+            'coordinates': [gc3.iloc[ind]['lon'].item(), gc3.iloc[ind]['lat'].item()]}}
+    destination = {
+        'type': 'Feature',
+        'properties': {'name': gc3.iloc[ind+1]['Building']},
+        'geometry': {
+            'type': 'Point',
+            'coordinates': [gc3.iloc[ind+1]['lon'].item(), gc3.iloc[ind+1]['lat'].item()]}}
 
-origin = {
-    'type': 'Feature',
-    'properties': {'name': gc3.iloc[0]['Building']},
-    'geometry': {
-        'type': 'Point',
-        'coordinates': [gc3.iloc[0]['lon'].item(), gc3.iloc[0]['lat'].item()]}}
-destination = {
-    'type': 'Feature',
-    'properties': {'name': gc3.iloc[1]['Building']},
-    'geometry': {
-        'type': 'Point',
-        'coordinates': [gc3.iloc[1]['lon'].item(), gc3.iloc[1]['lat'].item()]}}
+    response = service.directions([origin, destination],
+        'mapbox/walking')
+    print("response code: ", response.status_code)
 
-response = service.directions([origin, destination],
-    'mapbox/walking')
-print("response code: ", response.status_code)
+    st.write("response code: ", str(response.status_code))
 
-st.write("response code: ", str(response.status_code))
+    walking_route = response.geojson()
+    w = walking_route['features'][0]['geometry']['coordinates']
 
-walking_route = response.geojson()
-w = walking_route['features'][0]['geometry']['coordinates']
-
-coord2 = []
-for i in range(0, len(w)):
-    list = [w[i][1], w[i][0]]
-    coord2.append(list)
-st.write("COORDINATES")
-st.table(coord2)
+    coord2 = []
+    for i in range(0, len(w)):
+        list = [w[i][1], w[i][0]]
+        coord2.append(list)
+    st.write("COORDINATES")
+    st.table(coord2)
 
 
 
