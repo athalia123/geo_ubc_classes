@@ -201,7 +201,7 @@ if ind!=None:
     locations=coord2,
     color="#FF0000",
     weight=3,
-    tooltip=folium.Tooltip(tt, style='width:300px; height:110px;white-space:normal;'),
+    tooltip=folium.Tooltip(tt, style='width:300px; height:80px;white-space:normal;'),
         ).add_to(map)
 
     list_ind = [ind, ind+1]
