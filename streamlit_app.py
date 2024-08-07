@@ -68,6 +68,17 @@ gc4 = gc4.set_index('Order')
 
 #st.write(day)
 
+def title(row):
+    name = row["Section"]+" ("+row["Building"]+")"
+    return name
+
+l1 = []
+for i in range (0, len(gc2)-1):
+    l1.append(i)
+ind = st.selectbox("Wayfinding:", l1, format_func=lambda x: title(gc3.iloc[x])+" to "+title(gc3.iloc[x+1]))
+st.write("selected index: ", ind)
+
+
 distances = []
 for i in range(0,len(gc3)-1):    
     g2 = gc3.iloc[[i]][['geometry', 'lon', 'lat']]
