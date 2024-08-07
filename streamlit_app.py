@@ -170,7 +170,8 @@ destination = {
 response = service.directions([origin, destination],
     'mapbox/walking')
 print("response code: ", response.status_code)
-st.write("response code: " + response.state_code)
+
+st.write("response code: ", str(response.state_code))
 
 walking_route = response.geojson()
 w = walking_route['features'][0]['geometry']['coordinates']
