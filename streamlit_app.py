@@ -1,10 +1,12 @@
 import streamlit as st
 import geopandas as gpd
 import pandas as pd
+import numpy as np
 import folium
 from folium.features import DivIcon
 from streamlit_folium import st_folium
 from pyproj import CRS
+from mapbox import Directions
 
 st.set_page_config(page_title='UBCV Class Map', page_icon=':bar_chart:', layout='wide')
 
@@ -143,6 +145,43 @@ for i in range(0,len(gc3)):
                 </span>""".format(i+1)
         )
     ).add_to(map)
+   
+gc3[['lon', 'lat']]
+oval = gc3.iloc[0]['lon'].item()
+#pyval  = oval.item()
+print(type(oval))
+gc3.iloc[1]['BLDG_CODE']
+
+service = Directions(access_token="pk.eyJ1IjoiYXRoYWxpYS0xNzIzIiwiYSI6ImNsemZvNTEwcTEyZWIyc3EwOWtydHdlMGIifQ.QI-Y0g3fxAOGJfl_9vE6MQ")
+
+origin = {
+    'type': 'Feature',
+    'properties': {'name': gc3.iloc[0]['BLDG_CODE']},
+    'geometry': {
+        'type': 'Point',
+        'coordinates': [gc3.iloc[0]['lon'].item(), gc3.iloc[0]['lat'].item()]}}
+destination = {
+    'type': 'Feature',
+    'properties': {'name': gc3.iloc[1]['BLDG_CODE']},
+    'geometry': {
+        'type': 'Point',
+        'coordinates': [gc3.iloc[1]['lon'].item(), gc3.iloc[1]['lat'].item()]}}
+
+response = service.directions([origin, destination],
+    'mapbox/walking')
+print("response code: ", response.status_code)
+
+walking_route = response.geojson()
+w = walking_route['features'][0]['geometry']['coordinates']
+
+coord2 = []
+for i in range(0, len(w)):
+    list = [w[i][1], w[i][0]]
+    coord2.append(list)
+print("coordinates: ", coord2)
+
+
+
    
 
 
