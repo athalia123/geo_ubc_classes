@@ -161,8 +161,8 @@ for i in range(0,len(gc3)):
 gc3[['lon', 'lat']]
 oval = gc3.iloc[0]['lon'].item()
 #pyval  = oval.item()
-print(type(oval))
-gc3.iloc[1]['Building']
+#print(type(oval))
+#gc3.iloc[1]['Building']
 
 if ind!=None:
     service = Directions(access_token="pk.eyJ1IjoiYXRoYWxpYS0xNzIzIiwiYSI6ImNsemZvNTEwcTEyZWIyc3EwOWtydHdlMGIifQ.QI-Y0g3fxAOGJfl_9vE6MQ")
@@ -183,7 +183,7 @@ if ind!=None:
         'mapbox/walking')
     print("response code: ", response.status_code)
 
-    st.write("response code: ", str(response.status_code))
+    #st.write("response code: ", str(response.status_code))
 
     walking_route = response.geojson()
     w = walking_route['features'][0]['geometry']['coordinates']
@@ -192,8 +192,8 @@ if ind!=None:
     for i in range(0, len(w)):
         list = [w[i][1], w[i][0]]
         coord2.append(list)
-    st.write("COORDINATES")
-    st.table(coord2)
+    #st.write("COORDINATES")
+    #st.table(coord2)
 
 
     folium.PolyLine(
