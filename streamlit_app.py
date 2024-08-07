@@ -50,7 +50,7 @@ gclss1 = gclss.drop('geometry', axis=1)
 st.header('Weekday Schedule Picker')
 st.write('Choose a day -> the class that day will be displayed in order of time AND be shown on the map below it')
 
-Week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+Weekday = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
 #day = 0
 day = st.selectbox("Warp:", Week, index=0)
 gc2['lon'] = gclss1['lon']
@@ -78,7 +78,7 @@ for i in range (0, len(gc4)-1):
     st.write(i)
 
 ind = st.selectbox("Wayfinding:", l1, format_func=lambda x: title(gc3.iloc[x])+" to "+title(gc3.iloc[x+1]))
-#st.write("selected index: ", ind)
+st.write("selected index: ", ind)
 
 
 distances = []
