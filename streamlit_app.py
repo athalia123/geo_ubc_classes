@@ -166,7 +166,7 @@ for i in range(0,len(gc3)):
 
 if ind!=None:
     #service = Directions(access_token="pk.eyJ1IjoiYXRoYWxpYS0xNzIzIiwiYSI6ImNsemZvNTEwcTEyZWIyc3EwOWtydHdlMGIifQ.QI-Y0g3fxAOGJfl_9vE6MQ")
-    service = Directions
+    service = Directions()
     #service.session.params['access_token']
     origin = {
         'type': 'Feature',
