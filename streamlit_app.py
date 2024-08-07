@@ -200,7 +200,7 @@ if ind!=None:
     locations=coord2,
     color="#FF0000",
     weight=3,
-    tooltip=gc3.iloc[ind]['Building']+" - "+gc3.iloc[ind+1]['Building'],
+    tooltip=gc3.iloc[ind]["NAME"]+" ("+gc3.iloc[ind]['Building']+") - "+gc3.iloc[ind+1]["NAME"]+" ("+gc3.iloc[ind+1]['Building']+")",
         ).add_to(map)
 
     list_ind = [ind, ind+1]
