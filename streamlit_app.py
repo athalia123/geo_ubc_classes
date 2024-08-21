@@ -78,6 +78,7 @@ for i in range(1, len(gc4)+1):
     #print(i)
     l.append(i)
 gc4['Order'] = l
+gc4['order2'] = l
 gc4 = gc4.set_index('Order')
 
 #st.write(day)
