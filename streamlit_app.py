@@ -8,6 +8,7 @@ from streamlit_folium import st_folium
 from pyproj import CRS
 from mapbox import Directions
 import os
+from st_aggrid import AgGrid
 
 st.set_page_config(page_title='UBCV Class Map', page_icon=':bar_chart:', layout='wide')
 
@@ -21,7 +22,8 @@ gclss = gpd.read_file("geo_files/geoclass1.geojson")
 gc = pd.DataFrame(gclss)
 gc1 = gc.drop('geometry', axis=1)
 gc1 = gc1[["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building", "NAME"]]
-st.dataframe(gc1)
+#st.dataframe(gc1)
+AgGrid(gc1)
 
 gc2 = gclss[["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building", "NAME", "geometry"]]
 
