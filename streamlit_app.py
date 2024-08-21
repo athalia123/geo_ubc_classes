@@ -46,7 +46,7 @@ ag = AgGrid(
         reload_data=reload_data)
 
 st.subheader("Returned Data")
-st.dataframe(ag['gc1'])
+st.dataframe(ag['data'])
 
 
 
