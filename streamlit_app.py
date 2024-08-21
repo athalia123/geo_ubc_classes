@@ -139,7 +139,7 @@ for i in range(0,len(gc3)-1):
     walking_route = response.geojson()
     wdist = walking_route['features'][0]['properties']['distance']
     wdist = wdist/1000
-    wdstr = str("%.3f" % wdist)
+    wdstr = float(str("%.3f" % wdist))
     dist_list.append(wdstr)
 
 distances.append(None)
