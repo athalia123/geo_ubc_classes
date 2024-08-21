@@ -31,7 +31,7 @@ gc1 = gc1[["Section", "Instructional Format", "Days", "Start", "End", "Room", "B
 
 c1,_ = st.columns([3,2])
 height = c1.slider('Height (px)', min_value=100, max_value=800, value=400)
-reload_data=False
+reload_data=True
 c1,c2,_ = st.columns([1,2,1])
 
 gb = GridOptionsBuilder.from_dataframe(gc1)
