@@ -8,7 +8,8 @@ from streamlit_folium import st_folium
 from pyproj import CRS
 from mapbox import Directions
 import os
-from st_aggrid import AgGrid
+from st_aggrid import AgGrid, GridOptionsBuilder
+
 
 st.set_page_config(page_title='UBCV Class Map', page_icon=':bar_chart:', layout='wide')
 
@@ -23,7 +24,38 @@ gc = pd.DataFrame(gclss)
 gc1 = gc.drop('geometry', axis=1)
 gc1 = gc1[["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building", "NAME"]]
 #st.dataframe(gc1)
-AgGrid(gc1)
+
+# testing streamlit AgGrid library
+
+#AgGrid(gc1)
+
+c1,_ = st.columns([3,2])
+height = c1.slider('Height (px)', min_value=100, max_value=800, value=400)
+reload_data=False
+c1,c2,_ = st.columns([1,2,1])
+
+gb = GridOptionsBuilder.from_dataframe(gc1)
+go = gb.build()
+
+ag = AgGrid(
+        gc1, 
+        gridOptions=go, 
+        height=height, 
+        fit_columns_on_grid_load=True, 
+        key='an_unique_key',
+        reload_data=reload_data)
+
+st.subheader("Returned Data")
+st.dataframe(ag['gc1'])
+
+
+
+
+
+
+
+
+
 
 gc2 = gclss[["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building", "NAME", "geometry"]]
 
