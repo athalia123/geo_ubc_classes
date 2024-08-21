@@ -32,6 +32,8 @@ st.dataframe(gc1)
 
 #@#############33
 
+st.sidebar.subheader("St-AgGrid example options")
+
 gc2 = gclss[["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building", "NAME", "geometry"]]
 
 st.divider()
@@ -238,7 +240,7 @@ if ind!=None:
     #st.write("COORDINATES")
     #st.table(coord2)
 
-    tt = str(ind+1)+'. '+gc3.iloc[ind]["NAME"]+' <b>('+gc3.iloc[ind]['Building']+')</b> - <br>'+str(ind+2)+'. '+gc3.iloc[ind+1]["NAME"]+' <b>('+gc3.iloc[ind+1]['Building']+')</b>'
+    tt = str(ind+1)+'. '+gc3.iloc[ind]["NAME"]+' <b>('+gc3.iloc[ind]['Building']+') -</b> <br>'+str(ind+2)+'. '+gc3.iloc[ind+1]["NAME"]+' <b>('+gc3.iloc[ind+1]['Building']+')</b>'
 
     folium.PolyLine(
     locations=coord2,
