@@ -263,67 +263,69 @@ for i in range(0,len(gc3)):
 #pyval  = oval.item()
 #print(type(oval))
 #gc3.iloc[1]['Building']
-if selected == None:
-    st_map = st_folium(map, width=700, height=450)
-elif selected.empty is False:
-    ind2 = int(selected["Order"].iloc[0])-1
-    if ind == ind2:
-        st.write("current ind: ", ind2)
-    
-    ind = ind2
-    if ind+1 == len(gc3):
-        ind = ind-1
 
-    w = directions[ind]['features'][0]['geometry']['coordinates']
+try: 
 
-    coord2 = []
-    for i in range(0, len(w)):
-        list = [w[i][1], w[i][0]]
-        coord2.append(list)
-    #st.write("COORDINATES")
-    #st.table(coord2)
+    if selected.empty is False:
+        ind2 = int(selected["Order"].iloc[0])-1
+        if ind == ind2:
+            st.write("current ind: ", ind2)
+        
+        ind = ind2
+        if ind+1 == len(gc3):
+            ind = ind-1
 
-    tt = str(ind+1)+'. '+gc3.iloc[ind]["NAME"]+' <b>('+gc3.iloc[ind]['Building']+') -</b> <br>'+str(ind+2)+'. '+gc3.iloc[ind+1]["NAME"]+' <b>('+gc3.iloc[ind+1]['Building']+')</b>'
+        w = directions[ind]['features'][0]['geometry']['coordinates']
 
-    folium.PolyLine(
-    locations=coord2,
-    color="#06402B",
-    weight=6,
-    tooltip=folium.Tooltip(tt, style='width:300px; height:80px;white-space:normal;'),
-        ).add_to(map)
+        coord2 = []
+        for i in range(0, len(w)):
+            list = [w[i][1], w[i][0]]
+            coord2.append(list)
+        #st.write("COORDINATES")
+        #st.table(coord2)
 
-    #list_ind = [ind, ind+1]
-    for i in [ind, ind+1]:
-        row = gc3.iloc[i]
-        loc = [row['lat'], row['lon']]
-        tooltip = row['Section']+'<br>'+row['Start']+'<br>'+row['NAME']+'<br>'+row['Building']+'<br>'+row['Room']
+        tt = str(ind+1)+'. '+gc3.iloc[ind]["NAME"]+' <b>('+gc3.iloc[ind]['Building']+') -</b> <br>'+str(ind+2)+'. '+gc3.iloc[ind+1]["NAME"]+' <b>('+gc3.iloc[ind+1]['Building']+')</b>'
 
-        folium.Marker(
-            location=loc,
-            #popup="Delivery " + '{:02d}'.format(i+1),
-            tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), 
-            icon=folium.Icon(color='black',icon_color='black'),
-        ).add_to(map)
+        folium.PolyLine(
+        locations=coord2,
+        color="#06402B",
+        weight=6,
+        tooltip=folium.Tooltip(tt, style='width:300px; height:80px;white-space:normal;'),
+            ).add_to(map)
 
-        folium.Marker(
+        #list_ind = [ind, ind+1]
+        for i in [ind, ind+1]:
+            row = gc3.iloc[i]
+            loc = [row['lat'], row['lon']]
+            tooltip = row['Section']+'<br>'+row['Start']+'<br>'+row['NAME']+'<br>'+row['Building']+'<br>'+row['Room']
+
+            folium.Marker(
                 location=loc,
                 #popup="Delivery " + '{:02d}'.format(i+1),
                 tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), 
-                icon= DivIcon(
-                    icon_size=(30,30),
-                    icon_anchor=(18,40),
-        #             html='<div style="font-size: 18pt; align:center, color : black">' + '{:02d}'.format(num+1) + '</div>',
-                    html="""<span class="fa-stack " style="font-size: 12pt" >
-                            <!-- The icon that will wrap the number -->
-                            <span class="fa fa-circle-o fa-stack-2x" style="color : white"></span>
-                            <!-- a strong element with the custom content, in this case a number -->
-                            <strong class="fa-stack-1x">
-                                {:02d}  
-                            </strong>
-                        </span>""".format(i+1)
-                )
+                icon=folium.Icon(color='black',icon_color='black'),
             ).add_to(map)
 
+            folium.Marker(
+                    location=loc,
+                    #popup="Delivery " + '{:02d}'.format(i+1),
+                    tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), 
+                    icon= DivIcon(
+                        icon_size=(30,30),
+                        icon_anchor=(18,40),
+            #             html='<div style="font-size: 18pt; align:center, color : black">' + '{:02d}'.format(num+1) + '</div>',
+                        html="""<span class="fa-stack " style="font-size: 12pt" >
+                                <!-- The icon that will wrap the number -->
+                                <span class="fa fa-circle-o fa-stack-2x" style="color : white"></span>
+                                <!-- a strong element with the custom content, in this case a number -->
+                                <strong class="fa-stack-1x">
+                                    {:02d}  
+                                </strong>
+                            </span>""".format(i+1)
+                    )
+                ).add_to(map)
+except AttributeError:
+    st_map = st_folium(map, width=700, height=450)    
 
 
    
