@@ -244,8 +244,8 @@ if ind!=None:
     tooltip=folium.Tooltip(tt, style='width:300px; height:80px;white-space:normal;'),
         ).add_to(map)
 
-    list_ind = [ind, ind+1]
-    for i in list_ind:
+    #list_ind = [ind, ind+1]
+    for i in [ind, ind+1]:
         row = gc3.iloc[i]
         loc = [row['lat'], row['lon']]
         tooltip = row['Section']+'<br>'+row['Start']+'<br>'+row['NAME']+'<br>'+row['Building']+'<br>'+row['Room']
