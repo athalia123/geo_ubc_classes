@@ -192,7 +192,7 @@ grid_response = AgGrid(
     )
 
 selected = grid_response["selected_rows"]
-st.write("selected row: ", type(selected))
+st.json("selected row: ", selected)
 
 ####### AGGRID END
 #######
