@@ -66,6 +66,8 @@ day = st.selectbox("Weekday:", Week, index=0)
 gc2['lon'] = gclss1['lon']
 gc2['lat'] = gclss1['lat']
 gc3 = gc2[gc2["Days"].str.contains(day)].sort_values(by=['Start'])
+# gc3 is still geopandas Dataframe
+# gc4 is already normal pandas Dataframe
 
 gc4 = pd.DataFrame(gc3)
 gc4 = gc4.drop('geometry', axis=1)
@@ -87,10 +89,16 @@ for i in range (0, len(gc4)-1):
     l1.append(i)
     #st.write(i)
 
+
+service = Directions(access_token=st.secrets['MAPBOX_ACCESS_TOKEN'])
+
+#st.write("response code: ", str(response.status_code))
+
 ind = st.selectbox("Wayfinding:", l1, format_func=lambda x: title(gc3.iloc[x])+" -- to -- "+title(gc3.iloc[x+1]), placeholder="None", index=None)
 #st.write("selected index: ", ind)
 
 distances = []
+dist_list = []
 for i in range(0,len(gc3)-1):    
     g2 = gc3.iloc[[i]][['geometry', 'lon', 'lat']]
     ln = g2.iloc[0]['lon']
@@ -111,9 +119,31 @@ for i in range(0,len(gc3)-1):
     #print(type(g5))
     #print(g5)
     distances.append(g5.iloc[0])
+
+    origin = {
+    'type': 'Feature',
+    'properties': {'name': gc3.iloc[i]['Building']},
+    'geometry': {
+        'type': 'Point',
+        'coordinates': [gc3.iloc[i]['lon'].item(), gc3.iloc[i]['lat'].item()]}}
+    destination = {
+    'type': 'Feature',
+    'properties': {'name': gc3.iloc[i+1]['Building']},
+    'geometry': {
+        'type': 'Point',
+        'coordinates': [gc3.iloc[i+1]['lon'].item(), gc3.iloc[i+1]['lat'].item()]}}
+
+    response = service.directions([origin, destination],'mapbox/walking')
+    print("response code: ", response.status_code)
+
+    walking_route = response.geojson()
+    wdist = walking_route['features'][0]['properties']['distance']
+    dist_list.append(wdist)
+
 distances.append(None)
 
 gc4['Dist to Next Class /km'] = distances
+gc4['walking distance /m'] = dist_list
 
 st.dataframe(gc4[["Section", "Instructional Format", "Start", "End", "Building", "Room", "Dist to Next Class /km"]])
 #gclss[["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building"]]
