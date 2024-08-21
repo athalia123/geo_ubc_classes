@@ -184,12 +184,15 @@ gb.configure_selection(
             use_checkbox=True)
 gb.configure_auto_height()
 go = gb.build()
-ag = AgGrid(
+grid_response = AgGrid(
         gc5, 
         gridOptions=go, 
         height=200, 
         fit_columns_on_grid_load=True
     )
+
+selected = grid_response["selected_rows"]
+st.write("selected: ", selected)
 
 ####### AGGRID END
 #######
