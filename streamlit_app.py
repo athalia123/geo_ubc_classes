@@ -166,15 +166,15 @@ gc4['Walking duration /min'] = time_list
 
 gc4_cols = ["Section", "Instructional Format", "Start", "End", "Building", "Room", "Dist to Next Class /km", "Walking distance /km", "Walking duration /min"]
 st.dataframe(gc4[gc4_cols])
-ngc5 = gc4.copy()
+#ngc5 = gc4.copy()
 
-gb = GridOptionsBuilder.from_dataframe(ngc5)
+gb = GridOptionsBuilder.from_dataframe(gc4)
 #make all columns editable
 #gb.configure_columns(cols, editable=True)
 gb.configure_selection()
 go = gb.build()
 ag = AgGrid(
-        gc1, 
+        gc4, 
         gridOptions=go, 
         height=300, 
         fit_columns_on_grid_load=True
