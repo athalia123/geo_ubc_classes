@@ -178,7 +178,9 @@ bldg2 = bldg.to_crs(epsg=3857)
 #st.write(bldg2.crs)
 
 map = folium.Map(location=[49.266048, -123.250012], zoom_start=15, min_zoom=14, control_scale=True)
-folium.GeoJson(bldg2).add_to(map)
+fields = ["SHORTNAME", "BLDG_CODE", "BLDG_USAGE"]
+popup = folium.features.GeoJsonPopup(fields)
+folium.GeoJson(bldg2, popup=popup).add_to(map)
 
 #for i in range(0,len(bcen1)):
 #   folium.CircleMarker(
