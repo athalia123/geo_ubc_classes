@@ -264,6 +264,11 @@ if ind!=None:
     ind2 = int(selected["Order"].iloc[0])-1
     if ind == ind2:
         st.write("current ind: ", ind2)
+    
+    ind = ind2
+    if ind+1 == len(gc3):
+        ind=-1
+
     w = directions[ind]['features'][0]['geometry']['coordinates']
 
     coord2 = []
