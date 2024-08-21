@@ -165,9 +165,12 @@ gc4['Walking duration /min'] = time_list
 
 #st.write("directions: ", directions)
 
-gc4_cols = ["Section", "Instructional Format", "Start", "End", "Building", "Room", "Dist to Next Class /km", "Walking distance /km", "Walking duration /min"]
+gc4_cols = ["Order","Section", "Instructional Format", "Start", "End", "Building", "Room", "Dist to Next Class /km", "Walking distance /km", "Walking duration /min"]
 st.dataframe(gc4[gc4_cols])
 #ngc5 = gc4.copy()
+
+####################
+###### AGGRID ######
 
 gb = GridOptionsBuilder.from_dataframe(gc4)
 #make all columns editable
@@ -177,6 +180,7 @@ gb.configure_selection(selection_mode)
 gb.configure_selection(
             selection_mode,
             use_checkbox=True)
+gb.configure_auto_height()
 go = gb.build()
 ag = AgGrid(
         gc4, 
@@ -184,6 +188,9 @@ ag = AgGrid(
         height=200, 
         fit_columns_on_grid_load=True
     )
+
+####### AGGRID END
+#######
 
 #gclss[["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building"]]
 st.write('Hover over the markers to see some more details')
