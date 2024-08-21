@@ -172,6 +172,12 @@ gb = GridOptionsBuilder.from_dataframe(gc4)
 #gb.configure_columns(cols, editable=True)
 gb.configure_selection()
 go = gb.build()
+ag = AgGrid(
+        gc1, 
+        gridOptions=go, 
+        height=height, 
+        fit_columns_on_grid_load=True
+    )
 
 #gclss[["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building"]]
 st.write('Hover over the markers to see some more details')
