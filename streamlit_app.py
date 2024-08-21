@@ -144,8 +144,8 @@ for i in range(0,len(gc3)-1):
 
 distances.append(None)
 dist_list.append(None)
-st.write(" list type: ", type(dist_list), "\n dist_list: ", dist_list)
-st.write(" distances type: ", type(distances), "\n distances: ", distances)
+st.write("dist_list: ", dist_list)
+st.write("distances: ", distances)
 gc4['Dist to Next Class /km'] = distances
 # gc4['Walking distanc /m'] = dist_list
 
