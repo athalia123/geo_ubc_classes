@@ -140,7 +140,7 @@ for i in range(0,len(gc3)-1):
     wdist = walking_route['features'][0]['properties']['distance']
     wdist = wdist/1000
     wdstr = str("%.3f" % wdist)
-    dist_list.append(wdist)
+    dist_list.append(wdstr)
 
 distances.append(None)
 st.write("type: ", type(dist_list), "\n dist_list: ", dist_list)
