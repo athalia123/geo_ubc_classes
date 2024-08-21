@@ -175,7 +175,7 @@ go = gb.build()
 ag = AgGrid(
         gc1, 
         gridOptions=go, 
-        height=height, 
+        height=100, 
         fit_columns_on_grid_load=True
     )
 
