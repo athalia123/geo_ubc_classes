@@ -193,7 +193,10 @@ grid_response = AgGrid(
 
 selected = grid_response["selected_rows"]
 st.write("selected row: ", selected)
-st.write("section: ", selected[["Section"]])
+try:
+    st.write("section: ", selected[["Section"]])
+except TypeError:
+    st.write("selected is None")
 
 ####### AGGRID END
 #######
@@ -260,7 +263,7 @@ for i in range(0,len(gc3)):
 #print(type(oval))
 #gc3.iloc[1]['Building']
 
-if ind!=None:
+if selected!=None:
     ind2 = int(selected["Order"].iloc[0])-1
     if ind == ind2:
         st.write("current ind: ", ind2)
