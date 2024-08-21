@@ -28,7 +28,64 @@ gc1 = gc1[cols]
 
 ########################
 ####
-# testing streamlit AgGrid library (paste code back here to play around again)
+# testing streamlit AgGrid library
+
+st.subheader("Controling Ag-Grid redraw in Streamlit.")
+st.markdown("""
+The grid will redraw itself and reload the data whenever the key of the component changes.  
+If ```key=None``` or not set at all, streamlit will compute a hash from AgGrid() parameters to use as a unique key.  
+This can be simulated by changing the grid height, for instance, with the slider:
+""")
+
+c1,_ = st.columns([3,2])
+
+height = c1.slider('Height (px)', min_value=100, max_value=800, value=400)
+
+st.markdown("""
+As there is no key parameter set, whenever the height parameter changes grid is redrawn.  
+This behavior can be prevented by setting a fixed key on aggrid call (check the box below):  
+""")
+
+use_fixed_key = st.checkbox("Use fixed key in AgGrid call", value=False)
+if use_fixed_key:
+    key="'an_unique_key'"
+else:
+    key=None
+
+
+key_md = ", key=None" if not key else f",key={key}"
+st.markdown(f"""
+Grid call below is:
+```python
+AgGrid(data, grid_options, {key_md}, reload_data=True, height={height})
+```""")
+
+gb = GridOptionsBuilder.from_dataframe(gc1)
+#make all columns editable
+gb.configure_columns(cols, editable=True)
+go = gb.build()
+
+if use_fixed_key:
+    ag = AgGrid(
+        gc1, 
+        gridOptions=go, 
+        height=height, 
+        fit_columns_on_grid_load=True, 
+        key='an_unique_key',
+        reload_data=True
+    )
+else:
+    ag = AgGrid(
+        gc1, 
+        gridOptions=go, 
+        height=height, 
+        fit_columns_on_grid_load=True
+    )
+
+st.subheader("Returned Data")
+st.dataframe(ag['data'])
+#st.subheader("Grid Options")
+#st.write(go)
 
 #@#############33
 
