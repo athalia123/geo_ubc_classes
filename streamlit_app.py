@@ -193,6 +193,7 @@ grid_response = AgGrid(
 
 selected = grid_response["selected_rows"]
 st.write("selected row: ", selected)
+st.write("section: ", selected[["Section"]])
 
 ####### AGGRID END
 #######
