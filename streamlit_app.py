@@ -267,7 +267,7 @@ if ind!=None:
     
     ind = ind2
     if ind+1 == len(gc3):
-        ind=-1
+        ind = ind-1
 
     w = directions[ind]['features'][0]['geometry']['coordinates']
 
