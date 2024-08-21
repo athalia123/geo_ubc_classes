@@ -263,8 +263,9 @@ for i in range(0,len(gc3)):
 #pyval  = oval.item()
 #print(type(oval))
 #gc3.iloc[1]['Building']
-
-if selected.empty is False:
+if selected == None:
+    st_map = st_folium(map, width=700, height=450)
+elif selected.empty is False:
     ind2 = int(selected["Order"].iloc[0])-1
     if ind == ind2:
         st.write("current ind: ", ind2)
