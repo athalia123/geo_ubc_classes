@@ -166,8 +166,9 @@ gc4['Walking duration /min'] = time_list
 
 gc4_cols = ["Section", "Instructional Format", "Start", "End", "Building", "Room", "Dist to Next Class /km", "Walking distance /km", "Walking duration /min"]
 st.dataframe(gc4[gc4_cols])
+ngc5 = gc4.copy()
 
-gb = GridOptionsBuilder.from_dataframe(gc4)
+gb = GridOptionsBuilder.from_dataframe(ngc5)
 #make all columns editable
 #gb.configure_columns(cols, editable=True)
 gb.configure_selection()
