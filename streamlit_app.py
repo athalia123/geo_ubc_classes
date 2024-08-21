@@ -161,7 +161,7 @@ gc4['Dist to Next Class /km'] = distances
 gc4['Walking distance /km'] = dist_list
 gc4['Walking duration /min'] = time_list
 
-st.write("directions: ", directions)
+#st.write("directions: ", directions)
 
 gc4_cols = ["Section", "Instructional Format", "Start", "End", "Building", "Room", "Dist to Next Class /km", "Walking distance /km", "Walking duration /min"]
 st.dataframe(gc4[gc4_cols])
@@ -226,29 +226,7 @@ for i in range(0,len(gc3)):
 
 if ind!=None:
    
-    service = Directions(access_token=st.secrets['MAPBOX_ACCESS_TOKEN'])
-    
-    origin = {
-        'type': 'Feature',
-        'properties': {'name': gc3.iloc[ind]['Building']},
-        'geometry': {
-            'type': 'Point',
-            'coordinates': [gc3.iloc[ind]['lon'].item(), gc3.iloc[ind]['lat'].item()]}}
-    destination = {
-        'type': 'Feature',
-        'properties': {'name': gc3.iloc[ind+1]['Building']},
-        'geometry': {
-            'type': 'Point',
-            'coordinates': [gc3.iloc[ind+1]['lon'].item(), gc3.iloc[ind+1]['lat'].item()]}}
-
-    response = service.directions([origin, destination],
-        'mapbox/walking')
-    print("response code: ", response.status_code)
-
-    #st.write("response code: ", str(response.status_code))
-
-    walking_route = response.geojson()
-    w = walking_route['features'][0]['geometry']['coordinates']
+    w = directions[ind]['features'][0]['geometry']['coordinates']
 
     coord2 = []
     for i in range(0, len(w)):
