@@ -147,7 +147,7 @@ dist_list.append(None)
 st.write("dist_list: ", dist_list)
 st.write("distances: ", distances)
 gc4['Dist to Next Class /km'] = distances
-# gc4['Walking distanc /m'] = dist_list
+gc4['Walking distanc /m'] = dist_list
 
 st.dataframe(gc4[["Section", "Instructional Format", "Start", "End", "Building", "Room", "Dist to Next Class /km"]])
 #gclss[["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building"]]
