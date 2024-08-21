@@ -22,7 +22,8 @@ st.header('All My UBC Courses')
 gclss = gpd.read_file("geo_files/geoclass1.geojson")
 gc = pd.DataFrame(gclss)
 gc1 = gc.drop('geometry', axis=1)
-gc1 = gc1[["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building", "NAME"]]
+cols = ["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building", "NAME"]
+gc1 = gc1[cols]
 #st.dataframe(gc1)
 
 # testing streamlit AgGrid library
@@ -35,6 +36,7 @@ reload_data=True
 c1,c2,_ = st.columns([1,2,1])
 
 gb = GridOptionsBuilder.from_dataframe(gc1)
+gb.configure_columns(cols, editable=True)
 go = gb.build()
 
 ag = AgGrid(
