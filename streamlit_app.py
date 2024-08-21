@@ -24,7 +24,7 @@ gc = pd.DataFrame(gclss)
 gc1 = gc.drop('geometry', axis=1)
 cols = ["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building", "NAME"]
 gc1 = gc1[cols]
-#st.dataframe(gc1)
+st.dataframe(gc1)
 
 ########################
 ####
