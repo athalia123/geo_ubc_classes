@@ -138,14 +138,14 @@ for i in range(0,len(gc3)-1):
 
     walking_route = response.geojson()
     wdist = walking_route['features'][0]['properties']['distance']
+    wdist = wdist/1000
     dist_list.append(wdist)
 
 distances.append(None)
 st.write(dist_list)
-gc4['Dist to Next Class /km'] = distances
-gc4['walking distance /m'] = []
+gc4['Dist to Next Class /km'] = dist_list
 
-st.dataframe(gc4[["Section", "Instructional Format", "Start", "End", "Building", "Room", "Dist to Next Class /km", "walking distance /m"]])
+st.dataframe(gc4[["Section", "Instructional Format", "Start", "End", "Building", "Room", "Dist to Next Class /km"]])
 #gclss[["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building"]]
 st.write('Hover over the markers to see some more details')
 
