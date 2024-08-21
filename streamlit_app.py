@@ -91,7 +91,6 @@ for i in range (0, len(gc4)-1):
     l1.append(i)
     #st.write(i)
 
-
 service = Directions(access_token=st.secrets['MAPBOX_ACCESS_TOKEN'])
 
 #st.write("response code: ", str(response.status_code))
@@ -167,6 +166,13 @@ gc4['Walking duration /min'] = time_list
 
 gc4_cols = ["Section", "Instructional Format", "Start", "End", "Building", "Room", "Dist to Next Class /km", "Walking distance /km", "Walking duration /min"]
 st.dataframe(gc4[gc4_cols])
+
+gb = GridOptionsBuilder.from_dataframe(gc4)
+#make all columns editable
+#gb.configure_columns(cols, editable=True)
+gb.configure_selection()
+go = gb.build()
+
 #gclss[["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building"]]
 st.write('Hover over the markers to see some more details')
 
