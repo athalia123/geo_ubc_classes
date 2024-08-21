@@ -100,6 +100,7 @@ ind = st.selectbox("Wayfinding:", l1, format_func=lambda x: title(gc3.iloc[x])+"
 distances = []
 dist_list = []
 time_list = []
+directions = []
 for i in range(0,len(gc3)-1):    
     g2 = gc3.iloc[[i]][['geometry', 'lon', 'lat']]
     ln = g2.iloc[0]['lon']
@@ -121,6 +122,7 @@ for i in range(0,len(gc3)-1):
     #print(g5)
     distances.append(g5.iloc[0])
 
+## MAPBOX direction api
     origin = {
     'type': 'Feature',
     'properties': {'name': gc3.iloc[i]['Building']},
@@ -148,6 +150,7 @@ for i in range(0,len(gc3)-1):
 
     dist_list.append(wdstr)
     time_list.append(wtstr)
+    directions.append(walking_route)
 
 distances.append(None)
 dist_list.append(None)
@@ -157,6 +160,8 @@ time_list.append(None)
 gc4['Dist to Next Class /km'] = distances
 gc4['Walking distance /km'] = dist_list
 gc4['Walking duration /min'] = time_list
+
+st.write("directions: ", directions)
 
 gc4_cols = ["Section", "Instructional Format", "Start", "End", "Building", "Room", "Dist to Next Class /km", "Walking distance /km", "Walking duration /min"]
 st.dataframe(gc4[gc4_cols])
