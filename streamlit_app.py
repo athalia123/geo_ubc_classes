@@ -171,12 +171,16 @@ st.dataframe(gc4[gc4_cols])
 gb = GridOptionsBuilder.from_dataframe(gc4)
 #make all columns editable
 #gb.configure_columns(cols, editable=True)
-gb.configure_selection()
+selection_mode='single'
+gb.configure_selection(selection_mode)
+gb.configure_selection(
+            selection_mode,
+            use_checkbox=True)
 go = gb.build()
 ag = AgGrid(
         gc4, 
         gridOptions=go, 
-        height=300, 
+        height=200, 
         fit_columns_on_grid_load=True
     )
 
