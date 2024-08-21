@@ -96,7 +96,7 @@ service = Directions(access_token=st.secrets['MAPBOX_ACCESS_TOKEN'])
 
 #st.write("response code: ", str(response.status_code))
 
-ind = st.selectbox("Wayfinding:", l1, format_func=lambda x: title(gc3.iloc[x])+" -- to -- "+title(gc3.iloc[x+1]), placeholder="None", index=None)
+#ind = st.selectbox("Wayfinding:", l1, format_func=lambda x: title(gc3.iloc[x])+" -- to -- "+title(gc3.iloc[x+1]), placeholder="None", index=None)
 #st.write("selected index: ", ind)
 
 distances = []
@@ -193,11 +193,11 @@ grid_response = AgGrid(
 
 selected = pd.DataFrame()
 selected = grid_response["selected_rows"]
-st.write("selected row: ", selected)
-try:
-    st.write("section: ", selected[["Section"]])
-except TypeError:
-    st.write("selected is None")
+#st.write("selected row: ", selected)
+#try:
+#    st.write("section: ", selected[["Section"]])
+#except TypeError:
+#    st.write("selected is None")
 
 ####### AGGRID END
 #######
