@@ -265,7 +265,7 @@ for i in range(0,len(gc3)):
 #gc3.iloc[1]['Building']
 
 try: 
-
+    #
     if selected.empty is False:
         ind2 = int(selected["Order"].iloc[0])-1
         #if ind == ind2:
@@ -325,7 +325,8 @@ try:
                     )
                 ).add_to(map)
 except AttributeError:
-    st_map = st_folium(map, width=700, height=450)    
+    #st_map = st_folium(map, width=700, height=450)
+    st.write("map")    
 
 
    
