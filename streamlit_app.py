@@ -191,6 +191,7 @@ grid_response = AgGrid(
         fit_columns_on_grid_load=True
     )
 
+selected = pd.DataFrame()
 selected = grid_response["selected_rows"]
 st.write("selected row: ", selected)
 try:
@@ -263,7 +264,7 @@ for i in range(0,len(gc3)):
 #print(type(oval))
 #gc3.iloc[1]['Building']
 
-if selected!=None:
+if selected.empty is False:
     ind2 = int(selected["Order"].iloc[0])-1
     if ind == ind2:
         st.write("current ind: ", ind2)
