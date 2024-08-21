@@ -49,6 +49,8 @@ ag = AgGrid(
 
 st.subheader("Returned Data")
 st.dataframe(ag['data'])
+st.subheader("Grid Options")
+st.write(go)
 
 
 
