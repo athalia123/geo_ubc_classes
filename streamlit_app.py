@@ -166,7 +166,7 @@ gc4['Walking duration /min'] = time_list
 #st.write("directions: ", directions)
 
 gc4_cols = ["Section", "Instructional Format", "Start", "End", "Building", "Room", "Dist to Next Class /km", "Walking distance /km", "Walking duration /min"]
-st.dataframe(gc4[gc4_cols])
+#st.dataframe(gc4[gc4_cols])
 
 ####################
 ###### AGGRID ######
@@ -268,8 +268,8 @@ try:
 
     if selected.empty is False:
         ind2 = int(selected["Order"].iloc[0])-1
-        if ind == ind2:
-            st.write("current ind: ", ind2)
+        #if ind == ind2:
+        #    st.write("current ind: ", ind2)
         
         ind = ind2
         if ind+1 == len(gc3):
