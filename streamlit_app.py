@@ -261,7 +261,9 @@ for i in range(0,len(gc3)):
 #gc3.iloc[1]['Building']
 
 if ind!=None:
-    st.write("current ind: ", ind)
+    ind2 = selected[["Order"]]-1
+    if ind == ind2:
+        st.write("current ind: ", ind2)
     w = directions[ind]['features'][0]['geometry']['coordinates']
 
     coord2 = []
