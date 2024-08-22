@@ -182,6 +182,7 @@ gb.configure_selection(selection_mode)
 gb.configure_selection(
             selection_mode,
             use_checkbox=True)
+gb.configure_columns(["lon", "lat"], hide=True)
 gb.configure_auto_height()
 go = gb.build()
 grid_response = AgGrid(
