@@ -32,7 +32,7 @@ st.dataframe(gc1)
 
 #@#############33
 
-st.sidebar.subheader("St-AgGrid example options")
+#st.sidebar.subheader("St-AgGrid example options")
 
 gc2 = gclss[["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building", "NAME", "geometry"]]
 
