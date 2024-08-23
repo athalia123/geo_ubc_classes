@@ -185,7 +185,7 @@ gb.configure_selection(
             selection_mode,
             use_checkbox=True)
 gb.configure_columns(["lon", "lat"], hide=True)
-gb.configure_default_column(wrapText=True, wrapHeaderText=True, autoHeight=True)
+gb.configure_default_column(wrapText=True, wrapHeaderText=True, autoHeight=True, autoHeaderHeight=True)
 go = gb.build()
 
 with colt:
