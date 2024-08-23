@@ -185,6 +185,13 @@ gb.configure_selection(
             selection_mode,
             use_checkbox=True)
 gb.configure_columns(["lon", "lat"], hide=True)
+
+gb.configure_column(field="Section", header_name="Course")
+gb.configure_column(field="Instructional Format", header_name="Format")
+gb.configure_column(field="Building", header_name="Bldg")
+gb.configure_column(field="Walking distance \km", header_name="Distance (km)")
+gb.configure_column(field="Walking duration \min", header_name="Duration (min)")
+
 gb.configure_default_column(wrapText=True, wrapHeaderText=True, autoHeight=True, autoHeaderHeight=True)
 go = gb.build()
 
