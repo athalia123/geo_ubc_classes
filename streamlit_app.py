@@ -168,6 +168,8 @@ gc4['Walking duration /min'] = time_list
 gc4_cols = ["Section", "Instructional Format", "Start", "End", "Building", "Room", "Dist to Next Class /km", "Walking distance /km", "Walking duration /min"]
 #st.dataframe(gc4[gc4_cols])
 
+colm, colt = st.columns(2)
+
 ####################
 ###### AGGRID ######
 gc5 = gc4
@@ -185,14 +187,15 @@ gb.configure_selection(
 gb.configure_columns(["lon", "lat"], hide=True)
 gb.configure_auto_height(autoHeight=True)
 go = gb.build()
-grid_response = AgGrid(
-        gc5, 
-        gridOptions=go, 
-        height=200, 
-        fit_columns_on_grid_load=True
-    )
+with colt:
+    grid_response = AgGrid(
+            gc5, 
+            gridOptions=go, 
+            height=200, 
+            fit_columns_on_grid_load=True
+        )
 
-selected = pd.DataFrame()
+#selected = pd.DataFrame()
 selected = grid_response["selected_rows"]
 #st.write("selected row: ", selected)
 #try:
@@ -328,5 +331,5 @@ except AttributeError:
     #st_map = st_folium(map, width=700, height=450)
     st.write("map")
 
-
-st_map = st_folium(map, width=500, height=550)
+with colm:
+    st_map = st_folium(map, width=500, height=550)
