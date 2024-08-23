@@ -185,14 +185,13 @@ gb.configure_selection(
             selection_mode,
             use_checkbox=True)
 gb.configure_columns(["lon", "lat"], hide=True)
-gb.configure_default_column(wrapText=True, wrapHeaderText=True)
+gb.configure_default_column(wrapText=True, wrapHeaderText=True, autoHeight=True)
 go = gb.build()
 
 with colt:
     grid_response = AgGrid(
             gc5, 
-            gridOptions=go, 
-            height=200, 
+            gridOptions=go,  
             fit_columns_on_grid_load=True
         )
 
