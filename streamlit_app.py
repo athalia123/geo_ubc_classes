@@ -174,6 +174,8 @@ colm, colt = st.columns([0.4, 0.6])
 ###### AGGRID ######
 gc5 = gc4
 gc5["Order"] = l
+gcc = gc5["Section"].str.split(" - ", expand=True)
+gc5["Section"] = gcc[0]
 gc5_cols = ["Order", "Section", "Instructional Format", "Start", "End", "Building", "Room", "Walking distance /km", "Walking duration /min", "lon", "lat"]
 gc5 = gc5[gc5_cols]
 gb = GridOptionsBuilder.from_dataframe(gc5)
