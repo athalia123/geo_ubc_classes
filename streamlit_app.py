@@ -252,7 +252,7 @@ for i in range(0,len(gc3)):
                     <!-- The icon that will wrap the number -->
                     <span class="fa fa-circle-o fa-stack-2x" style="color : black"></span>
                     <!-- a strong element with the custom content, in this case a number -->
-                    <strong class="fa-stack-1x">
+                    <strong class="fa-stack-1x" style="color: white">
                          {:02d}  
                     </strong>
                 </span>""".format(i+1)
@@ -268,11 +268,8 @@ for i in range(0,len(gc3)):
 try: 
     #
     if selected.empty is False:
-        ind2 = int(selected["Order"].iloc[0])-1
-        #if ind == ind2:
-        #    st.write("current ind: ", ind2)
+        ind = int(selected["Order"].iloc[0])-1
         
-        ind = ind2
         if ind+1 == len(gc3):
             ind = ind-1
 
