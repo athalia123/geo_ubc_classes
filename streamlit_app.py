@@ -341,4 +341,4 @@ except AttributeError:
     st.write("map")
 
 with colm:
-    st_map = st_folium(map, width=450, height=480)
+    st_map = st_folium(map, height=480)
