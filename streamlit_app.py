@@ -54,6 +54,7 @@ bcen['lon'] = bcen.geometry.x
 bcen['lat'] = bcen.geometry.y
 bcen1 = bcen.drop('geometry', axis=1)
 
+
 gclss['lon'] = gclss.geometry.x
 gclss['lat'] = gclss.geometry.y
 gclss1 = gclss.drop('geometry', axis=1)
