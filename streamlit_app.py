@@ -248,11 +248,11 @@ for i in range(0,len(gc3)):
             icon_size=(30,30),
             icon_anchor=(18,40),
 #             html='<div style="font-size: 18pt; align:center, color : black">' + '{:02d}'.format(num+1) + '</div>',
-            html="""<span class="fa-stack " style="font-size: 12pt" >
+            html="""<span class="fa-stack " style="font-size: 12pt; color: white" >
                     <!-- The icon that will wrap the number -->
                     <span class="fa fa-circle-o fa-stack-2x" style="color : black"></span>
                     <!-- a strong element with the custom content, in this case a number -->
-                    <strong class="fa-stack-1x" style="color: white">
+                    <strong class="fa-stack-1x">
                          {:02d}  
                     </strong>
                 </span>""".format(i+1)
