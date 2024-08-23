@@ -329,4 +329,4 @@ except AttributeError:
     st.write("map")
 
 
-st_map = st_folium(map, width=500, height=700)
+st_map = st_folium(map, width=500, height=600)
