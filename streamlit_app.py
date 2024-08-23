@@ -168,7 +168,7 @@ gc4['Walking duration /min'] = time_list
 gc4_cols = ["Section", "Instructional Format", "Start", "End", "Building", "Room", "Dist to Next Class /km", "Walking distance /km", "Walking duration /min"]
 #st.dataframe(gc4[gc4_cols])
 
-colm, colt = st.columns(2)
+colm, colt = st.columns([0.4, 0.6])
 
 ####################
 ###### AGGRID ######
