@@ -332,4 +332,4 @@ except AttributeError:
     st.write("map")
 
 with colm:
-    st_map = st_folium(map, width=500, height=550)
+    st_map = st_folium(map, width=450, height=500)
