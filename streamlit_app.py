@@ -227,13 +227,45 @@ folium.GeoJson(bldg2, popup=popup).add_to(map)
 #      tooltip=bcen1.iloc[i]['NAME'], radius=3.5, fill=True, color='black', fillcolor='red', fillopacity=1
 #   ).add_to(map)
 
-
-   
 #gc3[['lon', 'lat']]
 #oval = gc3.iloc[0]['lon'].item()
 #pyval  = oval.item()
 #print(type(oval))
 #gc3.iloc[1]['Building']
+
+
+for i in range(0,len(gc3)):
+    rw = gc3.iloc[i]
+    loc = [rw['lat'], rw['lon']]
+    tooltip = rw['Section']+'<br>'+rw['Start']+'<br>'+rw['NAME']+'<br>'+rw['Building']+'<br>'+rw['Room']
+
+    folium.Marker(
+        location=loc,
+        #popup="Delivery " + '{:02d}'.format(i+1),
+        tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), 
+        icon=folium.Icon(color='black',icon_color='black'),
+    ).add_to(map)
+
+    folium.Marker(
+            location=loc,
+            #popup="Delivery " + '{:02d}'.format(i+1),
+            tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), 
+            icon= DivIcon(
+                icon_size=(30,30),
+                icon_anchor=(18,40),
+    #             html='<div style="font-size: 18pt; align:center, color : black">' + '{:02d}'.format(num+1) + '</div>',
+                html="""<span class="fa-stack " style="font-size: 12pt; color: white" >
+                        <!-- The icon that will wrap the number -->
+                        <span class="fa fa-circle-o fa-stack-2x"></span>
+                        <!-- a strong element with the custom content, in this case a number -->
+                        <strong class="fa-stack-1x">
+                            {:02d}  
+                        </strong>
+                    </span>""".format(i+1)
+            )
+        ).add_to(map)
+
+
 
 try: 
     #
@@ -296,36 +328,6 @@ except AttributeError:
     #st_map = st_folium(map, width=700, height=450)
     st.write("map")
 
-for i in range(0,len(gc3)):
-    rw = gc3.iloc[i]
-    loc = [rw['lat'], rw['lon']]
-    tooltip = rw['Section']+'<br>'+rw['Start']+'<br>'+rw['NAME']+'<br>'+rw['Building']+'<br>'+rw['Room']
-
-    folium.Marker(
-        location=loc,
-        #popup="Delivery " + '{:02d}'.format(i+1),
-        tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), 
-        icon=folium.Icon(color='black',icon_color='black'),
-    ).add_to(map)
-
-    folium.Marker(
-            location=loc,
-            #popup="Delivery " + '{:02d}'.format(i+1),
-            tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), 
-            icon= DivIcon(
-                icon_size=(30,30),
-                icon_anchor=(18,40),
-    #             html='<div style="font-size: 18pt; align:center, color : black">' + '{:02d}'.format(num+1) + '</div>',
-                html="""<span class="fa-stack " style="font-size: 12pt; color: white" >
-                        <!-- The icon that will wrap the number -->
-                        <span class="fa fa-circle-o fa-stack-2x"></span>
-                        <!-- a strong element with the custom content, in this case a number -->
-                        <strong class="fa-stack-1x">
-                            {:02d}  
-                        </strong>
-                    </span>""".format(i+1)
-            )
-        ).add_to(map)
 
 
    
