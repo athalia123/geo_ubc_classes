@@ -33,7 +33,7 @@ if uploaded_file is not None:
     st.write("selected term: "+term)
 
     gclss = gclss_initial[gclss_initial['Term']==term]
-    gc = pd.DataFrame(gclss_initial)
+    gc = pd.DataFrame(gclss)
     gc1 = gclss.drop('geometry', axis=1)
     cols = ["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building", "NAME", "Term"]
    
@@ -198,9 +198,15 @@ if uploaded_file is not None:
     #gb.configure_columns(cols, editable=True)
     selection_mode='single'
     gb.configure_selection(selection_mode)
+
+    if len(gc5)==1:
+        checkbox = False
+    else:
+        checkbox = True
+
     gb.configure_selection(
                 selection_mode,
-                use_checkbox=True)
+                use_checkbox=checkbox)
     gb.configure_columns(["lon", "lat"], hide=True)
 
     gb.configure_column(field="Section", header_name="Course")
