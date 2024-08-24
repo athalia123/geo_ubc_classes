@@ -20,8 +20,9 @@ st.divider()
 
 st.header('All My UBC Courses')
 
-uploaded_file = st.file_uploader("""Upload your UBC Course List Excel file (undedited please):)\n 
-                                directly download it from your Workday > Academics > Registration & Courses > View My Courses > click the "Export to Excel" icon on the top right above Enrolled Sections and click download!""")
+uploaded_file = st.file_uploader("""Upload your UBC Course List Excel file (unedited from Workday please) :) 
+                                 <br> directly download it from your Workday > Academics > Registration & Courses > View My Courses > click the "Export to Excel" icon on the top right corner above Enrolled Sections and click download!""",
+                                 type="xlsx")
 
 if uploaded_file is not None:
 #gclss = gpd.read_file("geo_files/geoclass1.geojson")
@@ -259,6 +260,7 @@ if uploaded_file is not None:
 
         lon_med = gc3['lon'].mean()
         lat_med = gc3['lat'].mean()
+        st.text(lon_med+", "+lat_med)
         # location=[49.266048, -123.250012]
 
         map = folium.Map(location=[lon_med, lat_med], zoom_start=15, min_zoom=14, control_scale=True)
@@ -384,7 +386,20 @@ if uploaded_file is not None:
 
 
 ## adding a footer
-footer_html = """<div style='text-align: center;'>
+footer_html = """ 
+<style> 
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: white;
+        color: black;
+        text-align: center;
+    }
+</style>
+
+<div style='text-align: center;'>
   <p>Personal project developed with ❤️ by Athalia R Setiawan (UBC Vancouver '28) -- August 2024</p>
   <p>Map data downloaded from <a href="https://github.com/UBCGeodata/ubc-geospatial-opendata">UBC geospatial data Github</a></p>
   <p>Hope this is helpful :) reminder - this is a student-made project, but I'd appreciate a fork request if you have any suggestions</p>
