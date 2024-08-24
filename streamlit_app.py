@@ -32,8 +32,8 @@ if uploaded_file is not None:
     term = st.selectbox("Choose Term:", terms, index=0)
     st.write("selected term: "+term)
 
+    gclss = gclss_initial[gclss_initial['Term']==term]
     gc = pd.DataFrame(gclss_initial)
-    gclss = gc[gc['Term']==term]
     gc1 = gclss.drop('geometry', axis=1)
     cols = ["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building", "NAME", "Term"]
    
