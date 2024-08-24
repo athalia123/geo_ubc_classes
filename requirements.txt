@@ -9,6 +9,7 @@ boto3
 mapbox
 python-decouple
 streamlit-aggrid
+openpyxl
 
 adjustText
 affine
