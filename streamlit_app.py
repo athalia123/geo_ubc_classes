@@ -260,7 +260,7 @@ if uploaded_file is not None:
 
         lon_med = gc3['lon'].mean()
         lat_med = gc3['lat'].mean()
-        st.text(lon_med+", "+lat_med)
+        st.text(str(lon_med)+", "+str(lat_med))
         # location=[49.266048, -123.250012]
 
         map = folium.Map(location=[lon_med, lat_med], zoom_start=15, min_zoom=14, control_scale=True)
