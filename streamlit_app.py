@@ -227,10 +227,15 @@ if uploaded_file is not None:
             autoHeaderHeight=True, 
             filterable=False
             )
-        gb.configure_grid_options(autoSizeStrategy={type: 'fitCellContents'})
-        go = gb.build()
+        
+        
 
         with colt:
+            expand = st.toggle("expand all columns")
+            if expand:
+                gb.configure_grid_options(autoSizeStrategy={type: 'fitCellContents'})
+            go = gb.build()
+
             grid_response = AgGrid(
                     gc5, 
                     gridOptions=go,  
@@ -398,12 +403,12 @@ footer_html = """
         background-color: transparent;
         color: black;
         text-align: center;
+        font-size: 10px;
     }
 </style>
 
-<footer>
+<div class="footer">
   <p>Personal project developed with ❤️ by Athalia R Setiawan (UBC Vancouver '28) -- August 2024</p>
   <p>Map data downloaded from <a href="https://github.com/UBCGeodata/ubc-geospatial-opendata">UBC geospatial data Github</a></p>
-  <p>Hope this is helpful :)</p>
-</footer>"""
+</div>"""
 st.markdown(footer_html, unsafe_allow_html=True)
