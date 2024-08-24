@@ -26,7 +26,7 @@ uploaded_file = st.file_uploader("Upload your UBC Course List Excel file :)")
 if uploaded_file is not None:
 #gclss = gpd.read_file("geo_files/geoclass1.geojson")
     # gclss, name = get_gclss("geo_files/ubc_View_My_Courses_unedited.xlsx")
-    gclss, name = get_gclss(uploaded_file)
+    gclss, name, terms = get_gclss(uploaded_file)
 
     gc = pd.DataFrame(gclss)
     gc1 = gc.drop('geometry', axis=1)
@@ -34,6 +34,7 @@ if uploaded_file is not None:
     gc1 = gc1[cols]
 
     st.subheader(name)
+    term = st.selectbox("Choose Term:", terms, index=0)
     st.dataframe(gc1)
 
     ########################
