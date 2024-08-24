@@ -103,30 +103,30 @@ service = Directions(access_token=st.secrets['MAPBOX_ACCESS_TOKEN'])
 #ind = st.selectbox("Wayfinding:", l1, format_func=lambda x: title(gc3.iloc[x])+" -- to -- "+title(gc3.iloc[x+1]), placeholder="None", index=None)
 #st.write("selected index: ", ind)
 
-distances = []
+# distances = []
 dist_list = []
 time_list = []
 directions = []
 for i in range(0,len(gc3)-1):    
-    g2 = gc3.iloc[[i]][['geometry', 'lon', 'lat']]
-    ln = g2.iloc[0]['lon']
-    lt = g2.iloc[0]['lat']
-    g3 = g2[['geometry']]
+    # g2 = gc3.iloc[[i]][['geometry', 'lon', 'lat']]
+    # ln = g2.iloc[0]['lon']
+    # lt = g2.iloc[0]['lat']
+    # g3 = g2[['geometry']]
 
-    aeqd = CRS(proj='aeqd', ellps='WGS84', datum='WGS84', lat_0=lt, lon_0=ln).srs
+    # aeqd = CRS(proj='aeqd', ellps='WGS84', datum='WGS84', lat_0=lt, lon_0=ln).srs
 
-    # Reproject to aeqd projection using Proj4-string
-    g3 = g3.to_crs(crs=aeqd)
+    # # Reproject to aeqd projection using Proj4-string
+    # g3 = g3.to_crs(crs=aeqd)
 
-    g4 = gc3.iloc[[i+1]][['geometry']].to_crs(crs=aeqd)
+    # g4 = gc3.iloc[[i+1]][['geometry']].to_crs(crs=aeqd)
 
-    g3_geom = g3['geometry'].iloc[0]
+    # g3_geom = g3['geometry'].iloc[0]
 
-    g5 = calculate_distance(g4, dest_geom=g3_geom)
+    # g5 = calculate_distance(g4, dest_geom=g3_geom)
 
-    #print(type(g5))
-    #print(g5)
-    distances.append(g5.iloc[0])
+    # #print(type(g5))
+    # #print(g5)
+    # distances.append(g5.iloc[0])
 
 ## MAPBOX direction api
     origin = {
@@ -158,18 +158,18 @@ for i in range(0,len(gc3)-1):
     time_list.append(wtstr)
     directions.append(walking_route)
 
-distances.append(None)
+# distances.append(None)
 dist_list.append(None)
 time_list.append(None)
 #st.write("dist_list: ", dist_list)
 #st.write("distances: ", distances)
-gc4['Dist to Next Class /km'] = distances
+# gc4['Dist to Next Class /km'] = distances
 gc4['Walking distance /km'] = dist_list
 gc4['Walking duration /min'] = time_list
 
 #st.write("directions: ", directions)
 
-gc4_cols = ["Section", "Instructional Format", "Start", "End", "Building", "Room", "Dist to Next Class /km", "Walking distance /km", "Walking duration /min"]
+gc4_cols = ["Section", "Instructional Format", "Start", "End", "Building", "Room", "Walking distance /km", "Walking duration /min"]
 #st.dataframe(gc4[gc4_cols])
 
 colm, colt = st.columns([0.4, 0.6])
