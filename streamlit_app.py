@@ -21,12 +21,14 @@ st.divider()
 
 st.header('All My UBC Courses')
 #gclss = gpd.read_file("geo_files/geoclass1.geojson")
-gclss = get_gclss("geo_files/ubc_View_My_Courses_unedited.xlsx")
+gclss, name = get_gclss("geo_files/ubc_View_My_Courses_unedited.xlsx")
 
 gc = pd.DataFrame(gclss)
 gc1 = gc.drop('geometry', axis=1)
-cols = ["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building", "NAME"]
+cols = ["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building", "NAME", "Start Date", "End Date", "Term"]
 gc1 = gc1[cols]
+
+st.subheader(name)
 st.dataframe(gc1)
 
 ########################
@@ -198,7 +200,13 @@ gb.configure_column(field="Building", header_name="Bldg")
 gb.configure_column(field="Walking distance /km", header_name="Distance (km)")
 gb.configure_column(field="Walking duration /min", header_name="Duration (min)")
 
-gb.configure_default_column(wrapText=True, wrapHeaderText=True, autoHeight=True, autoHeaderHeight=True)
+gb.configure_default_column(
+    wrapText=True, 
+    wrapHeaderText=True, 
+    autoHeight=True, 
+    autoHeaderHeight=True, 
+    filterable=False
+    )
 gb.configure_grid_options(autoSizeStrategy={type: 'fitCellContents'})
 go = gb.build()
 

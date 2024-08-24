@@ -30,6 +30,15 @@ def get_gclss(file_name):
     df = pd.DataFrame(x)
     df.drop(0, axis='index', inplace=True)
     colname = list(df.columns)
+
+    str1 = df.loc[2, 'My Enrolled Courses'].split(" - ")
+    name = str1[0]
+
+    enc = df[colname[0]]
+    enc.drop(1, axis='index', inplace=True)
+    dft = enc.str.rsplit(" (", expand=True, n=1)
+    term = dft[0].str.rsplit(" - ", expand=True, n=1)[1]
+
     df.drop(colname[0], axis='columns', inplace=True)
 
     # rename the columns
@@ -57,13 +66,15 @@ def get_gclss(file_name):
     df["Start"] = get_time("Start", mpa)
     df["End"] = get_time("End", mpa)
 
+    df["Term"] = term 
+
     # drop meeting patterns column
     df.drop("Meeting Patterns", axis='columns', inplace=True)
 
     df.reset_index(drop=True, inplace=True)
 
     # reorder the columns
-    df2 = df.iloc[:, [3,1,2,4,5,6,12,13,14,10,11,7,8,9]]
+    df2 = df.iloc[:, [3,1,2,4,5,6,12,13,14,10,11,7,8,9,15]]
 
 
     course = gpd.GeoDataFrame(df2)
@@ -75,5 +86,5 @@ def get_gclss(file_name):
     gclss.drop("BLDG_CODE", axis='columns', inplace=True)
     gclss1 = gpd.GeoDataFrame(gclss)
 
-    return gclss1
+    return gclss1, name
 
