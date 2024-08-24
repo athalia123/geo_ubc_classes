@@ -234,8 +234,9 @@ if uploaded_file is not None:
                 autoHeaderHeight=True, 
                 filterable=False,
                 suppressMovable=True, 
-                suppressSizeToFit=wrap,
-                minWidth=50
+                suppressSizeToFit=False,
+                minWidth=20,
+                maxWidth=80
             )
             gb.configure_grid_options(autoSizeStrategy={type: 'fitCellContents'})
            
@@ -244,7 +245,7 @@ if uploaded_file is not None:
             grid_response = AgGrid(
                     gc5, 
                     gridOptions=go,  
-                    fit_columns_on_grid_load=True
+                    fit_columns_on_grid_load=wrap
                 )
 
         #selected = pd.DataFrame()
@@ -324,9 +325,6 @@ if uploaded_file is not None:
                     )
                 ).add_to(map)
 
-
-
-
         try: 
             #
             if selected.empty is False:
@@ -401,7 +399,7 @@ if uploaded_file is not None:
 footer_html = """ 
 <style> 
     .footer {
-        position: absolute;
+        position: relative;
         left: 0;
         bottom: -100px;
         width: 100%;
