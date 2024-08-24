@@ -257,7 +257,11 @@ if uploaded_file is not None:
         bldg2 = bldg.to_crs(epsg=3857)
         #st.write(bldg2.crs)
 
-        map = folium.Map(location=[49.266048, -123.250012], zoom_start=15, min_zoom=14, control_scale=True)
+        lon_med = gc3['lon'].median()
+        lat_med = gc3['lat'].median()
+        # location=[49.266048, -123.250012]
+
+        map = folium.Map(location=[lon_med, lat_med], zoom_start=15, min_zoom=14, control_scale=True)
         fields = ["NAME", "BLDG_CODE", "BLDG_USAGE"]
         alias = ["Name", "Code", "Usage"]
         popup = folium.features.GeoJsonPopup(fields, alias)
@@ -405,8 +409,7 @@ if uploaded_file is not None:
         </style>
 
         <div class="footer">
-
-        <p>Developed with ❤ by <a style='display: block; text-align: center;'>Athalia R Setiawan (UBC Vancouver'28)</a></p>
+            <p>Developed with ❤ by <a style='display: block; text-align: center;'>Athalia R Setiawan (UBC Vancouver'28)</a></p>
         </div>
     """
-    st.markdown(footer,unsafe_allow_html=True)
+    st.markdown(footer, unsafe_allow_html=True)
