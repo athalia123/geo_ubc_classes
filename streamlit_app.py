@@ -30,6 +30,7 @@ if uploaded_file is not None:
 
     st.subheader(name)
     term = st.selectbox("Choose Term:", terms, index=0)
+    st.write("selected term: "+term)
 
     gc = pd.DataFrame(gclss_initial)
     gclss = gc[gc['Term']==term]
