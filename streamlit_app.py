@@ -11,17 +11,17 @@ import os
 from st_aggrid import AgGrid, GridOptionsBuilder
 from gclss_prep import get_gclss
 
-
 st.set_page_config(page_title='UBCV Class Map', page_icon=':bar_chart:', layout='wide')
 
-st.title('My First App - Hello World :)')
-st.write("I'm going to make a map of the campus and put my classes on it")
+st.title('UBC Vancouver - Class Map')
+st.write("Map of the UBC Vancouver campus showing the location of your classes for everyday!")
 
 st.divider()
 
 st.header('All My UBC Courses')
 
-uploaded_file = st.file_uploader("Upload your UBC Course List Excel file :)")
+uploaded_file = st.file_uploader("""Upload your UBC Course List Excel file (undedited please):)\n 
+                                directly download it from your Workday > Academics > Registration & Courses > View My Courses > click the "Export to Excel" icon on the top right above Enrolled Sections and click download!""")
 
 if uploaded_file is not None:
 #gclss = gpd.read_file("geo_files/geoclass1.geojson")
@@ -375,4 +375,38 @@ if uploaded_file is not None:
 
 
     except ValueError:
-        st.error("Sorry... something went wrong", icon="🔥")
+        st.error("Sorry... your file is incompatible with our system", icon="🔥")
+
+    
+
+    ## adding a footer
+    footer="""<style>
+        a:link , a:visited{
+        color: blue;
+        background-color: transparent;
+        text-decoration: underline;
+        }
+
+        a:hover,  a:active {
+        color: red;
+        background-color: transparent;
+        text-decoration: underline;
+        }
+
+        .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: white;
+        color: black;
+        text-align: center;
+        }
+        </style>
+
+        <div class="footer">
+
+        <p>Developed with ❤ by <a style='display: block; text-align: center;'>Athalia R Setiawan (UBC Vancouver'28)</a></p>
+        </div>
+    """
+    st.markdown(footer,unsafe_allow_html=True)
