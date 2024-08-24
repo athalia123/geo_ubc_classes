@@ -257,8 +257,8 @@ if uploaded_file is not None:
         bldg2 = bldg.to_crs(epsg=3857)
         #st.write(bldg2.crs)
 
-        lon_med = gc3['lat'].median()
-        lat_med = gc3['lon'].median()
+        lon_med = gc3['lon'].mean()
+        lat_med = gc3['lat'].mean()
         # location=[49.266048, -123.250012]
 
         map = folium.Map(location=[lon_med, lat_med], zoom_start=15, min_zoom=14, control_scale=True)
