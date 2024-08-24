@@ -33,7 +33,7 @@ if uploaded_file is not None:
 
     gc = pd.DataFrame(gclss_initial)
     gclss = gc[gc['Term']==term]
-    gc1 = gc.drop('geometry', axis=1)
+    gc1 = gclss.drop('geometry', axis=1)
     cols = ["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building", "NAME", "Term"]
    
     gc1 = gc1[cols]
