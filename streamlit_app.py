@@ -9,6 +9,7 @@ from pyproj import CRS
 from mapbox import Directions
 import os
 from st_aggrid import AgGrid, GridOptionsBuilder
+from gclss_prep import get_gclss
 
 
 st.set_page_config(page_title='UBCV Class Map', page_icon=':bar_chart:', layout='wide')
@@ -19,7 +20,9 @@ st.write("I'm going to make a map of the campus and put my classes on it")
 st.divider()
 
 st.header('All My UBC Courses')
-gclss = gpd.read_file("geo_files/geoclass1.geojson")
+#gclss = gpd.read_file("geo_files/geoclass1.geojson")
+gclss = get_gclss("geo_files/ubc_View_My_Courses_unedited.xlsx")
+
 gc = pd.DataFrame(gclss)
 gc1 = gc.drop('geometry', axis=1)
 cols = ["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building", "NAME"]
