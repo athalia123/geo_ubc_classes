@@ -226,15 +226,18 @@ if uploaded_file is not None:
                 wrap=False
             else:
                 wrap=True
-            
+            gb.configure_grid_options(autoSizeStrategy={type: 'fitCellContents'})
             gb.configure_default_column(
                 wrapText=True, 
                 wrapHeaderText=wrap, 
                 autoHeight=True, 
                 autoHeaderHeight=True, 
-                filterable=False
-            )    
-            gb.configure_grid_options(autoSizeStrategy={type: 'fitCellContents'})
+                filterable=False,
+                suppressMovable=True, 
+                suppressSizetoFit=wrap
+            )
+        
+           
             go = gb.build()
 
             grid_response = AgGrid(
@@ -399,7 +402,7 @@ footer_html = """
     .footer {
         position: absolute;
         left: 0;
-        bottom: 0;
+        bottom: -20px;
         width: 100%;
         background-color: white;
         color: black;
@@ -412,4 +415,4 @@ footer_html = """
   <p>Personal project developed with ❤️ by Athalia R Setiawan (UBC Vancouver '28) -- August 2024</p>
   <p>Map data downloaded from <a href="https://github.com/UBCGeodata/ubc-geospatial-opendata">UBC geospatial data Github</a></p>
 </div>"""
-st.markdown(footer_html, unsafe_allow_html=True)
+st.markdown(footer_html, unsafe_allow_html
