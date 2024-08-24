@@ -23,6 +23,7 @@ st.header('All My UBC Courses')
 uploaded_file = st.file_uploader("""**Upload your UBC Course List Excel file** (UNEDITED from Workday please) :) 
                                  ==> directly download it from your **Workday > Academics > Registration & Courses > View My Courses > click the "Export to Excel" icon on the top right corner above Enrolled Sections and click download!**""",
                                  type="xlsx")
+st.caption("Files uploaded are NEVER stored in anyway")
 
 if uploaded_file is not None:
 #gclss = gpd.read_file("geo_files/geoclass1.geojson")
@@ -403,6 +404,6 @@ footer_html = """
 <footer>
   <p>Personal project developed with ❤️ by Athalia R Setiawan (UBC Vancouver '28) -- August 2024</p>
   <p>Map data downloaded from <a href="https://github.com/UBCGeodata/ubc-geospatial-opendata">UBC geospatial data Github</a></p>
-  <p>Hope this is helpful :) reminder - this is a student-made project, but I'd appreciate a fork request if you have any suggestions</p>
+  <p>Hope this is helpful :)</p>
 </footer>"""
 st.markdown(footer_html, unsafe_allow_html=True)
