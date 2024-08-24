@@ -409,7 +409,7 @@ if uploaded_file is not None:
         </style>
 
         <div class="footer">
-            <p>Developed with ❤ by <a style='display: block; text-align: center;'>Athalia R Setiawan (UBC Vancouver'28)</a></p>
+            <p>Developed with ❤ byAthalia R Setiawan (UBC Vancouver'28)</p>
         </div>
     """
     st.markdown(footer, unsafe_allow_html=True)
