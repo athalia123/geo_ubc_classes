@@ -257,8 +257,8 @@ if uploaded_file is not None:
         bldg2 = bldg.to_crs(epsg=3857)
         #st.write(bldg2.crs)
 
-        lon_med = gc3['lon'].median()
-        lat_med = gc3['lat'].median()
+        lon_med = gc3['lat'].median()
+        lat_med = gc3['lon'].median()
         # location=[49.266048, -123.250012]
 
         map = folium.Map(location=[lon_med, lat_med], zoom_start=15, min_zoom=14, control_scale=True)
@@ -381,35 +381,12 @@ if uploaded_file is not None:
     except ValueError:
         st.error("Sorry... your file is incompatible with our system", icon="🔥")
 
-    
 
-    ## adding a footer
-    footer="""<style>
-        a:link , a:visited{
-        color: blue;
-        background-color: transparent;
-        text-decoration: underline;
-        }
 
-        a:hover,  a:active {
-        color: red;
-        background-color: transparent;
-        text-decoration: underline;
-        }
-
-        .footer {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        background-color: white;
-        color: black;
-        text-align: center;
-        }
-        </style>
-
-        <div class="footer">
-            <p>Developed with ❤ byAthalia R Setiawan (UBC Vancouver'28)</p>
-        </div>
-    """
-    st.markdown(footer, unsafe_allow_html=True)
+## adding a footer
+footer_html = """<div style='text-align: center;'>
+  <p>Personal project developed with ❤️ by Athalia R Setiawan (UBC Vancouver '28) -- August 2024</p>
+  <p>Map data downloaded from <a href="https://github.com/UBCGeodata/ubc-geospatial-opendata">UBC geospatial data Github</a></p>
+  <p>Hope this is helpful :) reminder - this is a student-made project, but I'd appreciate a fork request if you have any suggestions</p>
+</div>"""
+st.markdown(footer_html, unsafe_allow_html=True)
