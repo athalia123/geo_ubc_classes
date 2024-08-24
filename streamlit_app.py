@@ -20,8 +20,8 @@ st.divider()
 
 st.header('All My UBC Courses')
 
-uploaded_file = st.file_uploader("""Upload your UBC Course List Excel file (unedited from Workday please) :) 
-                                 <br> directly download it from your Workday > Academics > Registration & Courses > View My Courses > click the "Export to Excel" icon on the top right corner above Enrolled Sections and click download!""",
+uploaded_file = st.file_uploader("""**Upload your UBC Course List Excel file** (UNEDITED from Workday please) :) 
+                                 ==> directly download it from your **Workday > Academics > Registration & Courses > View My Courses > click the "Export to Excel" icon on the top right corner above Enrolled Sections and click download!**""",
                                  type="xlsx")
 
 if uploaded_file is not None:
@@ -33,7 +33,7 @@ if uploaded_file is not None:
 
         st.subheader(name)
         term = st.selectbox("Choose Term:", terms, index=0)
-        st.write("selected term: "+term)
+        # st.write("selected term: "+term)
 
         gclss = gclss_initial[gclss_initial['Term']==term]
         gc = pd.DataFrame(gclss)
