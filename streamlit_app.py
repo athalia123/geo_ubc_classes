@@ -375,5 +375,4 @@ if uploaded_file is not None:
 
 
     except ValueError:
-        errorm = get_gclss(uploaded_file)
         st.error("Sorry... something went wrong", icon="🔥")
