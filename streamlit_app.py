@@ -258,8 +258,8 @@ if uploaded_file is not None:
         bldg2 = bldg.to_crs(epsg=3857)
         #st.write(bldg2.crs)
 
-        lon_med = gc3['lon'].mean()
-        lat_med = gc3['lat'].mean()
+        lon_med = gc3['lat'].mean()
+        lat_med = gc3['lon'].mean()
         st.text(str(lon_med)+", "+str(lat_med))
         # location=[49.266048, -123.250012]
 
@@ -399,7 +399,7 @@ footer_html = """
     }
 </style>
 
-<div style='text-align: center;'>
+<div class="footer>
   <p>Personal project developed with ❤️ by Athalia R Setiawan (UBC Vancouver '28) -- August 2024</p>
   <p>Map data downloaded from <a href="https://github.com/UBCGeodata/ubc-geospatial-opendata">UBC geospatial data Github</a></p>
   <p>Hope this is helpful :) reminder - this is a student-made project, but I'd appreciate a fork request if you have any suggestions</p>
