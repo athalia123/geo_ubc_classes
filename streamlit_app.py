@@ -220,20 +220,21 @@ if uploaded_file is not None:
         gb.configure_column(field="Walking distance /km", header_name="Distance (km)")
         gb.configure_column(field="Walking duration /min", header_name="Duration (min)")
 
-        gb.configure_default_column(
-            wrapText=True, 
-            wrapHeaderText=True, 
-            autoHeight=True, 
-            autoHeaderHeight=True, 
-            filterable=False
-            )
-        
-        
-
         with colt:
             expand = st.toggle("expand all columns")
             if expand:
-                gb.configure_grid_options(autoSizeStrategy={type: 'fitCellContents'})
+                wrap=False
+            else:
+                wrap=True
+            
+            gb.configure_default_column(
+                wrapText=True, 
+                wrapHeaderText=wrap, 
+                autoHeight=True, 
+                autoHeaderHeight=True, 
+                filterable=False
+            )    
+            gb.configure_grid_options(autoSizeStrategy={type: 'fitCellContents'})
             go = gb.build()
 
             grid_response = AgGrid(
@@ -396,11 +397,11 @@ if uploaded_file is not None:
 footer_html = """ 
 <style> 
     .footer {
-        position: fixed;
+        position: absolute;
         left: 0;
         bottom: 0;
         width: 100%;
-        background-color: transparent;
+        background-color: white;
         color: black;
         text-align: center;
         font-size: 10px;
