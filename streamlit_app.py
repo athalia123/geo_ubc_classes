@@ -79,7 +79,8 @@ if uploaded_file is not None:
 
         st.header('Weekday Schedule Picker')
         st.write('Choose a day -> the class that day will be displayed in order of time AND be shown on the map below it')
-
+        st.write('Hover over markers and green lines, or click on building outline to see more details ')
+        st.write('Click the checkbox in the table to see wayfinding to the next class')
         Week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
         #day = 0
         day = st.selectbox("Weekday:", Week, index=0)
@@ -247,7 +248,7 @@ if uploaded_file is not None:
         #######
 
         #gclss[["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building"]]
-        st.write('Hover over the markers to see some more details')
+        # st.write('Hover over the markers to see some more details')
 
         #st.divider()
 
@@ -260,7 +261,7 @@ if uploaded_file is not None:
 
         lon_med = gc3['lat'].mean()
         lat_med = gc3['lon'].mean()
-        st.text(str(lon_med)+", "+str(lat_med))
+        # st.text(str(lon_med)+", "+str(lat_med))
         # location=[49.266048, -123.250012]
 
         map = folium.Map(location=[lon_med, lat_med], zoom_start=15, min_zoom=14, control_scale=True)
@@ -399,7 +400,7 @@ footer_html = """
     }
 </style>
 
-<div class="footer>
+<div class="footer">
   <p>Personal project developed with ❤️ by Athalia R Setiawan (UBC Vancouver '28) -- August 2024</p>
   <p>Map data downloaded from <a href="https://github.com/UBCGeodata/ubc-geospatial-opendata">UBC geospatial data Github</a></p>
   <p>Hope this is helpful :) reminder - this is a student-made project, but I'd appreciate a fork request if you have any suggestions</p>
