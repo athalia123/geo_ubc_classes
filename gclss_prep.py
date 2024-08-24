@@ -26,67 +26,70 @@ def get_time(period, mpa):
 def get_gclss(file_name):
     #x = pd.read_excel("geo_files/ubc_View_My_Courses_unedited.xlsx", engine='openpyxl')
 
-    x = pd.read_excel(file_name, engine='openpyxl')
-    df = pd.DataFrame(x)
-    df.drop(0, axis='index', inplace=True)
-    colname = list(df.columns)
+    try:
+        x = pd.read_excel(file_name, engine='openpyxl')
+        df = pd.DataFrame(x)
+        df.drop(0, axis='index', inplace=True)
+        colname = list(df.columns)
 
-    str1 = df.loc[2, 'My Enrolled Courses'].split(" - ")
-    name = str1[0]
+        str1 = df.loc[2, 'My Enrolled Courses'].split(" - ")
+        name = str1[0]
 
-    enc = df[colname[0]]
-    enc.drop(1, axis='index', inplace=True)
-    dft = enc.str.rsplit(" (", expand=True, n=1)
-    term = dft[0].str.rsplit(" - ", expand=True, n=1)[1]
+        enc = df[colname[0]]
+        enc.drop(1, axis='index', inplace=True)
+        dft = enc.str.rsplit(" (", expand=True, n=1)
+        term = dft[0].str.rsplit(" - ", expand=True, n=1)[1]
 
-    df.drop(colname[0], axis='columns', inplace=True)
+        df.drop(colname[0], axis='columns', inplace=True)
 
-    # rename the columns
-    df.columns = list(df.iloc[0])
-    df.drop(1, axis='index', inplace=True)
+        # rename the columns
+        df.columns = list(df.iloc[0])
+        df.drop(1, axis='index', inplace=True)
 
-    # delete row with empty meeting patterns
-    msv = df[pd.isna(df['Meeting Patterns'])].index
-    df.drop(msv, axis='index', inplace=True)
+        # delete row with empty meeting patterns
+        msv = df[pd.isna(df['Meeting Patterns'])].index
+        df.drop(msv, axis='index', inplace=True)
 
-    # keep only classes that are registered
-    nnr = df[df['Registration Status']!="Registered"].index
-    df.drop(nnr, axis='index', inplace=True)
-    #print(nnr)
+        # keep only classes that are registered
+        nnr = df[df['Registration Status']!="Registered"].index
+        df.drop(nnr, axis='index', inplace=True)
+        #print(nnr)
 
-    # Get buidling code, floor, room
-    mpa = df['Meeting Patterns'].str.split(" \| ", expand=True)
-    bfr = mpa[6].str.split("-", n=1,expand=True)
-    df[['Building', 'Room']] = bfr
+        # Get buidling code, floor, room
+        mpa = df['Meeting Patterns'].str.split(" \| ", expand=True)
+        bfr = mpa[6].str.split("-", n=1,expand=True)
+        df[['Building', 'Room']] = bfr
 
-    # Get days
-    df["Days"] = mpa[1]
+        # Get days
+        df["Days"] = mpa[1]
 
-    # Get start and end time
-    df["Start"] = get_time("Start", mpa)
-    df["End"] = get_time("End", mpa)
+        # Get start and end time
+        df["Start"] = get_time("Start", mpa)
+        df["End"] = get_time("End", mpa)
 
-    df["Term"] = term 
+        df["Term"] = term 
 
-    # drop meeting patterns column
-    df.drop("Meeting Patterns", axis='columns', inplace=True)
+        # drop meeting patterns column
+        df.drop("Meeting Patterns", axis='columns', inplace=True)
 
-    df.reset_index(drop=True, inplace=True)
+        df.reset_index(drop=True, inplace=True)
 
-    # reorder the columns
-    df2 = df.iloc[:, [3,1,2,4,5,6,12,13,14,10,11,7,8,9,15]]
+        # reorder the columns
+        df2 = df.iloc[:, [3,1,2,4,5,6,12,13,14,10,11,7,8,9,15]]
 
 
-    course = gpd.GeoDataFrame(df2)
-    bcen = gpd.read_file("geo_files/ubc_buildings_centroids.geojson")
+        course = gpd.GeoDataFrame(df2)
+        bcen = gpd.read_file("geo_files/ubc_buildings_centroids.geojson")
 
-    bcen1 = bcen[['BLDG_CODE', 'NAME', 'SHORTNAME', 'POSTAL_CODE', 'PRIMARY_ADDRESS', 'geometry']]
+        bcen1 = bcen[['BLDG_CODE', 'NAME', 'SHORTNAME', 'POSTAL_CODE', 'PRIMARY_ADDRESS', 'geometry']]
 
-    gclss = course.merge(bcen1, left_on='Building', right_on='BLDG_CODE')
-    gclss.drop("BLDG_CODE", axis='columns', inplace=True)
-    gclss1 = gpd.GeoDataFrame(gclss)
+        gclss = course.merge(bcen1, left_on='Building', right_on='BLDG_CODE')
+        gclss.drop("BLDG_CODE", axis='columns', inplace=True)
+        gclss1 = gpd.GeoDataFrame(gclss)
 
-    terms = df2['Term'].unique()
+        terms = df2['Term'].unique()
 
-    return gclss1, name, terms
+        return gclss1, name, terms
+    except IndexError or ValueError or AttributeError:
+        return "Sorry... something went wrong during the file processing"
 
