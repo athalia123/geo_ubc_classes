@@ -199,6 +199,7 @@ gb.configure_column(field="Walking distance /km", header_name="Distance (km)")
 gb.configure_column(field="Walking duration /min", header_name="Duration (min)")
 
 gb.configure_default_column(wrapText=True, wrapHeaderText=True, autoHeight=True, autoHeaderHeight=True)
+gb.configure_grid_options(autoSizeStrategy={type: 'fitCellContents'})
 go = gb.build()
 
 with colt:
