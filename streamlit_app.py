@@ -20,9 +20,9 @@ st.divider()
 
 st.header('All My UBC Courses')
 
-uploaded_file = st.file_uploader("""**Upload your UBC Course List Excel file** (UNEDITED from Workday please) :) 
-                                 ==> **Workday > Academics > Registration & Courses > View My Courses > "Export to Excel" icon on the top right corner above Enrolled Sections and click Download!**""",
-                                 type="xlsx")
+uploaded_file = st.file_uploader("""**Upload your UBC Course List Excel file** (UNEDITED from Workday please) :) """,
+                                 type="xlsx",
+                                 help="""**Workday > Academics > Registration & Courses > View My Courses > "Export to Excel" icon on the top right corner above Enrolled Sections and click Download!**""")
 st.caption("Files uploaded are NEVER stored in anyway")
 
 if uploaded_file is not None:
@@ -223,6 +223,8 @@ if uploaded_file is not None:
         with colt:
             expand = st.toggle("expand all columns", 
                                help="click if can't read content of the table",
+                               value=False,
+                               label_visibility="hidden",
                                disabled=True
                                )
             
@@ -251,11 +253,6 @@ if uploaded_file is not None:
                     gc5, 
                     gridOptions=go,  
                     fit_columns_on_grid_load=True
-                )
-                
-            grid_response = AgGrid(
-                    gc5, 
-                    gridOptions=go
                 )
 
         #selected = pd.DataFrame()
