@@ -38,20 +38,31 @@ st.markdown(
     """,unsafe_allow_html=True
 )
 
+u_disable = False
+s_disable = False
 with col1: 
     uploaded_file = st.file_uploader("""**Upload your UBC Course List Excel file** (UNEDITED from Workday please) :) """,
                                     type="xlsx",
-                                    help="""**Workday > Academics > Registration & Courses > View My Courses > "Export to Excel" icon on the top right corner above Enrolled Sections and click Download!**""")
+                                    help="""**Workday > Academics > Registration & Courses > View My Courses > "Export to Excel" icon on the top right corner above Enrolled Sections and click Download!**""",
+                                    disabled=u_disable
+                                )
     st.caption("Files uploaded are NEVER stored in anyway")
+    if uploaded_file is not None:
+        sample = False
+        s_disable = True
+    else: 
+        s_disable = False
+    
 
 with col2:
     st.write("OR")
 
 with col3:
-    if uploaded_file is not None:
-        sample = st.checkbox("Use sample data", value=False)
+    sample = st.checkbox("Use sample data", disabled=s_disable)
+    if sample:
+        u_disable = True
     else:
-        sample = st.checkbox("Use sample data")
+        u_disable = False
 
 if uploaded_file is not None or sample is True:
     try:
