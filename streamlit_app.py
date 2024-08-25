@@ -250,12 +250,12 @@ if uploaded_file is not None or sample is True:
         gb.configure_column(field="Walking duration /min", header_name="Duration (min)")
 
         with colt:
-            expand = st.toggle("expand all columns", 
-                               help="click if can't read content of the table",
-                               value=False,
-                               label_visibility="hidden",
-                               disabled=True
-                               )
+            # expand = st.toggle("expand all columns", 
+            #                    help="click if can't read content of the table",
+            #                    value=False,
+            #                    label_visibility="hidden",
+            #                    disabled=True
+            #                    )
             
             
             gb.configure_default_column(
@@ -272,13 +272,19 @@ if uploaded_file is not None or sample is True:
             gb.configure_grid_options(autoSizeStrategy={type: 'fitCellContents'})
            
             go = gb.build()
-            if expand:
-                grid_response = AgGrid(
-                    gc5, 
-                    gridOptions=go
-                )
-            else:
-                grid_response = AgGrid(
+            # if expand:
+            #     grid_response = AgGrid(
+            #         gc5, 
+            #         gridOptions=go
+            #     )
+            # else:
+            #     grid_response = AgGrid(
+            #         gc5, 
+            #         gridOptions=go,  
+            #         fit_columns_on_grid_load=True
+            #     )
+
+            grid_response = AgGrid(
                     gc5, 
                     gridOptions=go,  
                     fit_columns_on_grid_load=True
@@ -423,7 +429,7 @@ if uploaded_file is not None or sample is True:
             # st.write(selected)
 
         with colm:
-            st_map = st_folium(map, height=480)
+            st_map = st_folium(map, height=480, width='100%')
 
 
     except ValueError:
@@ -443,11 +449,17 @@ footer_html = """
         color: black;
         text-align: center;
         font-size: 10px;
+        line-height: 90%;
     }
 </style>
 
 <div class="footer">
   <p>Personal project developed with ❤️ by Athalia R Setiawan (UBC '28) -- August 2024</p>
   <p>Map data downloaded from <a href="https://github.com/UBCGeodata/ubc-geospatial-opendata">UBC geospatial data Github</a></p>
+  <p>Disclaimers: </p>
+    <ul>
+    <li>No guarantee on the accuracy of the information displayed on this site</li>
+    <li>This site is not affiliated with UBC</li>
+    </ul>
 </div>"""
 st.markdown(footer_html, unsafe_allow_html=True)
