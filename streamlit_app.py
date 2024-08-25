@@ -14,10 +14,8 @@ from gclss_prep import get_gclss
 st.set_page_config(page_title='UBCV Class Map', page_icon=':bar_chart:', layout='wide')
 
 st.title('UBC Vancouver - Class Map')
-st.write("Map of the UBC Vancouver campus showing the location of your classes for everyday!")
-
+st.write("Map of the UBC Vancouver campus showing the location of your classes on any day!")
 st.divider()
-
 st.header('All My UBC Courses')
 
 col1, col2, col3 = st.columns([0.45,0.1,0.45], vertical_alignment="center")
@@ -38,31 +36,22 @@ st.markdown(
     """,unsafe_allow_html=True
 )
 
-u_disable = False
-s_disable = False
+
 with col1: 
     uploaded_file = st.file_uploader("""**Upload your UBC Course List Excel file** (UNEDITED from Workday please) :) """,
                                     type="xlsx",
-                                    help="""**Workday > Academics > Registration & Courses > View My Courses > "Export to Excel" icon on the top right corner above Enrolled Sections and click Download!**""",
-                                    disabled=u_disable
+                                    help="""**Workday > Academics > Registration & Courses > View My Courses > "Export to Excel" icon on the top right corner above Enrolled Sections and click Download!**"""
                                 )
     st.caption("Files uploaded are NEVER stored in anyway")
     if uploaded_file is not None:
         sample = False
-        s_disable = True
-    else: 
-        s_disable = False
-    
 
 with col2:
     st.write("OR")
 
 with col3:
-    sample = st.checkbox("Use sample data", disabled=s_disable)
-    if sample:
-        u_disable = True
-    else:
-        u_disable = False
+    sample = st.checkbox("Use sample data")
+
 
 if uploaded_file is not None or sample is True:
     try:
@@ -458,7 +447,7 @@ footer_html = """
 </style>
 
 <div class="footer">
-  <p>Personal project developed with ❤️ by Athalia R Setiawan (UBC Vancouver '28) -- August 2024</p>
+  <p>Personal project developed with ❤️ by Athalia R Setiawan (UBC '28) -- August 2024</p>
   <p>Map data downloaded from <a href="https://github.com/UBCGeodata/ubc-geospatial-opendata">UBC geospatial data Github</a></p>
 </div>"""
 st.markdown(footer_html, unsafe_allow_html=True)
