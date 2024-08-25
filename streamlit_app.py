@@ -20,27 +20,26 @@ st.divider()
 
 st.header('All My UBC Courses')
 
-col1, col2, col3 = st.columns(3, vertical_alignment="center")
+col1, col2, col3 = st.columns([0.45,0.1,0.45], vertical_alignment="center")
+sample = False
 
 with col1: 
     uploaded_file = st.file_uploader("""**Upload your UBC Course List Excel file** (UNEDITED from Workday please) :) """,
                                     type="xlsx",
                                     help="""**Workday > Academics > Registration & Courses > View My Courses > "Export to Excel" icon on the top right corner above Enrolled Sections and click Download!**""")
     st.caption("Files uploaded are NEVER stored in anyway")
+    sample = False
 
 with col2:
     st.write("OR")
 
 with col3:
-    sample = st.checkbox("Use sample data")
+    sample = st.button("Use sample data")
 
-if uploaded_file is not None:
-#gclss = gpd.read_file("geo_files/geoclass1.geojson")
-    # gclss, name = get_gclss("geo_files/ubc_View_My_Courses_unedited.xlsx")
-
+if uploaded_file is not None or sample is True:
     try:
         if sample:
-            gclss, name, terms = get_gclss("geo_files/ubc_View_My_Courses_unedited.xlsx")
+            gclss_initial, name, terms = get_gclss("geo_files/ubc_View_My_Courses_unedited.xlsx")
             name = "Sample Schedule"
         else:    
             gclss_initial, name, terms = get_gclss(uploaded_file)
