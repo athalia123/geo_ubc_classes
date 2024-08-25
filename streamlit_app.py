@@ -221,7 +221,10 @@ if uploaded_file is not None:
         gb.configure_column(field="Walking duration /min", header_name="Duration (min)")
 
         with colt:
-            expand = st.toggle("expand all columns")
+            expand = st.toggle("expand all columns", 
+                               help="click if can't read content of the table",
+                               disabled=True
+                               )
             
             
             gb.configure_default_column(
@@ -249,7 +252,11 @@ if uploaded_file is not None:
                     gridOptions=go,  
                     fit_columns_on_grid_load=True
                 )
-           
+                
+            grid_response = AgGrid(
+                    gc5, 
+                    gridOptions=go
+                )
 
         #selected = pd.DataFrame()
         selected = grid_response["selected_rows"]
