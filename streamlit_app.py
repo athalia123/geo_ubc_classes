@@ -20,17 +20,30 @@ st.divider()
 
 st.header('All My UBC Courses')
 
-uploaded_file = st.file_uploader("""**Upload your UBC Course List Excel file** (UNEDITED from Workday please) :) """,
-                                 type="xlsx",
-                                 help="""**Workday > Academics > Registration & Courses > View My Courses > "Export to Excel" icon on the top right corner above Enrolled Sections and click Download!**""")
-st.caption("Files uploaded are NEVER stored in anyway")
+col1, col2, col3 = st.columns(3, vertical_alignment="center")
+
+with col1: 
+    uploaded_file = st.file_uploader("""**Upload your UBC Course List Excel file** (UNEDITED from Workday please) :) """,
+                                    type="xlsx",
+                                    help="""**Workday > Academics > Registration & Courses > View My Courses > "Export to Excel" icon on the top right corner above Enrolled Sections and click Download!**""")
+    st.caption("Files uploaded are NEVER stored in anyway")
+
+with col2:
+    st.write("OR")
+
+with col3:
+    sample = st.checkbox("Use sample data")
 
 if uploaded_file is not None:
 #gclss = gpd.read_file("geo_files/geoclass1.geojson")
     # gclss, name = get_gclss("geo_files/ubc_View_My_Courses_unedited.xlsx")
 
     try:
-        gclss_initial, name, terms = get_gclss(uploaded_file)
+        if sample:
+            gclss, name, terms = get_gclss("geo_files/ubc_View_My_Courses_unedited.xlsx")
+            name = "Sample Schedule"
+        else:    
+            gclss_initial, name, terms = get_gclss(uploaded_file)
 
         st.subheader(name)
         term = st.selectbox("Choose Term:", terms, index=0)
