@@ -246,8 +246,8 @@ if uploaded_file is not None or sample is True:
         gb.configure_column(field="Section", header_name="Course")
         gb.configure_column(field="Instructional Format", header_name="Format")
         gb.configure_column(field="Building", header_name="Bldg")
-        gb.configure_column(field="Walking distance /km", header_name="Distance (km)")
-        gb.configure_column(field="Walking duration /min", header_name="Duration (min)")
+        gb.configure_column(field="Walking distance /km", header_name="Walking Distance (km)")
+        gb.configure_column(field="Walking duration /min", header_name="Walking Duration (min)")
 
         with colt:
             # expand = st.toggle("expand all columns", 
