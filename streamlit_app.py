@@ -43,14 +43,15 @@ with col1:
                                     type="xlsx",
                                     help="""**Workday > Academics > Registration & Courses > View My Courses > "Export to Excel" icon on the top right corner above Enrolled Sections and click Download!**""")
     st.caption("Files uploaded are NEVER stored in anyway")
-    sample = False
 
 with col2:
     st.write("OR")
 
 with col3:
-
-    sample = st.checkbox("Use sample data")
+    if uploaded_file is not None:
+        sample = st.checkbox("Use sample data", value=False)
+    else:
+        sample = st.checkbox("Use sample data")
 
 if uploaded_file is not None or sample is True:
     try:
