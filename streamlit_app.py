@@ -241,8 +241,7 @@ if uploaded_file is not None:
             if expand:
                 grid_response = AgGrid(
                     gc5, 
-                    gridOptions=go,  
-                    fit_columns_on_grid_load=False
+                    gridOptions=go
                 )
             else:
                 grid_response = AgGrid(
@@ -329,66 +328,66 @@ if uploaded_file is not None:
                     )
                 ).add_to(map)
 
-        try: 
+        # try: 
             #
-            if selected.empty is False:
-                ind = int(selected["Order"].iloc[0])-1
-                
-                if ind+1 == len(gc3):
-                    ind = ind-1
+        if selected is not None:
+            ind = int(selected["Order"].iloc[0])-1
+            
+            if ind+1 == len(gc3):
+                ind = ind-1
 
-                w = directions[ind]['features'][0]['geometry']['coordinates']
+            w = directions[ind]['features'][0]['geometry']['coordinates']
 
-                coord2 = []
-                for i in range(0, len(w)):
-                    list = [w[i][1], w[i][0]]
-                    coord2.append(list)
-                #st.write("COORDINATES")
-                #st.table(coord2)
+            coord2 = []
+            for i in range(0, len(w)):
+                list = [w[i][1], w[i][0]]
+                coord2.append(list)
+            #st.write("COORDINATES")
+            #st.table(coord2)
 
-                tt = str(ind+1)+'. '+gc3.iloc[ind]["NAME"]+' <b>('+gc3.iloc[ind]['Building']+') -</b> <br>'+str(ind+2)+'. '+gc3.iloc[ind+1]["NAME"]+' <b>('+gc3.iloc[ind+1]['Building']+')</b>'
+            tt = str(ind+1)+'. '+gc3.iloc[ind]["NAME"]+' <b>('+gc3.iloc[ind]['Building']+') -</b> <br>'+str(ind+2)+'. '+gc3.iloc[ind+1]["NAME"]+' <b>('+gc3.iloc[ind+1]['Building']+')</b>'
 
-                folium.PolyLine(
-                locations=coord2,
-                color="#06402B",
-                weight=6,
-                tooltip=folium.Tooltip(tt, style='width:300px; height:80px;white-space:normal;'),
-                    ).add_to(map)
+            folium.PolyLine(
+            locations=coord2,
+            color="#06402B",
+            weight=6,
+            tooltip=folium.Tooltip(tt, style='width:300px; height:80px;white-space:normal;'),
+                ).add_to(map)
 
-                #list_ind = [ind, ind+1]
-                for i in [ind, ind+1]:
-                    row = gc3.iloc[i]
-                    loc = [row['lat'], row['lon']]
-                    tooltip = row['Section']+'<br>'+row['Start']+'<br>'+row['NAME']+'<br>'+row['Building']+'<br>'+row['Room']
+            #list_ind = [ind, ind+1]
+            for i in [ind, ind+1]:
+                row = gc3.iloc[i]
+                loc = [row['lat'], row['lon']]
+                tooltip = row['Section']+'<br>'+row['Start']+'<br>'+row['NAME']+'<br>'+row['Building']+'<br>'+row['Room']
 
-                    folium.Marker(
+                folium.Marker(
+                    location=loc,
+                    #popup="Delivery " + '{:02d}'.format(i+1),
+                    tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), 
+                    icon=folium.Icon(color='red',icon_color='red'),
+                ).add_to(map)
+
+                folium.Marker(
                         location=loc,
                         #popup="Delivery " + '{:02d}'.format(i+1),
                         tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), 
-                        icon=folium.Icon(color='red',icon_color='red'),
+                        icon= DivIcon(
+                            icon_size=(30,30),
+                            icon_anchor=(18,40),
+                #             html='<div style="font-size: 18pt; align:center, color : black">' + '{:02d}'.format(num+1) + '</div>',
+                            html="""<span class="fa-stack " style="font-size: 12pt; color: white" >
+                                    <!-- The icon that will wrap the number -->
+                                    <span class="fa fa-circle-o fa-stack-2x" ></span>
+                                    <!-- a strong element with the custom content, in this case a number -->
+                                    <strong class="fa-stack-1x">
+                                        {:02d}  
+                                    </strong>
+                                </span>""".format(i+1)
+                        )
                     ).add_to(map)
-
-                    folium.Marker(
-                            location=loc,
-                            #popup="Delivery " + '{:02d}'.format(i+1),
-                            tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), 
-                            icon= DivIcon(
-                                icon_size=(30,30),
-                                icon_anchor=(18,40),
-                    #             html='<div style="font-size: 18pt; align:center, color : black">' + '{:02d}'.format(num+1) + '</div>',
-                                html="""<span class="fa-stack " style="font-size: 12pt; color: white" >
-                                        <!-- The icon that will wrap the number -->
-                                        <span class="fa fa-circle-o fa-stack-2x" ></span>
-                                        <!-- a strong element with the custom content, in this case a number -->
-                                        <strong class="fa-stack-1x">
-                                            {:02d}  
-                                        </strong>
-                                    </span>""".format(i+1)
-                            )
-                        ).add_to(map)
-        except AttributeError:
+        # except AttributeError:
             #st_map = st_folium(map, width=700, height=450)
-            st.write(selected)
+            # st.write(selected)
 
         with colm:
             st_map = st_folium(map, height=480)
