@@ -28,8 +28,13 @@ st.markdown(
         div[data-testid="column"]:nth-of-type(2)
         {
             text-align: center;
-        } 
+        }
+        div[data-testid="column"]:nth-of-type(3)
+        {
+            text-align: center;
+        }  
     </style>
+    
     """,unsafe_allow_html=True
 )
 
@@ -44,7 +49,8 @@ with col2:
     st.write("OR")
 
 with col3:
-    sample = st.button("Use sample data", use_container_width=True)
+
+    sample = st.checkbox("Use sample data")
 
 if uploaded_file is not None or sample is True:
     try:
