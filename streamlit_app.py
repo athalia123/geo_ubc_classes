@@ -222,10 +222,7 @@ if uploaded_file is not None:
 
         with colt:
             expand = st.toggle("expand all columns")
-            if expand:
-                wrap=True
-            else:
-                wrap=False
+            
             
             gb.configure_default_column(
                 wrapText=True, 
@@ -234,19 +231,26 @@ if uploaded_file is not None:
                 autoHeaderHeight=True, 
                 filterable=False,
                 suppressMovable=True, 
-                suppressSizeToFit=False,
+                # suppressSizeToFit=False,
                 minWidth=20,
-                maxWidth=80
+                # maxWidth=80
             )
             gb.configure_grid_options(autoSizeStrategy={type: 'fitCellContents'})
            
             go = gb.build()
-
-            grid_response = AgGrid(
+            if expand:
+                grid_response = AgGrid(
                     gc5, 
                     gridOptions=go,  
-                    fit_columns_on_grid_load=wrap
+                    fit_columns_on_grid_load=False
                 )
+            else:
+                grid_response = AgGrid(
+                    gc5, 
+                    gridOptions=go,  
+                    fit_columns_on_grid_load=True
+                )
+           
 
         #selected = pd.DataFrame()
         selected = grid_response["selected_rows"]
@@ -384,7 +388,7 @@ if uploaded_file is not None:
                         ).add_to(map)
         except AttributeError:
             #st_map = st_folium(map, width=700, height=450)
-            st.divider()
+            st.write(selected)
 
         with colm:
             st_map = st_folium(map, height=480)
