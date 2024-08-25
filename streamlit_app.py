@@ -21,7 +21,17 @@ st.divider()
 st.header('All My UBC Courses')
 
 col1, col2, col3 = st.columns([0.45,0.1,0.45], vertical_alignment="center")
-sample = False
+
+st.markdown(
+    """
+    <style>
+        div[data-testid="column"]:nth-of-type(2)
+        {
+            text-align: center;
+        } 
+    </style>
+    """,unsafe_allow_html=True
+)
 
 with col1: 
     uploaded_file = st.file_uploader("""**Upload your UBC Course List Excel file** (UNEDITED from Workday please) :) """,
@@ -34,7 +44,7 @@ with col2:
     st.write("OR")
 
 with col3:
-    sample = st.button("Use sample data")
+    sample = st.button("Use sample data", use_container_width=True)
 
 if uploaded_file is not None or sample is True:
     try:
