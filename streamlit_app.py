@@ -482,4 +482,6 @@ footer_html = """
     
 </div>"""
 st.markdown(footer_html, unsafe_allow_html=True)
+ip = get_remote_ip()
 st.markdown(f"The remote ip is {get_remote_ip()}")
+st.write("the remote ip is "+ip)
