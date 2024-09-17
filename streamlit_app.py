@@ -35,6 +35,10 @@ st.set_page_config(page_title='UBCV Class Map', page_icon=':bar_chart:', layout=
 
 st.title('UBC Vancouver - Class Map')
 st.write("Map of the UBC Vancouver campus showing the location of your classes on any day!")
+
+ip = get_remote_ip()
+st.write("the remote ip is "+ip)
+
 st.divider()
 st.header('All My UBC Courses')
 
@@ -484,4 +488,4 @@ footer_html = """
 st.markdown(footer_html, unsafe_allow_html=True)
 ip = get_remote_ip()
 st.markdown(f"The remote ip is {get_remote_ip()}")
-st.write("the remote ip is "+ip)
+# st.write("the remote ip is "+ip)
