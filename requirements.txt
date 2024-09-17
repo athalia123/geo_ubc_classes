@@ -50,7 +50,7 @@ exceptiongroup
 executing
 fastjsonschema
 filelock
-fiona
+fiona==1.9.6
 flake8
 flake8-html
 fonttools
