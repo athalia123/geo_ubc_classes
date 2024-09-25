@@ -3,6 +3,18 @@
 This is a website to show the locations of all my registered classes on my schedule on the UBC Vancouver campus map. :)
 Using python's matplotlib, pandas and deployment with streamlit.
 
+Systems used:
+- python (programming language)
+- streamlit (deployment tool)
+- geopandas (geographical data manipulation and preparation)
+- pandas (data manipulation and preparation)
+- streamlit folium (streamlit custom library with folium library, interactive map tool)
+- mapbox (wayfinding and directions API)
+- streamlit aggrid (streamlit custom package with aggrid, customizable tables on streamlit)
+- jupyter notebook (for testing data manipulation before putting it in the app)
+- OpenStreetMap (map provider)
+- [UBC geospatial data Github](https://github.com/UBCGeodata/ubc-geospatial-opendata)(found on the UBC campus map planning website, ubc building geojson data source)
+
 Start date: 7.00pm maybe 1 Aug 2024 (after much frustration and mock maps made on my VM using geopandas which started on 25 Jul 2024)
 = I hope this one works :)
 
