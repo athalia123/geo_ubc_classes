@@ -5,7 +5,7 @@ Using python's matplotlib, pandas and deployment with streamlit.
 
 Systems used:
 - python (programming language)
-- streamlit (deployment tool)
+- streamlit (front-end, web deployment tool)
 - geopandas (geographical data manipulation and preparation)
 - pandas (data manipulation and preparation)
 - streamlit folium (streamlit custom library with folium library, interactive map tool for base map)
