@@ -1,7 +1,7 @@
 # geo_ubc_classes
 
 This is a website to show the locations of all my registered classes on my schedule on the UBC Vancouver campus map. :)
-Using python's matplotlib, pandas and deployment with streamlit.
+Using python's geopandas and deployment with streamlit. Wayfinding using Mapbox Directions API.
 
 Systems used:
 - python (programming language)
