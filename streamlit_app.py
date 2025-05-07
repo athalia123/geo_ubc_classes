@@ -119,12 +119,17 @@ if uploaded_file is not None or sample is True:
         gc2['End'] = gc2['End'].astype('str')
         gc2['Start'] = gc2['Start'].astype('str')
         # print(f"string lenghts of End = {gc2['End'].str.len()}")
-        st.write('string lenghts of End')
-        st.write(gc2['End'].str.len())
-        st.write('string lenghts of start')
-        st.write(gc2['Start'].str.len())
+        # st.write('string lenghts of End')
+        # st.write(gc2['End'].str.len())
+        # st.write('string lenghts of start')
+        # st.write(gc2['Start'].str.len())
+        
+        st.write(gc2['Start'][gc2['Start'].str.len() == 4])
+        gc2['Start'][gc2['Start'].str.len() == 4] == "0" + gc2['Start']
+        st.write(gc2['Start'])
+
         # print(f"string lenghts of Start = {gc2['Start'].str.len()}")
-        gc3 = gc2[gc2["Days"].str.contains(day)].sort_values(by=['End'])
+        gc3 = gc2[gc2["Days"].str.contains(day)].sort_values(by=['Start'])
         # gc3 is still geopandas Dataframe
         # gc4 is already normal pandas Dataframe
 
