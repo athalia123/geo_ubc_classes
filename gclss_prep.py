@@ -46,6 +46,13 @@ def get_gclss(file_name):
         df.columns = list(df.iloc[0])
         df.drop(1, axis='index', inplace=True)
 
+         # drop columns "Drop" and "Swap" if they exist
+        df_col = df.columns
+        if "Drop" in df_col:
+            df.drop('Drop', axis='columns', inplace=True)
+        if "Swap" in df_col:
+            df.drop('Swap', axis='columns', inplace=True)
+
         # delete row with empty meeting patterns
         msv = df[pd.isna(df['Meeting Patterns'])].index
         df.drop(msv, axis='index', inplace=True)
