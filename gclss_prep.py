@@ -95,6 +95,7 @@ def get_gclss(file_name):
         gclss.drop("BLDG_CODE", axis='columns', inplace=True)
         gclss1 = gpd.GeoDataFrame(gclss)
 
+        print("ALL COLUMNS: ", df.columns)
         terms = df2['Term'].unique()
 
         return gclss1, name, terms
