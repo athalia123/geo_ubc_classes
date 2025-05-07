@@ -57,8 +57,8 @@ def get_gclss(file_name):
 
         # Get buidling code, floor, room
         mpa = df['Meeting Patterns'].str.split(" \| ", expand=True)
-        bfr_ind = max(mpa.columns)
-        bfr = mpa[bfr_ind].str.split("-", n=1,expand=True)
+        bfr_ind = mpa.columns
+        bfr = mpa[bfr_ind[-1]].str.split("-", n=1,expand=True)
         df[['Building', 'Room']] = bfr
 
         # Get days
