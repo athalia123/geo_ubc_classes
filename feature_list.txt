@@ -1,0 +1,123 @@
+make each marker a different color
+put the color (as a circle or something) in a column in the Weekday dataframe above the map
+<failed atm, but put a number instead.. that i need to fix bcs of the colors>
+<done, made the markers a fixed color instead, except for when selected in wayfinding>
+
+find the distance between first class (centroid) to next class (centroid) and so on (prob using geopandas)
+put it in the tooltip of the marker, show to the next class
+<completed, will probably replace that data with the mapbox walking distance data instead>
+
+maybe figure out how to optimize for mobile devices
+<pending, idk how to yet>
+
+see building details when cursor clicks on the outline of any building
+<completed, but need to decide what are the best details to display>
+
+add the duration and distance between two buildings from the mapbox to the dataframe displayed
+(figure out the best way to code that, integrate with the wayfinding, maybe make a function for it)
+<done>
+
+add an algorithm to reformat and add the correct columns to an uploaded csv thats downloaded from workday
+(must be able to separate first and second term classes from each other)
+make algorithm to add the additional columns for Days, Start, End... that stuff in the uploaded csv
+then to merge with the centroids gdf
+for use in the rest of the website
+<done, but need to request the workday schedule csv from other ubc students to test it on though>
+
+fix "End" type, change the time format to XX:YY
+<fixed>
+
+fix the number on the marker (make sure it shows, can change color if i want to)
+<fixed>
+
+adjust backend so that page doesn't refresh all the time, run mapbox direction api only as needed
+
+fix marker tooltip to support multiiple classes in a single building
+
+support for a schedule with multiple terms
+- toggle for which terms to show (or all terms)
+- the term chosen will affect the weekday schedule
+- default toggle is term 1, but if no term was chosen, then weekday schedule picker will be hidden
+
+catch error if something wrong with file uploaded format (like certain missing values or rows)
+- catch error and give an error message ("incompatible file, missing: blah blah blah")
+
+================
+
+Systems used:
+python (programming language)
+streamlit (deployment tool)
+geopandas (geographical data manipulation and preparation)
+pandas (data manipulation and prepation)
+streamlit folium (streamlit custom library with folium library, interactive map tool)
+mapbox (wayfinding and directions api)
+streamlit aggrid (streamlit custom package with aggrid, customizable tables on streamlit)
+jupyter notebook (sandbox to test data manipulation before putting it in the app)
+OpenStreetMap (map provider)
+UBC geospatial data Github (found on the ubc campus map planning website, ubc building geojson data source)
+
+
+
+
+
+
+
+
+
+
+================
+random code
+
+folium.Marker(
+        location=loc,
+        popup="Delivery " + '{:02d}'.format(i+1),
+        tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), 
+        icon= DivIcon(
+            icon_size=(150,36),
+            icon_anchor=(14,40),
+#             html='<div style="font-size: 18pt; align:center, color : black">' + '{:02d}'.format(num+1) + '</div>',
+            html="""<span class="fa-stack " style="font-size: 12pt" >
+                    <!-- The icon that will wrap the number -->
+                    <span class="fa fa-circle-o fa-stack-2x" style="color : {:s}"></span>
+                    <!-- a strong element with the custom content, in this case a number -->
+                    <strong class="fa-stack-1x">
+                         {:02d}  
+                    </strong>
+                </span>""".format('#440154',i+1)
+        )
+    ).add_to(map)
+
+    folium.Marker(
+      location=loc,
+      popup="Delivery " + '{:02d}'.format(i+1),
+      #tooltip=folium.Tooltip(tooltip, style='width:300px; height:110px; white-space:normal;'), 
+      icon=folium.Icon(color='white',icon_color='white'),
+        markerColor='#440154',
+   ).add_to(map)
+
+
+
+   service = Directions(access_token=st.secrets['MAPBOX_ACCESS_TOKEN'])
+    
+    origin = {
+        'type': 'Feature',
+        'properties': {'name': gc3.iloc[ind]['Building']},
+        'geometry': {
+            'type': 'Point',
+            'coordinates': [gc3.iloc[ind]['lon'].item(), gc3.iloc[ind]['lat'].item()]}}
+    destination = {
+        'type': 'Feature',
+        'properties': {'name': gc3.iloc[ind+1]['Building']},
+        'geometry': {
+            'type': 'Point',
+            'coordinates': [gc3.iloc[ind+1]['lon'].item(), gc3.iloc[ind+1]['lat'].item()]}}
+
+    response = service.directions([origin, destination],
+        'mapbox/walking')
+    print("response code: ", response.status_code)
+
+    #st.write("response code: ", str(response.status_code))
+
+    #walking_route = response.geojson()
+
+
