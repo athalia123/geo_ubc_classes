@@ -125,7 +125,7 @@ if uploaded_file is not None or sample is True:
         # st.write(gc2['Start'].str.len())
         
         st.write(gc2['Start'][gc2['Start'].str.len() == 4])
-        gc2['Start'][gc2['Start'].str.len() == 4] == "0" + gc2['Start']
+        gc2['Start'][gc2['Start'].str.len() == 4] = "0" + gc2['Start']
         st.write(gc2['Start'])
 
         # print(f"string lenghts of Start = {gc2['Start'].str.len()}")
