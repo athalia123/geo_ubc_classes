@@ -166,7 +166,7 @@ sphinxcontrib-jsmath
 sphinxcontrib-qthelp
 sphinxcontrib-serializinghtml
 stack-data
-streamlit
+streamlit==1.43.0
 streamlit_folium
 sympy
 tenacity
