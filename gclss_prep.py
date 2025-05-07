@@ -90,6 +90,6 @@ def get_gclss(file_name):
         terms = df2['Term'].unique()
 
         return gclss1, name, terms
-    except IndexError or ValueError or AttributeError:
+    except IndexError or ValueError or AttributeError or KeyError:
         return "Sorry... something went wrong during the file processing"
 
