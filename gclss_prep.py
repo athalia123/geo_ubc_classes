@@ -134,7 +134,9 @@ def get_gclss(file_name):
         print("gclss1: ", gclss1)
 
         print("ALL COLUMNS: ", df.columns)
+        print(gclss1["Section", "Term"])
         terms = df['Term'].unique()
+        terms = terms[terms.notna()]
 
         return gclss1, name, terms
 
