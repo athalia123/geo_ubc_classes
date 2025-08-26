@@ -2,6 +2,7 @@ import streamlit as st
 import geopandas as gpd
 import pandas as pd
 # import numpy as np
+from copy import deepcopy
 import folium
 from folium.features import DivIcon
 from streamlit_folium import st_folium
@@ -121,11 +122,11 @@ if uploaded_file is not None or sample is True:
         # st.write(gc2['Start'][gc2['Start'].str.len() == 4])
         # gc2['Start'][gc2['Start'].str.len() == 4] = "0" + gc2['Start']
 
-        temp = "0" + gc2['Start'][gc2['Start'].str.len() == 4].copy()
-        gc2['Start'][gc2['Start'].str.len() == 4] = temp
+        temp = "0" + deepcopy(gc2['Start'])
+        gc2['Start'][gc2['Start'].str.len() == 4] = temp[temp.str.len() == 4]
 
-        temp = "0" + gc2['End'][gc2['End'].str.len() == 4].copy()
-        gc2['End'][gc2['End'].str.len() == 4] = temp
+        temp = "0" + deepcopy(gc2['End'])
+        gc2['End'][gc2['End'].str.len() == 4] = temp[temp.str.len() == 4]
         # st.write(gc2['Start'])
 
         # print(f"string lenghts of Start = {gc2['Start'].str.len()}")
