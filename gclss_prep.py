@@ -131,6 +131,7 @@ def get_gclss(file_name):
         gclss = course.merge(bcen1, left_on='Building', right_on='BLDG_CODE')
         gclss.drop("BLDG_CODE", axis='columns', inplace=True)
         gclss1 = gpd.GeoDataFrame(gclss)
+        print("gclss1: ", gclss1)
 
         print("ALL COLUMNS: ", df.columns)
         terms = df['Term'].unique()
