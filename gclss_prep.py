@@ -51,11 +51,13 @@ def get_gclss(file_name):
 
         # df.drop(colname[0], axis='columns', inplace=True)
 
-        df["Term"] = terms 
+        
 
         # rename the columns
         df.columns = list(df.iloc[0])
         df.drop(1, axis='index', inplace=True)
+
+        df["Term"] = terms
 
          # drop columns "Drop" and "Swap" if they exist
         df_col = df.columns
@@ -136,7 +138,7 @@ def get_gclss(file_name):
         print("gclss1: ", gclss1)
 
         print("ALL COLUMNS: ", df.columns)
-        terms = df['Term'].unique()
+        terms = df["Term"].unique()
         terms = terms[terms.notna()]
 
         return gclss1, name, terms
