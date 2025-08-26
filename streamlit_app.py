@@ -121,10 +121,10 @@ if uploaded_file is not None or sample is True:
         # st.write(gc2['Start'][gc2['Start'].str.len() == 4])
         # gc2['Start'][gc2['Start'].str.len() == 4] = "0" + gc2['Start']
 
-        temp = "0" + gc2['Start'][gc2['Start'].str.len() == 4]
+        temp = "0" + gc2['Start'][gc2['Start'].str.len() == 4].copy()
         gc2['Start'][gc2['Start'].str.len() == 4] = temp
 
-        temp = "0" + gc2['End'][gc2['End'].str.len() == 4]
+        temp = "0" + gc2['End'][gc2['End'].str.len() == 4].copy()
         gc2['End'][gc2['End'].str.len() == 4] = temp
         # st.write(gc2['Start'])
 
