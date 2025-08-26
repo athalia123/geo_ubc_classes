@@ -122,12 +122,7 @@ if uploaded_file is not None or sample is True:
         # st.write(gc2['Start'][gc2['Start'].str.len() == 4])
         # gc2['Start'][gc2['Start'].str.len() == 4] = "0" + gc2['Start']
 
-        temp = "0" + deepcopy(gc2['Start'])
-        gc2['Start'][gc2['Start'].str.len() == 4] = temp[temp.str.len() == 4]
-
-        temp = "0" + deepcopy(gc2['End'])
-        gc2['End'][gc2['End'].str.len() == 4] = temp[temp.str.len() == 4]
-        # st.write(gc2['Start'])
+        # deleted    
 
         # print(f"string lenghts of Start = {gc2['Start'].str.len()}")
         gc3 = gc2[gc2["Days"].str.contains(day)].sort_values(by=['Start'])
