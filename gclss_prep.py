@@ -3,7 +3,7 @@ import pandas as pd
 
 
 def get_time(period, mpa):
-    mp2 = mpa[2].str.split(" \- ", expand=True)
+    mp2 = mpa.str.split(" \- ", expand=True)
     mp2.columns = ['Start', 'End']
 
     time = mp2[period]
@@ -32,15 +32,24 @@ def get_gclss(file_name):
         df.drop(0, axis='index', inplace=True)
         colname = list(df.columns)
 
-        str1 = df.loc[2, 'My Enrolled Courses'].split(" - ")
-        name = str1[0]
+        nameDetails = df["My Enrolled Courses"]
+        nameDetails.drop(1, axis="index", inplace=True)
+        df.drop("My Enrolled Courses", axis='columns', inplace=True)
 
-        enc = df[colname[0]]
-        enc.drop(1, axis='index', inplace=True)
-        dft = enc.str.rsplit(" (", expand=True, n=1)
-        term = dft[0].str.rsplit(" - ", expand=True, n=1)[1]
+        details_split = nameDetails.str.rsplit(" - ", expand=True, n=1)
+        name_id_split = details_split[0].str.split(" - ", expand=True, n=1)[0]
+        terms = details_split[1].str.rsplit(" (", expand=True, n=1)[0]
+        name = name_id_split.iloc[0]
 
-        df.drop(colname[0], axis='columns', inplace=True)
+        # str1 = df.loc[2, 'My Enrolled Courses'].split(" - ")
+        # name = str1[0]
+
+        # enc = df[colname[0]]
+        # enc.drop(1, axis='index', inplace=True)
+        # dft = enc.str.rsplit(" (", expand=True, n=1)
+        # term = dft[0].str.rsplit(" - ", expand=True, n=1)[1]
+
+        # df.drop(colname[0], axis='columns', inplace=True)
 
         # rename the columns
         df.columns = list(df.iloc[0])
@@ -52,6 +61,7 @@ def get_gclss(file_name):
             df.drop('Drop', axis='columns', inplace=True)
         if "Swap" in df_col:
             df.drop('Swap', axis='columns', inplace=True)
+        df.drop(["Credits", "Grading Basis"], axis="columns", inplace=True)
 
         # delete row with empty meeting patterns
         msv = df[pd.isna(df['Meeting Patterns'])].index
@@ -62,31 +72,58 @@ def get_gclss(file_name):
         df.drop(nnr, axis='index', inplace=True)
         #print(nnr)
 
+        # get meeting patters
+        mpa_raw = df["Meeting Patterns"]
+        mpa_split = mpa_raw.str.split("\n\n", expand=True)
+        mpa_nodate = mpa_split[0].str.split("|", expand=True, n=1)[1]
+        mpa_nodate1 = mpa_split[1].str.split("|", expand=True, n=1)[1]
+
+        df.drop(["Meeting Patterns"], axis="columns", inplace=True)
+        df["mpa0"] = mpa_nodate
+        df["mpa1"] = mpa_nodate1
+        df.reset_index(inplace=True)
+        mpa_multiple_df = df[(df["mpa0"] != df["mpa1"]) & (df["mpa1"].notna())]
+
+
+        for row in mpa_multiple_df.index:
+            ind = len(df)
+            df.loc[ind] = df.loc[row].copy()
+            df.loc[ind, "mpa0"] = df.loc[row, "mpa1"]
+
+        df.drop("mpa1", axis="columns", inplace=True)
+
         # Get buidling code, floor, room
-        mpa = df['Meeting Patterns'].str.split(" \| ", expand=True)
-        bfr_ind = mpa.columns
-        bfr = mpa[bfr_ind[-1]].str.split("-", n=1,expand=True)
-        df[['Building', 'Room']] = bfr
+        mpa_parse = df['mpa0'].str.split(" \| ", expand=True)
+        buildings = mpa_parse[3].str.split(" \(", expand=True)[1].str.split("\)", expand=True)[0]
+
+        df["Building"] = buildings
 
         # Get days
-        df["Days"] = mpa[1]
+        df["Days"] = mpa_parse[0]
+
+        floor = mpa_parse[4].str.split(":", expand=True)
+        room = mpa_parse[5].str.split(":", expand=True)
+        mpa_parse["Room"] = floor[0] + floor[1] + "-" + room[0] + room[1]
+
+        df["Room"] = mpa_parse["Room"]
 
         # Get start and end time
-        df["Start"] = get_time("Start", mpa)
-        df["End"] = get_time("End", mpa)
+        time = mpa_parse[1]
+        df["Start"] = get_time("Start", time)
+        df["End"] = get_time("End", time)
 
-        df["Term"] = term 
+        df["Term"] = terms 
 
         # drop meeting patterns column
-        df.drop("Meeting Patterns", axis='columns', inplace=True)
+        df.drop("mpa0", axis='columns', inplace=True)
 
         df.reset_index(drop=True, inplace=True)
 
         # reorder the columns
-        df2 = df.iloc[:, [3,1,2,4,5,6,12,13,14,10,11,7,8,9,15]]
+        # df2 = df.iloc[:, [3,1,2,4,5,6,12,13,14,10,11,7,8,9,15]]
 
 
-        course = gpd.GeoDataFrame(df2)
+        course = gpd.GeoDataFrame(df)
         bcen = gpd.read_file("geo_files/ubc_buildings_centroids.geojson")
 
         bcen1 = bcen[['BLDG_CODE', 'NAME', 'SHORTNAME', 'POSTAL_CODE', 'PRIMARY_ADDRESS', 'geometry']]
@@ -96,7 +133,7 @@ def get_gclss(file_name):
         gclss1 = gpd.GeoDataFrame(gclss)
 
         print("ALL COLUMNS: ", df.columns)
-        terms = df2['Term'].unique()
+        terms = df['Term'].unique()
 
         return gclss1, name, terms
     except IndexError or ValueError or AttributeError or KeyError:
