@@ -51,6 +51,8 @@ def get_gclss(file_name):
 
         # df.drop(colname[0], axis='columns', inplace=True)
 
+        df["Term"] = terms 
+
         # rename the columns
         df.columns = list(df.iloc[0])
         df.drop(1, axis='index', inplace=True)
@@ -112,7 +114,7 @@ def get_gclss(file_name):
         df["Start"] = get_time("Start", time)
         df["End"] = get_time("End", time)
 
-        df["Term"] = terms 
+       
 
         # drop meeting patterns column
         df.drop("mpa0", axis='columns', inplace=True)
