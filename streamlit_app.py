@@ -131,13 +131,14 @@ if uploaded_file is not None or sample is True:
 
         gc4 = pd.DataFrame(gc3)
         gc4 = gc4.drop('geometry', axis=1)
-        l = []
+        order = []
         for i in range(1, len(gc4)+1):
             #print(i)
-            l.append(i)
-        gc4['Order'] = l
-        gc4['order2'] = l
+            order.append(i)
+        gc4['Order'] = order
+        gc4['order2'] = order
         gc4 = gc4.set_index('Order')
+        print(gc4)
 
         #st.write(day)
 
@@ -231,7 +232,8 @@ if uploaded_file is not None or sample is True:
         ####################
         ###### AGGRID ######
         gc5 = gc4
-        gc5["Order"] = l
+        print(gc5)
+        gc5["Order"] = order
         gcc = gc5["Section"].str.split(" - ", expand=True)
         gc5["Section"] = gcc[0]
         gc5_cols = ["Order", "Section", "Instructional Format", "Start", "End", "Building", "Room", "Walking distance /km", "Walking duration /min", "lon", "lat"]
