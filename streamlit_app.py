@@ -55,7 +55,7 @@ with col3:
 
 
 if uploaded_file is not None or sample is True:
-    try:
+    # try:
         if sample:
             gclss_initial, name, terms = get_gclss("geo_files/ubc_View_My_Courses_unedited.xlsx")
             name = "Sample Schedule"
@@ -441,8 +441,8 @@ if uploaded_file is not None or sample is True:
             st_map = st_folium(map, height=480, width='100%')
 
 
-    except ValueError:
-        st.error("Sorry... your file is incompatible with our system", icon="🔥")
+    # except ValueError:
+    #     st.error("Sorry... your file is incompatible with our system", icon="🔥")
 
 
 
