@@ -26,7 +26,7 @@ def get_time(period, mpa):
 def get_gclss(file_name):
     #x = pd.read_excel("geo_files/ubc_View_My_Courses_unedited.xlsx", engine='openpyxl')
 
-    try:
+    # try:
         x = pd.read_excel(file_name, engine='openpyxl')
         df = pd.DataFrame(x)
         df.drop(0, axis='index', inplace=True)
@@ -136,6 +136,7 @@ def get_gclss(file_name):
         terms = df['Term'].unique()
 
         return gclss1, name, terms
-    except IndexError or ValueError or AttributeError or KeyError:
-        return "Sorry... something went wrong during the file processing"
+
+    # except IndexError or ValueError or AttributeError or KeyError:
+    #     return "Sorry... something went wrong during the file processing"
 
