@@ -119,8 +119,13 @@ if uploaded_file is not None or sample is True:
         gc2['End'] = gc2['End'].astype('str')
         gc2['Start'] = gc2['Start'].astype('str')        
         # st.write(gc2['Start'][gc2['Start'].str.len() == 4])
-        gc2['Start'][gc2['Start'].str.len() == 4] = "0" + gc2['Start']
-        gc2['End'][gc2['End'].str.len() == 4] = "0" + gc2['End']
+        # gc2['Start'][gc2['Start'].str.len() == 4] = "0" + gc2['Start']
+
+        temp = "0" + gc2['Start'][gc2['Start'].str.len() == 4]
+        gc2['Start'][gc2['Start'].str.len() == 4] = temp
+
+        temp = "0" + gc2['End'][gc2['End'].str.len() == 4]
+        gc2['End'][gc2['End'].str.len() == 4] = temp
         # st.write(gc2['Start'])
 
         # print(f"string lenghts of Start = {gc2['Start'].str.len()}")
