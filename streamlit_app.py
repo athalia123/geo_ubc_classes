@@ -80,7 +80,7 @@ if uploaded_file is not None or sample is True:
         gclss = gclss_initial[gclss_initial['Term']==term]
         gc = pd.DataFrame(gclss)
         gc1 = gclss.drop('geometry', axis=1)
-        cols = ["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building", "NAME", "Term"]
+        cols = ["Section", "Instructional Format", "Days", "Start", "End", "Room", "Building", "NAME"]
     
         gc1 = gc1[cols]
         st.dataframe(gc1)
