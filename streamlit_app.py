@@ -478,14 +478,14 @@ footer_html = """
         background-color: white;
         color: black;
         text-align: center;
-        font-size:12px;
+        font-size:14px;
         padding-top: 10px;
         padding-bottom: 10px
     }
 </style>
 
 <div class="footer">
-  <p>Personal project developed by Athalia R Setiawan (UBC '28) (athalia22rs@gmail.com) -- August 2024 :D</p>
+  <p>Personal project developed by Athalia R Setiawan (UBC '28) -- August 2024 :D</p>
   <p>Map data downloaded from <a href="https://github.com/UBCGeodata/ubc-geospatial-opendata">UBC geospatial data Github</a> in July 2024</p>
   <p>Disclaimers: No guarantee on the accuracy of the information displayed on this site.
     This site is not affiliated with UBC </p>
