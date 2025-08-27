@@ -126,7 +126,11 @@ if uploaded_file is not None or sample is True:
         # deleted    
 
         # print(f"string lenghts of Start = {gc2['Start'].str.len()}")
-        gc3 = gc2[gc2["Days"].str.contains(day)].sort_values(by=['Start'])
+        try:
+            gc3 = gc2[gc2["Days"].str.contains(day)].sort_values(by=['Start'])
+        except ValueError:
+            st.error("You have no classes on this day!")
+
         # gc3 is still geopandas Dataframe
         # gc4 is already normal pandas Dataframe
 
@@ -444,10 +448,10 @@ if uploaded_file is not None or sample is True:
             st_map = st_folium(map, height=480, width='100%')
 
 
-    except ValueError:
-        st.error("""Sorry... your file is incompatible with our system. Make sure that you uploaded the right file!
-                    find it Workday > Academics > Registration & Courses > View My Courses > 
-                    click the "Export to Excel" icon on the top right corner in the Enrolled Sections part and click Download!""", icon="🔥")
+    except :
+        st.error("""Sorry... something went wrong. Make sure that you uploaded the right file.
+                    find it at Workday > Academics > Registration & Courses > View My Courses > 
+                    click the "Export to Excel" icon just above Enrolled Sections table on the right side and click Download!""", icon="🔥")
 
 
 
