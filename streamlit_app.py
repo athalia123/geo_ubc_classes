@@ -51,8 +51,8 @@ st.markdown(
 with col1: 
     uploaded_file = st.file_uploader("""**Upload your UBC "View_My_Courses" Excel file** (UNEDITED from Workday please) :) """,
                                     type="xlsx",
-                                    help="""**find it at Workday > Academics > Registration & Courses > View My Courses > 
-                                            click the "Export to Excel" icon just above Enrolled Sections table on the right side and click Download!**"""
+                                    help="""go to **Workday** > **Academics** > **Registration & Courses** > **View My Courses** > 
+                                            on the **right** side, click the "Export to Excel" icon just above **Enrolled Sections** table and click Download!"""
                                 )
     st.caption("Files uploaded are NEVER stored in any way")
     if uploaded_file is not None:
@@ -485,7 +485,7 @@ footer_html = """
 </style>
 
 <div class="footer">
-  <p>Personal project developed by Athalia Setiawan (UBC '28) -- August 2024 & August 2025 :D</p>
+  <p>Personal project developed by Athalia (UBC '28) -- August 2024 & August 2025 :D</p>
   <p>Map data downloaded from <a href="https://github.com/UBCGeodata/ubc-geospatial-opendata">UBC geospatial data Github</a> in August 2025</p>
   <p>Disclaimers: No guarantee on the accuracy of the information displayed on this site.
     This site is not affiliated with UBC </p>
