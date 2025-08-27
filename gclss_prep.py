@@ -85,7 +85,7 @@ def get_gclss(file_name):
         df.drop(["Meeting Patterns"], axis="columns", inplace=True)
         df["mpa0"] = mpa_nodate
         df["mpa1"] = mpa_nodate1
-        df.reset_index(inplace=True)
+        df.reset_index(drop=True, inplace=True)
         mpa_multiple_df = df[(df["mpa0"] != df["mpa1"]) & (df["mpa1"].notna())]
 
 
@@ -121,6 +121,7 @@ def get_gclss(file_name):
         # drop meeting patterns column
         df.drop("mpa0", axis='columns', inplace=True)
 
+        df.sort_values(by=['Term', 'Section'], ascending=[True, True], inplace=True)
         df.reset_index(drop=True, inplace=True)
 
         # reorder the columns

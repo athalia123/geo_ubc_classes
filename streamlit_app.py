@@ -352,10 +352,16 @@ if uploaded_file is not None or sample is True:
         #print(type(oval))
         #gc3.iloc[1]['Building']
 
+        gc5["Section Code"] = gc5["Section"].str.split(" - ", expand=True)[0]
+
         for i in range(0,len(gc3)):
             rw = gc3.iloc[i]
             loc = [rw['lat'], rw['lon']]
-            tooltip = rw['Section']+'<br>'+rw['Start']+'<br>'+rw['NAME']+'<br>'+rw['Building']+'<br>'+rw['Room']
+            lineSection = rw['Section Code']+ " ("+rw['Instructional Format']+")"
+            timeSection = rw['Start'] + "-" + rw['End']
+            buildingSection = rw['NAME']
+            roomSection = rw['Building'] + "-" + rw['Room']
+            tooltip = lineSection+"<br>"+timeSection+"<br>"+buildingSection+"<br>"+roomSection
 
             folium.Marker(
                 location=loc,
@@ -466,9 +472,9 @@ footer_html = """
         background-color: white;
         color: black;
         text-align: center;
-        font-size: 10px;
-        padding-top: 20px;
-        padding-bottom: 20px
+        font-size:18px;
+        padding-top: 10px;
+        padding-bottom: 10px
     }
 </style>
 
