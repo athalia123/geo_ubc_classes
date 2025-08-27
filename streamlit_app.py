@@ -41,9 +41,10 @@ st.markdown(
 with col1: 
     uploaded_file = st.file_uploader("""**Upload your UBC Course List Excel file** (UNEDITED from Workday please) :) """,
                                     type="xlsx",
-                                    help="""**Workday > Academics > Registration & Courses > View My Courses > "Export to Excel" icon on the top right corner above Enrolled Sections and click Download!**"""
+                                    help="""**find it Workday > Academics > Registration & Courses > View My Courses > 
+                                        click the "Export to Excel" icon on the top right corner in the Enrolled Sections part and click Download!**"""
                                 )
-    st.caption("Files uploaded are NEVER stored in anyway")
+    st.caption("Files uploaded are NEVER stored in any way")
     if uploaded_file is not None:
         sample = False
 
@@ -55,7 +56,7 @@ with col3:
 
 
 if uploaded_file is not None or sample is True:
-    # try:
+    try:
         if sample:
             gclss_initial, name, terms = get_gclss("geo_files/ubc_View_My_Courses_unedited.xlsx")
             name = "Sample Schedule"
@@ -443,8 +444,10 @@ if uploaded_file is not None or sample is True:
             st_map = st_folium(map, height=480, width='100%')
 
 
-    # except ValueError:
-    #     st.error("Sorry... your file is incompatible with our system", icon="🔥")
+    except ValueError:
+        st.error("""Sorry... your file is incompatible with our system. Make sure that you uploaded the right file!
+                    find it Workday > Academics > Registration & Courses > View My Courses > 
+                    click the "Export to Excel" icon on the top right corner in the Enrolled Sections part and click Download!""", icon="🔥")
 
 
 
