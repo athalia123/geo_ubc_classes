@@ -12,6 +12,16 @@ from mapbox import Directions
 from st_aggrid import AgGrid, GridOptionsBuilder
 from gclss_prep import get_gclss
 
+# helper functions
+def tooltipMaker(data):
+    lineSection = data['Section Code']+ " ("+data['Instructional Format']+")"
+    timeSection = data['Start'] + "-" + data['End']
+    buildingSection = data['NAME']
+    roomSection = data['Building'] + "-" + data['Room']
+    tooltip = lineSection+"<br>"+timeSection+"<br>"+buildingSection+"<br>"+roomSection
+    return tooltip
+
+# streamlit page
 st.set_page_config(page_title='UBCV Class Map', page_icon=':bar_chart:', layout='wide')
 
 st.title('UBC Vancouver - Class Map')
@@ -357,11 +367,8 @@ if uploaded_file is not None or sample is True:
         for i in range(0,len(gc3)):
             rw = gc3.iloc[i]
             loc = [rw['lat'], rw['lon']]
-            lineSection = rw['Section Code']+ " ("+rw['Instructional Format']+")"
-            timeSection = rw['Start'] + "-" + rw['End']
-            buildingSection = rw['NAME']
-            roomSection = rw['Building'] + "-" + rw['Room']
-            tooltip = lineSection+"<br>"+timeSection+"<br>"+buildingSection+"<br>"+roomSection
+            tooltip = tooltipMaker(rw)
+            
 
             folium.Marker(
                 location=loc,
@@ -419,8 +426,7 @@ if uploaded_file is not None or sample is True:
             for i in [ind, ind+1]:
                 row = gc3.iloc[i]
                 loc = [row['lat'], row['lon']]
-                tooltip = row['Section']+'<br>'+row['Start']+'<br>'+row['NAME']+'<br>'+row['Building']+'<br>'+row['Room']
-
+                tooltip = tooltipMaker(row)
                 folium.Marker(
                     location=loc,
                     #popup="Delivery " + '{:02d}'.format(i+1),
@@ -486,3 +492,4 @@ footer_html = """
     
 </div>"""
 st.markdown(footer_html, unsafe_allow_html=True)
+
