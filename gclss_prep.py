@@ -32,6 +32,16 @@ def get_gclss(file_name):
         df.drop(0, axis='index', inplace=True)
         colname = list(df.columns)
 
+        # if file uploaded is whole view my courses, not just my enrolled courses
+        firstcol = colname[0]
+        if firstcol != "My Enrolled Courses":
+            mec = df[df[firstcol] == "My Enrolled Courses"].index[0]
+            df.columns = list(df.loc[mec])
+            print(df)
+            df.drop(range(df.first_valid_index(), mec+1), axis='index', inplace=True)
+            df.reset_index(drop=True, inplace=True)
+            df.drop(0, axis='index', inplace=True)
+
         nameDetails = df["My Enrolled Courses"]
         nameDetails.drop(1, axis="index", inplace=True)
         df.drop("My Enrolled Courses", axis='columns', inplace=True)
@@ -41,17 +51,6 @@ def get_gclss(file_name):
         terms = details_split[1].str.rsplit(" (", expand=True, n=1)[0]
         name = name_id_split.iloc[0]
 
-        # str1 = df.loc[2, 'My Enrolled Courses'].split(" - ")
-        # name = str1[0]
-
-        # enc = df[colname[0]]
-        # enc.drop(1, axis='index', inplace=True)
-        # dft = enc.str.rsplit(" (", expand=True, n=1)
-        # term = dft[0].str.rsplit(" - ", expand=True, n=1)[1]
-
-        # df.drop(colname[0], axis='columns', inplace=True)
-
-        
 
         # rename the columns
         df.columns = list(df.iloc[0])
