@@ -478,7 +478,7 @@ footer_html = """
         background-color: white;
         color: black;
         text-align: center;
-        font-size:18px;
+        font-size:12px;
         padding-top: 10px;
         padding-bottom: 10px
     }
