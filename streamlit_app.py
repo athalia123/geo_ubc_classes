@@ -69,7 +69,7 @@ if uploaded_file is not None or sample is True:
     try:
         if sample:
             gclss_initial, name, terms = get_gclss("geo_files/ubc_View_My_Courses_unedited.xlsx")
-            name = "Sample Schedule"
+            name = "Sample Student (12345678)"
         else:    
             gclss_initial, name, terms = get_gclss(uploaded_file)
 
