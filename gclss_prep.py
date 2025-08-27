@@ -31,16 +31,19 @@ def get_gclss(file_name):
         df = pd.DataFrame(x)
         df.drop(0, axis='index', inplace=True)
         colname = list(df.columns)
+        # print(df)
 
         # if file uploaded is whole view my courses, not just my enrolled courses
         firstcol = colname[0]
         if firstcol != "My Enrolled Courses":
             mec = df[df[firstcol] == "My Enrolled Courses"].index[0]
             df.columns = list(df.loc[mec])
-            print(df)
+            # print(df)
             df.drop(range(df.first_valid_index(), mec+1), axis='index', inplace=True)
             df.reset_index(drop=True, inplace=True)
             df.drop(0, axis='index', inplace=True)
+            # print("\n",df)
+            
 
         nameDetails = df["My Enrolled Courses"]
         nameDetails.drop(1, axis="index", inplace=True)
@@ -50,7 +53,6 @@ def get_gclss(file_name):
         name_id_split = details_split[0].str.split(" - ", expand=True, n=1)[0]
         terms = details_split[1].str.rsplit(" (", expand=True, n=1)[0]
         name = name_id_split.iloc[0]
-
 
         # rename the columns
         df.columns = list(df.iloc[0])
@@ -64,6 +66,7 @@ def get_gclss(file_name):
             df.drop('Drop', axis='columns', inplace=True)
         if "Swap" in df_col:
             df.drop('Swap', axis='columns', inplace=True)
+        print("columns: ", df.columns)
         df.drop(["Credits", "Grading Basis"], axis="columns", inplace=True)
 
         # delete row with empty meeting patterns
@@ -84,7 +87,7 @@ def get_gclss(file_name):
         df.drop(["Meeting Patterns"], axis="columns", inplace=True)
         df["mpa0"] = mpa_nodate
         df["mpa1"] = mpa_nodate1
-        df.reset_index(drop=True, inplace=True)
+        df.reset_index(inplace=True)
         mpa_multiple_df = df[(df["mpa0"] != df["mpa1"]) & (df["mpa1"].notna())]
 
 
@@ -120,7 +123,6 @@ def get_gclss(file_name):
         # drop meeting patterns column
         df.drop("mpa0", axis='columns', inplace=True)
 
-        df.sort_values(by=['Term', 'Section'], ascending=[True, True], inplace=True)
         df.reset_index(drop=True, inplace=True)
 
         # reorder the columns
@@ -128,7 +130,7 @@ def get_gclss(file_name):
 
 
         course = gpd.GeoDataFrame(df)
-        bcen = gpd.read_file("geo_files/ubc_buildings_Aug2025_centroids.geojson")
+        bcen = gpd.read_file("geo_files/ubc_buildings_centroids.geojson")
 
         bcen1 = bcen[['BLDG_CODE', 'NAME', 'SHORTNAME', 'POSTAL_CODE', 'PRIMARY_ADDRESS', 'geometry']]
 
@@ -146,6 +148,3 @@ def get_gclss(file_name):
 
     except IndexError or ValueError or AttributeError or KeyError:
         return "Sorry... something went wrong during the file processing"
-
-
-# get_gclss("View_My_Courses (4).xlsx")
