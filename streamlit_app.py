@@ -52,7 +52,7 @@ with col1:
     uploaded_file = st.file_uploader("""**Upload your UBC "View_My_Courses" Excel file** (UNEDITED from Workday please) :) """,
                                     type="xlsx",
                                     help="""go to **Workday** > **Academics** > **Registration & Courses** > **View My Courses** > 
-                                            on the **right** side, click the "Export to Excel" icon just above **Enrolled Sections** table and click Download!"""
+                                            on the **right** side, click the **"Export to Excel" icon** just above the **Enrolled Sections** table and click Download!"""
                                 )
     st.caption("Files uploaded are NEVER stored in any way")
     if uploaded_file is not None:
