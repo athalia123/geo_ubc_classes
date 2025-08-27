@@ -25,7 +25,7 @@ def tooltipMaker(data):
 st.set_page_config(page_title='UBCV Class Map', page_icon=':bar_chart:', layout='wide')
 
 st.title('UBC Vancouver - Class Map')
-st.write("Map of the UBC Vancouver campus showing the location of your classes on any day!")
+st.write("Map of the UBC Vancouver campus showing the location of your classes on any day! Recommended to view on a **desktop computer**.")
 st.divider()
 st.header('All My UBC Courses')
 
@@ -49,10 +49,10 @@ st.markdown(
 
 
 with col1: 
-    uploaded_file = st.file_uploader("""**Upload your UBC Course List Excel file** (UNEDITED from Workday please) :) """,
+    uploaded_file = st.file_uploader("""**Upload your UBC "View_My_Courses" Excel file** (UNEDITED from Workday please) :) """,
                                     type="xlsx",
-                                    help="""**find it Workday > Academics > Registration & Courses > View My Courses > 
-                                        click the "Export to Excel" icon on the top right corner in the Enrolled Sections part and click Download!**"""
+                                    help="""**find it at Workday > Academics > Registration & Courses > View My Courses > 
+                                            click the "Export to Excel" icon just above Enrolled Sections table on the right side and click Download!**"""
                                 )
     st.caption("Files uploaded are NEVER stored in any way")
     if uploaded_file is not None:
