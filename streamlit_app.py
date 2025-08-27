@@ -352,7 +352,7 @@ if uploaded_file is not None or sample is True:
         #print(type(oval))
         #gc3.iloc[1]['Building']
 
-        gc5["Section Code"] = gc5["Section"].str.split(" - ", expand=True)[0]
+        gc3["Section Code"] = gc3["Section"].str.split(" - ", expand=True)[0]
 
         for i in range(0,len(gc3)):
             rw = gc3.iloc[i]
