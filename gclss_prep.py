@@ -123,6 +123,7 @@ def get_gclss(file_name):
         # drop meeting patterns column
         df.drop("mpa0", axis='columns', inplace=True)
 
+        df.sort_values(by=['Term', 'Section'], ascending=[True, True], inplace=True)
         df.reset_index(drop=True, inplace=True)
 
         # reorder the columns
@@ -142,7 +143,6 @@ def get_gclss(file_name):
         print("ALL COLUMNS: ", df.columns)
         terms = df["Term"].unique()
         print(df[["Term", "Section"]])
-        # terms = terms[terms.notna()]
 
         return gclss1, name, terms
 
