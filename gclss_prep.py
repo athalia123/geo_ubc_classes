@@ -129,7 +129,7 @@ def get_gclss(file_name):
 
 
         course = gpd.GeoDataFrame(df)
-        bcen = gpd.read_file("geo_files/ubc_buildings_centroids.geojson")
+        bcen = gpd.read_file("geo_files/ubc_buildings_Aug2025_centroids.geojson")
 
         bcen1 = bcen[['BLDG_CODE', 'NAME', 'SHORTNAME', 'POSTAL_CODE', 'PRIMARY_ADDRESS', 'geometry']]
 
