@@ -120,7 +120,7 @@ if uploaded_file is not None or sample is True:
 
 
         st.header('Weekday Schedule Picker')
-        st.write('Choose a day => the classes that day will be displayed in order of time AND be shown on the map window')
+        st.write('Choose a day -> the classes that day will be displayed in order of time AND be shown on the map window')
         st.write('Hover over markers and green lines, or click on building outline to see more details ')
         st.write('Click the checkbox in the table to see walking directions to the next class')
         Week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
