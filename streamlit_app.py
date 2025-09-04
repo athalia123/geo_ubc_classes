@@ -25,7 +25,7 @@ def tooltipMaker(data):
 st.set_page_config(page_title='UBCV Class Map', page_icon=':bar_chart:', layout='wide')
 
 st.title('UBC Vancouver - Class Map')
-st.write("Map of the UBC Vancouver campus showing the location of your classes on any day! Recommended to view on a **desktop computer**.")
+st.write("See your registered UBC Vancouver classes on a map (filter by term and by day)! Recommended to view on a **desktop computer**.")
 st.divider()
 st.header('All My UBC Courses')
 
@@ -120,12 +120,12 @@ if uploaded_file is not None or sample is True:
 
 
         st.header('Weekday Schedule Picker')
-        st.write('Choose a day -> the class that day will be displayed in order of time AND be shown on the map below it')
+        st.write('Choose a day => the classes that day will be displayed in order of time AND be shown on the map window')
         st.write('Hover over markers and green lines, or click on building outline to see more details ')
-        st.write('Click the checkbox in the table to see wayfinding to the next class')
+        st.write('Click the checkbox in the table to see walking directions to the next class')
         Week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
         #day = 0
-        day = st.selectbox("Weekday:", Week, index=0)
+        day = st.selectbox("Choose Weekday:", Week, index=0)
         gc2['lon'] = gclss1['lon']
         gc2['lat'] = gclss1['lat']
         gc2['End'] = gc2['End'].astype('str')
